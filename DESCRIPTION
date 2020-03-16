@@ -12,3 +12,10 @@ LazyData: true
 RoxygenNote: 7.0.2
 URL: https://github.com/jthomasmock/espnscrapeR
 BugReports: https://github.com/jthomasmock/espnscrapeR/issues
+Imports: 
+    dplyr,
+    tidyr,
+    purrr,
+    glue,
+    jsonlite,
+    stringr

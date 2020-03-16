@@ -3,8 +3,11 @@
 #' @param season Either numeric or character
 #'
 #' @return Returns a tibble
-#' @export
-#' @import jsonlite tidyr dplyr purrr glue
+#' @export get_espn_nfl_standings
+#' @import tidyr dplyr purrr
+#' @importFrom dplyr %>%
+#' @importFrom jsonlite fromJSON
+#' @importFrom glue glue
 #' @examples
 #' get_espn_nfl_standings(season = "2018")
 #'

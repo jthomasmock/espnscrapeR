@@ -1,0 +1,58 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# espnscrapeR
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of espnscrapeR is to collect or scrape QBR, NFL standings, and stats from ESPN.
+
+## Installation
+
+The development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("jthomasmock/espnscrapeR")
+```
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(espnscrapeR)
+```
+
+```{r}
+# Get NFL QBR for the 2019 regular season week 4
+get_nfl_qbr("2019", season_type = "Regular", week = 4)
+```
+
+```{r}
+# Get NFL standings for 2010
+get_espn_nfl_standings(2010)
+```
+
+
+```{r}
+# Get NFL 
+scrape_espn_stats(2019, stat = "rushing")
+```
+
+```{r}
+# Get college QBR for 2014 week 5
+get_espn_college_qbr(season = 2014, week = 5)
+```
+

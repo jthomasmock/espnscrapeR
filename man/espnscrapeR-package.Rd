@@ -4,9 +4,17 @@
 \name{espnscrapeR-package}
 \alias{espnscrapeR}
 \alias{espnscrapeR-package}
-\title{espnscrapeR: What the Package Does (Title Case)}
+\title{espnscrapeR: Scrapes Or Collects NFL Data From ESPN}
 \description{
-More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Main use case is to collect ESPN QBR for NFL and college football.
+    Alternative functions include getting NFL standings and scraping NFL season-level stats.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jthomasmock/espnscrapeR}
+  \item Report bugs at \url{https://github.com/jthomasmock/espnscrapeR/issues}
+}
+
 }
 \keyword{internal}

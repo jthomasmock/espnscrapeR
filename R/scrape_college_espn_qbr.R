@@ -2,7 +2,10 @@
 #'
 #' @param season Numeric or character - greater than 2004
 #' @param week Numeric or character - typically 1 to 15 or Bowls
-#' @import jsonlite tidyr dplyr purrr glue
+#' @import tidyr dplyr purrr
+#' @importFrom dplyr %>%
+#' @importFrom jsonlite fromJSON
+#' @importFrom glue glue
 #' @return tibble
 #' @export
 #'
@@ -17,7 +20,7 @@ get_espn_college_qbr <- function(season = 2019, week = NA) {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Small error handling to guide the limits on years
-  if (!between(as.numeric(season), 2004, current_year)) {
+  if (!dplyr::between(as.numeric(season), 2004, current_year)) {
     stop(paste("Please choose season between 2004 and", current_year))
   }
 
@@ -31,12 +34,12 @@ get_espn_college_qbr <- function(season = 2019, week = NA) {
   )
 
   # Build base url
-  base_url <- "http://site.web.api.espn.com/apis/fitt/v3/sports/football/college-football/qbr?qbrType="
+  base_url <- "https://site.web.api.espn.com/apis/fitt/v3/sports/football/college-football/qbr?region=us&lang=en&qbrType="
 
   # add base url to the weeks vs totals
-  url <- if_else(!is.na(week),
-    glue::glue("{base_url}weeks&conference=80&season={season}&page=1&sort=schedAdjQBR%3Adesc&week={week}&limit=200"),
-    glue::glue("{base_url}seasons&conference=80&season={season}&page=1&sort=schedAdjQBR%3Adesc&limit=200")
+  url <- dplyr::if_else(!is.na(week),
+    glue::glue("{base_url}weeks&seasontype=2&conference=80&isqualified=true&sort=schedAdjQBR%3Adesc&season={season}&week={week}&limit=200"),
+    glue::glue("{base_url}seasons&seasontype=2&conference=80&isqualified=true&sort=schedAdjQBR%3Adesc&season={season}&limit=200")
   )
 
   raw_json <- fromJSON(url)

@@ -3,7 +3,12 @@
 #' @param stat character - either receiving, passing, or rushing
 #' @param season character or numeric - greater than 1990
 #' @param season_type character - either Regular or Playoffs
-#' @import rvest purrr tidyr dplyr glue stringr readr
+#' @import purrr tidyr dplyr stringr
+#' @importFrom dplyr %>%
+#' @importFrom rvest html_table
+#' @importFrom xml2 read_html
+#' @importFrom glue glue
+#' @importFrom readr parse_number
 #' @return tibble
 #' @export
 #'
@@ -11,7 +16,7 @@
 #' scrape_espn_stats(season = 2000, stat = "passing")
 scrape_espn_stats <- function(stat = "receiving", season = 2019, season_type = "Regular"){
 
-  current_year <- as.double(str_sub(Sys.Date(), 1, 4))
+  current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   if(!season_type %in% c("Regular", "Playoffs"))
   {stop("Please choose season_type of 'Regular' or 'Playoffs'")}
@@ -19,7 +24,7 @@ scrape_espn_stats <- function(stat = "receiving", season = 2019, season_type = "
   if(!stat %in% c("receiving", "rushing", "passing"))
   {stop("Please choose season_type of 'receiving', 'rushing', or 'passing'!")}
 
-  if(!between(as.numeric(season), 1990, current_year))
+  if(!dplyr::between(as.numeric(season), 1990, current_year))
   {stop(paste("Please choose season between 1990 and", current_year))}
 
   message(
@@ -62,7 +67,7 @@ scrape_espn_stats <- function(stat = "receiving", season = 2019, season_type = "
     janitor::clean_names() %>%
     dplyr::as_tibble() %>%
     dplyr::mutate(yds = readr::parse_number(yds),
-           team = stringr::str_extract(str_sub(name, -3), "[::A-Z::]+"),
+           team = stringr::str_extract(stringr::str_sub(name, -3), "[::A-Z::]+"),
            name = stringr::str_remove(name, team)) %>%
     dplyr::arrange(desc(yds)) %>%
     dplyr::mutate(rank = dplyr::row_number(),

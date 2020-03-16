@@ -5,7 +5,10 @@
 #' @param season_type Character - either "Regular" or "Playoffs"
 #' @return Returns a tibble
 #' @export
-#' @import jsonlite tidyr dplyr purrr glue
+#' @import tidyr dplyr purrr
+#' @importFrom dplyr %>%
+#' @importFrom jsonlite fromJSON
+#' @importFrom glue glue
 #' @examples
 #' get_nfl_qbr("2016", season_type = "Playoffs", week = NA)
 #'
@@ -93,7 +96,7 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
   # We'll wrap it in purrr::quietly() and pluck the "result"
   quiet_unnest_wider <- purrr::quietly(tidyr::unnest_wider)
 
-  pluck(raw_json, "athletes", "athlete") %>%
+  purrr::pluck(raw_json, "athletes", "athlete") %>%
     dplyr::as_tibble() %>%
     dplyr::select(firstName:shortName, headshot, teamName:teamShortName) %>%
     dplyr::mutate(row_n = dplyr::row_number()) %>%

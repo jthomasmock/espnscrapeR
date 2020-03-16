@@ -3,20 +3,22 @@
 #' @param season Either numeric or character
 #'
 #' @return Returns a tibble
-#' @export
-#' @import jsonlite tidyr dplyr purrr glue
+#' @import tidyr dplyr purrr
+#' @importFrom dplyr %>%
+#' @importFrom jsonlite fromJSON
+#' @importFrom glue glue
 get_espn_standings <- function(season = 2019){
 
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Small error handling to guide the limits on years
-  if (!between(as.numeric(season), 1990, current_year)) {
+  if (!dplyr::between(as.numeric(season), 1990, current_year)) {
     stop(paste("Please choose season between 1990 and", current_year))
   }
 
   stand_url <- paste0("https://site.api.espn.com/apis/v2/sports/football/nfl/standings?&season=", season)
 
-  raw_stand <- fromJSON(stand_url)
+  raw_stand <- jsonlite::fromJSON(stand_url)
 
   cleaned_names <-
     c("id", "uid", "location", "name", "team_code", "full_name", "logo",
