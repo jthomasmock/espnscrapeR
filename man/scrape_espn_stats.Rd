@@ -4,12 +4,12 @@
 \alias{scrape_espn_stats}
 \title{Scrape NFL stats from ESPN}
 \usage{
-scrape_espn_stats(stat = "receiving", season = 2019, season_type = "Regular")
+scrape_espn_stats(season = 2019, stat = "receiving", season_type = "Regular")
 }
 \arguments{
-\item{stat}{character - either receiving, passing, or rushing}
-
 \item{season}{character or numeric - greater than 1990}
+
+\item{stat}{character - either receiving, passing, or rushing}
 
 \item{season_type}{character - either Regular or Playoffs}
 }
