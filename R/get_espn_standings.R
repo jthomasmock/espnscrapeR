@@ -5,6 +5,7 @@
 #' @return Returns a tibble
 #' @import tidyr dplyr purrr
 #' @importFrom dplyr %>%
+#' @importFrom janitor clean_names make_clean_names
 #' @importFrom jsonlite fromJSON
 #' @importFrom glue glue
 get_espn_standings <- function(season = 2019){
