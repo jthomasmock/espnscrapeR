@@ -11,11 +11,13 @@
 #'
 #' @examples
 #'
+#'# Get college QBR from 2011 season as a whole
 #' get_college_qbr(season = 2011, week = NA)
 #'
-#' get_espn_college_qbr(2019, 1)
+#'# Get college QBR from 2019 season week 1
+#' get_college_qbr(2019, 1)
 #'
-get_espn_college_qbr <- function(season = 2019, week = NA) {
+get_college_qbr <- function(season = 2019, week = NA) {
 
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 

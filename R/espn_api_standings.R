@@ -3,17 +3,19 @@
 #' @param season Either numeric or character
 #'
 #' @return Returns a tibble
-#' @export get_espn_nfl_standings
+#' @export
 #' @import tidyr dplyr purrr
 #' @importFrom dplyr %>%
 #' @importFrom jsonlite fromJSON
 #' @importFrom glue glue
 #' @examples
-#' get_espn_nfl_standings(season = "2018")
+#' # Get standings from 2018 season
+#' get_nfl_standings(season = "2018")
 #'
-#' get_espn_nfl_standings(2010)
+#' # Get standings from 2010 season
+#' get_nfl_standings(2010)
 #'
-get_espn_nfl_standings <- function(season = 2019){
+get_nfl_standings <- function(season = 2019){
 
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 

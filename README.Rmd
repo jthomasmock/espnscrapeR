@@ -29,8 +29,6 @@ remotes::install_github("jthomasmock/espnscrapeR")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r example}
 library(espnscrapeR)
 ```
@@ -42,7 +40,7 @@ get_nfl_qbr("2019", season_type = "Regular", week = 4)
 
 ```{r}
 # Get NFL standings for 2010
-get_espn_nfl_standings(2010)
+get_nfl_standings(2010)
 ```
 
 
@@ -53,6 +51,6 @@ scrape_espn_stats(2019, stat = "rushing")
 
 ```{r}
 # Get college QBR for 2014 week 5
-get_espn_college_qbr(season = 2014, week = 5)
+get_college_qbr(season = 2014, week = 5)
 ```
 

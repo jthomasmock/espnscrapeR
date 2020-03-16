@@ -10,12 +10,10 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom glue glue
 #' @examples
+#' # Get ALL Playoff QBR from 2016 season
 #' get_nfl_qbr("2016", season_type = "Playoffs", week = NA)
 #'
-#' all_superbowls <- tidyr::crossing(season = 2006:2019, season_type = "Playoffs", week = 4) %>%
-#' dplyr::filter(season != 2017) %>%
-#' purrr::pmap_dfr(get_nfl_qbr)
-#'
+#' # Get Regular season QBR for week 4 of 2019
 #' get_nfl_qbr("2019", season_type = "Regular", week = 4)
 #'
 get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
