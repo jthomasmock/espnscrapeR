@@ -19,4 +19,5 @@ Imports:
     glue,
     jsonlite,
     stringr,
-    janitor
+    janitor,
+    readr
