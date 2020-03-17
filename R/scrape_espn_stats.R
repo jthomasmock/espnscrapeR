@@ -1,6 +1,6 @@
 #' Scrape NFL stats from ESPN
 #'
-#' @param stat character - either receiving, passing, or rushing
+#' @param stats character - either receiving, passing, or rushing
 #' @param season character or numeric - greater than 1990
 #' @param season_type character - either Regular or Playoffs
 #' @import purrr tidyr dplyr stringr
@@ -13,15 +13,15 @@
 #' @export
 #'
 #' @examples
-#' scrape_espn_stats(season = 2000, stat = "passing")
-scrape_espn_stats <- function(season = 2019, stat = "receiving", season_type = "Regular"){
+#' scrape_espn_stats(season = 2000, stats = "passing")
+scrape_espn_stats <- function(season = 2019, stats = "receiving", season_type = "Regular"){
 
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   if(!season_type %in% c("Regular", "Playoffs"))
   {stop("Please choose season_type of 'Regular' or 'Playoffs'")}
 
-  if(!stat %in% c("receiving", "rushing", "passing"))
+  if(!stats %in% c("receiving", "rushing", "passing"))
   {stop("Please choose season_type of 'receiving', 'rushing', or 'passing'!")}
 
   if(!dplyr::between(as.numeric(season), 1990, current_year))
@@ -29,13 +29,13 @@ scrape_espn_stats <- function(season = 2019, stat = "receiving", season_type = "
 
   message(
     dplyr::if_else(season_type == "Regular",
-      glue::glue("Scraping {stat} stats from {season} {season_type} season!"),
-      glue::glue("Scraping {stat} stats from {season} {season_type}!"))
+      glue::glue("Scraping {stats} stats from {season} {season_type} season!"),
+      glue::glue("Scraping {stats} stats from {season} {season_type}!"))
   )
 
   season_type <- dplyr::if_else(season_type == "Regular", "2", "3")
 
-  url <- glue::glue("https://www.espn.com/nfl/stats/player/_/stat/{stat}/season/{season}/seasontype/{season_type}&limit=500")
+  url <- glue::glue("https://www.espn.com/nfl/stats/player/_/stat/{stats}/season/{season}/seasontype/{season_type}&limit=500")
 
   pass_n <- c("season", "season_type", "pass_rank", "name", "team", "pos",
               "games_played", "pass_completed","pass_attempts", "comp_percent",
@@ -55,9 +55,9 @@ scrape_espn_stats <- function(season = 2019, stat = "receiving", season_type = "
 
 
   fix_names <- dplyr::case_when(
-    stat == "passing" ~  list(pass_n),
-    stat == "rushing" ~  list(rush_n),
-    stat == "receiving" ~ list(rec_n)
+    stats == "passing" ~  list(pass_n),
+    stats == "rushing" ~  list(rush_n),
+    stats == "receiving" ~ list(rec_n)
   )[[1]]
 
   url %>%

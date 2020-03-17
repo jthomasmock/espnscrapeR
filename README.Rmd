@@ -54,3 +54,8 @@ scrape_espn_stats(2019, stat = "rushing")
 get_college_qbr(season = 2014, week = 5)
 ```
 
+```{r}
+# Get NFL teams with logos, colors, alternatives, etc
+get_nfl_teams()
+```
+
