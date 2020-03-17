@@ -87,7 +87,7 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Get NFL QBR for the 2019 regular season week 4</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="reference/get_nfl_qbr.html">get_nfl_qbr</a></span>(<span class="st">"2019"</span>, <span class="dt">season_type =</span> <span class="st">"Regular"</span>, <span class="dt">week =</span> <span class="dv">4</span>)</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; Scraping weekly QBR for week 4 of 2019!</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; # A tibble: 31 x 20</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; # A tibble: 31 x 21</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt;    season season_type game_week  rank first_name last_name name  short_name</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     </span></span>
 <span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt;  1   2019 Regular     4             1 Jameis     Winston   Jame… J. Winston</span></span>
@@ -100,10 +100,10 @@
 <span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt;  8   2019 Regular     4             8 Joe        Flacco    Joe … J. Flacco </span></span>
 <span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt;  9   2019 Regular     4             9 Aaron      Rodgers   Aaro… A. Rodgers</span></span>
 <span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 10   2019 Regular     4            10 Baker      Mayfield  Bake… B. Mayfie…</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; # … with 21 more rows, and 12 more variables: team_name &lt;chr&gt;,</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; # … with 21 more rows, and 13 more variables: team_name &lt;chr&gt;,</span></span>
 <span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; #   team_short_name &lt;chr&gt;, qbr_total &lt;dbl&gt;, points_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;,</span></span>
 <span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; #   total_epa &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;,</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; #   raw_qbr &lt;dbl&gt;, sack &lt;dbl&gt;</span></span></code></pre></div>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; #   raw_qbr &lt;dbl&gt;, sack &lt;dbl&gt;, headshot_href &lt;chr&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Get NFL standings for 2010</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw"><a href="reference/get_nfl_standings.html">get_nfl_standings</a></span>(<span class="dv">2010</span>)</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; Scraping 2010</span></span>
@@ -169,19 +169,19 @@
 <span id="cb7-2"><a href="#cb7-2"></a><span class="kw"><a href="reference/get_nfl_teams.html">get_nfl_teams</a></span>()</span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; Getting NFL teams!</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; # A tibble: 32 x 8</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt;    uid   name   nickname abbreviation full_name team_color alternate_color logo </span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;           &lt;chr&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;  1 22    Cardi… Arizona  ARI          Arizona … A40227     000000          http…</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt;  2 1     Falco… Atlanta  ATL          Atlanta … 000000     000000          http…</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt;  3 33    Ravens Baltimo… BAL          Baltimor… 2B025B     9e7c0c          http…</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt;  4 2     Bills  Buffalo  BUF          Buffalo … 04407F     c60c30          http…</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt;  5 29    Panth… Carolina CAR          Carolina… 2177B0     bfc0bf          http…</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt;  6 3     Bears  Chicago  CHI          Chicago … 152644     0b162a          http…</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt;  7 4     Benga… Cincinn… CIN          Cincinna… FF2700     000000          http…</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt;  8 5     Browns Clevela… CLE          Clevelan… 4C230E     4c230e          http…</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt;  9 6     Cowbo… Dallas   DAL          Dallas C… 002E4D     b0b7bc          http…</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt; 10 7     Bronc… Denver   DEN          Denver B… 002E4D     fb4f14          http…</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt; # … with 22 more rows</span></span></code></pre></div>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt;    uid   team_name team_nickname team_short_name full_name team_color</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;     </span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;  1 22    Cardinals Arizona       ARI             Arizona … #A40227   </span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt;  2 1     Falcons   Atlanta       ATL             Atlanta … #000000   </span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt;  3 33    Ravens    Baltimore     BAL             Baltimor… #2B025B   </span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt;  4 2     Bills     Buffalo       BUF             Buffalo … #04407F   </span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt;  5 29    Panthers  Carolina      CAR             Carolina… #2177B0   </span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt;  6 3     Bears     Chicago       CHI             Chicago … #152644   </span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt;  7 4     Bengals   Cincinnati    CIN             Cincinna… #FF2700   </span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt;  8 5     Browns    Cleveland     CLE             Clevelan… #4C230E   </span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt;  9 6     Cowboys   Dallas        DAL             Dallas C… #002E4D   </span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt; 10 7     Broncos   Denver        DEN             Denver B… #002E4D   </span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt; # … with 22 more rows, and 2 more variables: alternate_color &lt;chr&gt;, logo &lt;chr&gt;</span></span></code></pre></div>
 </div>
 </div>
   </div>

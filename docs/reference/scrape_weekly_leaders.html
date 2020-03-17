@@ -129,6 +129,10 @@
       <td><p>character or numeric - greater than 1990</p></td>
     </tr>
     <tr>
+      <th>week</th>
+      <td><p>character or numeric - 1 to 17 for regular season or 1 - 4 for playoffs</p></td>
+    </tr>
+    <tr>
       <th>season_type</th>
       <td><p>character - either Regular or Playoffs</p></td>
     </tr>
@@ -144,23 +148,21 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='scrape_espn_stats.html'>scrape_espn_stats</a></span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats from 2000 Regular season!</span></div><div class='output co'>#&gt; # A tibble: 101 x 20
-#&gt;    season season_type pass_rank name  team  pos   games_played pass_completed
-#&gt;     &lt;dbl&gt; &lt;chr&gt;           &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;int&gt;          &lt;int&gt;
-#&gt;  1   2000 Regular             1 Peyt… IND   QB              16            357
-#&gt;  2   2000 Regular             2 Jeff… SF    QB              16            355
-#&gt;  3   2000 Regular             3 Elvi… KC    QB              15            326
-#&gt;  4   2000 Regular             4 Daun… MIN   QB              16            297
-#&gt;  5   2000 Regular             5 Bret… GB    QB              16            338
-#&gt;  6   2000 Regular             6 Vinn… NYJ   QB              16            328
-#&gt;  7   2000 Regular             7 Stev… CAR   QB              16            324
-#&gt;  8   2000 Regular             8 Mark… JAX   QB              16            311
-#&gt;  9   2000 Regular             9 Kerr… NYG   QB              16            311
-#&gt; 10   2000 Regular            10 Rich… OAK   QB              16            284
-#&gt; # … with 91 more rows, and 12 more variables: pass_attempts &lt;int&gt;,
-#&gt; #   comp_percent &lt;dbl&gt;, pass_yards &lt;dbl&gt;, pass_avg &lt;dbl&gt;,
-#&gt; #   pass_yards_game &lt;dbl&gt;, pass_long &lt;int&gt;, pass_td &lt;int&gt;, pass_int &lt;int&gt;,
-#&gt; #   sack &lt;int&gt;, sack_yards &lt;int&gt;, qbr &lt;lgl&gt;, pass_rating &lt;dbl&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>scrape_weekly_leaders</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2002</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats for week 1 from 2002 Regular season!</span></div><div class='output co'>#&gt; # A tibble: 30 x 14
+#&gt;    season season_type  week  rank name  team  result pass_comp pass_att pass_yds
+#&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1   2002 Regular         1     1 Andy… CIN   L 21-…        35       51      418
+#&gt;  2   2002 Regular         1     2 Dak … DAL   W 35-…        25       32      405
+#&gt;  3   2002 Regular         1     3 Matt… DET   T 27-…        27       45      385
+#&gt;  4   2002 Regular         1     4 Case… WSH   L 32-…        30       44      380
+#&gt;  5   2002 Regular         1     5 Patr… KC    W 40-…        25       33      378
+#&gt;  6   2002 Regular         1     6 Drew… NO    W 30-…        32       43      370
+#&gt;  7   2002 Regular         1     7 Tom … NE    W 33-…        24       36      341
+#&gt;  8   2002 Regular         1     8 Phil… LAC   W 30-…        25       34      333
+#&gt;  9   2002 Regular         1     9 Lama… BAL   W 59-…        17       20      324
+#&gt; 10   2002 Regular         1    10 Cars… PHI   W 32-…        28       39      313
+#&gt; # … with 20 more rows, and 4 more variables: pass_td &lt;dbl&gt;, pass_int &lt;dbl&gt;,
+#&gt; #   sack &lt;dbl&gt;, pass_fumbles &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

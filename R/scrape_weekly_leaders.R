@@ -3,6 +3,7 @@
 #' @param stats character - either receiving, passing, or rushing
 #' @param season character or numeric - greater than 1990
 #' @param season_type character - either Regular or Playoffs
+#' @param week character or numeric - 1 to 17 for regular season or 1 - 4 for playoffs
 #' @import purrr tidyr dplyr stringr
 #' @importFrom dplyr %>%
 #' @importFrom rvest html_table
@@ -13,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' scrape_espn_stats(season = 2000, stats = "passing")
+#' scrape_weekly_leaders(season = 2002, stats = "passing", week = 1)
 
 scrape_weekly_leaders <- function(season = 2019, week = 1, season_type = "Regular", stats = "passing"){
 

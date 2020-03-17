@@ -14,6 +14,8 @@ scrape_weekly_leaders(
 \arguments{
 \item{season}{character or numeric - greater than 1990}
 
+\item{week}{character or numeric - 1 to 17 for regular season or 1 - 4 for playoffs}
+
 \item{season_type}{character - either Regular or Playoffs}
 
 \item{stats}{character - either receiving, passing, or rushing}
@@ -25,5 +27,5 @@ tibble
 Scrape NFL stats from ESPN
 }
 \examples{
-scrape_espn_stats(season = 2000, stats = "passing")
+scrape_weekly_leaders(season = 2002, stats = "passing", week = 1)
 }

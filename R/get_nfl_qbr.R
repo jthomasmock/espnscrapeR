@@ -139,6 +139,6 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
       )
     ) %>%
     dplyr::select(season:game_week, rank = row_n, first_name:short_name,
-           team_name, team_short_name, qbr_total:sack) %>%
+           team_name, team_short_name, qbr_total:sack, headshot_href) %>%
     dplyr::mutate_at(vars(qbr_total:sack), as.double)
   }

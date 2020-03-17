@@ -19,9 +19,11 @@ get_nfl_teams <- function(){
     dplyr::mutate(logos = purrr::map_chr(logos, function(df) df[1,1])) %>%
     dplyr::select(id, name:alternateColor, logos, -shortDisplayName) %>%
     purrr::set_names(
-      nm = c("uid", "name", "nickname", "abbreviation", "full_name", "team_color",
+      nm = c("uid", "team_name", "team_nickname", "team_short_name", "full_name", "team_color",
              "alternate_color", "logo")
-      )
+      ) %>%
+    dplyr::mutate(team_color = paste0("#", team_color),
+           alternate_color = paste0("#", alternate_color))
 
 }
 

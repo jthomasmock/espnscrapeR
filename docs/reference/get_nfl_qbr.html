@@ -104,7 +104,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get ESPN QBR for NFL football</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_nfl_espn_qbr.R'><code>R/scrape_nfl_espn_qbr.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/get_nfl_qbr.R'><code>R/get_nfl_qbr.R</code></a></small>
     <div class="hidden name"><code>get_nfl_qbr.Rd</code></div>
     </div>
 
@@ -140,7 +140,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get ALL Playoff QBR from 2016 season</span>
-<span class='fu'>get_nfl_qbr</span>(<span class='st'>"2016"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Playoffs"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2016!</span></div><div class='output co'>#&gt; # A tibble: 12 x 20
+<span class='fu'>get_nfl_qbr</span>(<span class='st'>"2016"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Playoffs"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2016!</span></div><div class='output co'>#&gt; # A tibble: 12 x 21
 #&gt;    season season_type game_week  rank first_name last_name name  short_name
 #&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     
 #&gt;  1   2016 Playoffs    Playoff …     1 Matt       Ryan      Matt… M. Ryan   
@@ -155,12 +155,12 @@
 #&gt; 10   2016 Playoffs    Playoff …    10 Brock      Osweiler  Broc… B. Osweil…
 #&gt; 11   2016 Playoffs    Playoff …    11 Alex       Smith     Alex… A. Smith  
 #&gt; 12   2016 Playoffs    Playoff …    12 Connor     Cook      Conn… C. Cook   
-#&gt; # … with 12 more variables: team_name &lt;chr&gt;, team_short_name &lt;chr&gt;,
+#&gt; # … with 13 more variables: team_name &lt;chr&gt;, team_short_name &lt;chr&gt;,
 #&gt; #   qbr_total &lt;dbl&gt;, points_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, total_epa &lt;dbl&gt;,
 #&gt; #   pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, raw_qbr &lt;dbl&gt;,
-#&gt; #   sack &lt;dbl&gt;</div><div class='input'>
+#&gt; #   sack &lt;dbl&gt;, headshot_href &lt;chr&gt;</div><div class='input'>
 <span class='co'># Get Regular season QBR for week 4 of 2019</span>
-<span class='fu'>get_nfl_qbr</span>(<span class='st'>"2019"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping weekly QBR for week 4 of 2019!</span></div><div class='output co'>#&gt; # A tibble: 31 x 20
+<span class='fu'>get_nfl_qbr</span>(<span class='st'>"2019"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping weekly QBR for week 4 of 2019!</span></div><div class='output co'>#&gt; # A tibble: 31 x 21
 #&gt;    season season_type game_week  rank first_name last_name name  short_name
 #&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     
 #&gt;  1   2019 Regular     4             1 Jameis     Winston   Jame… J. Winston
@@ -173,10 +173,10 @@
 #&gt;  8   2019 Regular     4             8 Joe        Flacco    Joe … J. Flacco 
 #&gt;  9   2019 Regular     4             9 Aaron      Rodgers   Aaro… A. Rodgers
 #&gt; 10   2019 Regular     4            10 Baker      Mayfield  Bake… B. Mayfie…
-#&gt; # … with 21 more rows, and 12 more variables: team_name &lt;chr&gt;,
+#&gt; # … with 21 more rows, and 13 more variables: team_name &lt;chr&gt;,
 #&gt; #   team_short_name &lt;chr&gt;, qbr_total &lt;dbl&gt;, points_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;,
 #&gt; #   total_epa &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;,
-#&gt; #   raw_qbr &lt;dbl&gt;, sack &lt;dbl&gt;</div><div class='input'>
+#&gt; #   raw_qbr &lt;dbl&gt;, sack &lt;dbl&gt;, headshot_href &lt;chr&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
