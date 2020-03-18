@@ -27,7 +27,11 @@ tibble
 Please note that the column names are identical between offense/defense and you should reference the 'role' column for offensive or defensive stats.
 }
 \examples{
+
+# Get the NFL.com game-level stats for offense in 2018
 scrape_team_stats_nfl(season = 2018, stats = "GAME_STATS", role = "offense")
 
-scrape_team_stats_nfl(season = "2014, stats = "TEAM_PASSING", role = "defense)
+# Get the NFL.com team-level passing stats for defense in 2014
+scrape_team_stats_nfl(season = "2014", stats = "TEAM_PASSING", role = "defense")
+
 }

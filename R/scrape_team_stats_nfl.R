@@ -16,9 +16,13 @@
 #' @return tibble
 #'
 #' @examples
+#'
+#' # Get the NFL.com game-level stats for offense in 2018
 #' scrape_team_stats_nfl(season = 2018, stats = "GAME_STATS", role = "offense")
 #'
-#' scrape_team_stats_nfl(season = "2014, stats = "TEAM_PASSING", role = "defense)
+#' # Get the NFL.com team-level passing stats for defense in 2014
+#' scrape_team_stats_nfl(season = "2014", stats = "TEAM_PASSING", role = "defense")
+#'
 scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "offense", season_type = "Regular") {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 

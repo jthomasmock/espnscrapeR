@@ -148,7 +148,47 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><div class='input'>
+<span class='co'># Get the NFL.com game-level stats for offense in 2018</span>
+<span class='fu'>scrape_team_stats_nfl</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"GAME_STATS"</span>, <span class='kw'>role</span> <span class='kw'>=</span> <span class='st'>"offense"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping GAME_STATS for offense from 2018 Regular!</span></div><div class='output co'>#&gt; # A tibble: 32 x 25
+#&gt;     rank team  games pts_game pts_total plays_scrimmage yds_game yds_play
+#&gt;    &lt;int&gt; &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;int&gt;           &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1     1 Kans…    16     35.3       565             996     426.      6.8
+#&gt;  2     2 Los …    16     32.9       527            1060     421.      6.4
+#&gt;  3     3 Tamp…    16     24.8       396            1055     416.      6.3
+#&gt;  4     4 Pitt…    16     26.8       428            1058     403.      6.1
+#&gt;  5     5 New …    16     27.2       436            1073     393.      5.9
+#&gt;  6     6 Atla…    16     25.9       414            1010     389.      6.2
+#&gt;  7     7 Indi…    16     27.1       433            1070     386.      5.8
+#&gt;  8     8 New …    16     31.5       504            1010     379.      6  
+#&gt;  9     9 Balt…    16     24.3       389            1135     375.      5.3
+#&gt; 10    10 Caro…    16     23.5       376            1011     373.      5.9
+#&gt; # … with 22 more rows, and 17 more variables: first_down_g &lt;dbl&gt;,
+#&gt; #   third_conv &lt;int&gt;, third_att &lt;int&gt;, third_pct &lt;dbl&gt;, fourth_conv &lt;int&gt;,
+#&gt; #   fourth_att &lt;int&gt;, fourth_pct &lt;int&gt;, penalty &lt;int&gt;, penalty_yds &lt;dbl&gt;,
+#&gt; #   time_of_poss &lt;dbl&gt;, fumbles_total &lt;int&gt;, fumbles_lost &lt;int&gt;,
+#&gt; #   turnover_ratio &lt;int&gt;, stat &lt;chr&gt;, season &lt;dbl&gt;, season_type &lt;chr&gt;,
+#&gt; #   role &lt;chr&gt;</div><div class='input'>
+<span class='co'># Get the NFL.com team-level passing stats for defense in 2014</span>
+<span class='fu'>scrape_team_stats_nfl</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2014"</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"TEAM_PASSING"</span>, <span class='kw'>role</span> <span class='kw'>=</span> <span class='st'>"defense"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping TEAM_PASSING for defense from 2014 Regular!</span></div><div class='output co'>#&gt; # A tibble: 32 x 25
+#&gt;     rank team  games pts_game pts_total pass_comp pass_att pass_comp_pct
+#&gt;    &lt;int&gt; &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;int&gt;     &lt;int&gt;    &lt;int&gt;         &lt;dbl&gt;
+#&gt;  1     1 Atla…    16     26.1       417       359      566          63.4
+#&gt;  2     2 Phil…    16     25         400       345      591          58.4
+#&gt;  3     3 Chic…    16     27.6       442       366      548          66.8
+#&gt;  4     4 Ariz…    16     18.7       299       365      579          63  
+#&gt;  5     5 Tamp…    16     25.6       410       387      563          68.7
+#&gt;  6     6 Pitt…    16     23         368       350      543          64.5
+#&gt;  7     7 Dall…    16     22         352       371      558          66.5
+#&gt;  8     8 New …    16     26.5       424       341      546          62.5
+#&gt;  9     9 Wash…    16     27.4       438       345      519          66.5
+#&gt; 10    10 Balt…    16     18.9       302       382      595          64.2
+#&gt; # … with 22 more rows, and 17 more variables: pass_att_g &lt;dbl&gt;, pass_yds &lt;dbl&gt;,
+#&gt; #   pass_avg &lt;dbl&gt;, pass_yds_g &lt;dbl&gt;, pass_td &lt;int&gt;, pass_int &lt;int&gt;,
+#&gt; #   pass_1st &lt;int&gt;, pass_1st_pct &lt;dbl&gt;, pass_long &lt;chr&gt;, pass_20_plus &lt;int&gt;,
+#&gt; #   pass_40_plus &lt;int&gt;, pass_sack &lt;int&gt;, pass_rating &lt;dbl&gt;, stat &lt;chr&gt;,
+#&gt; #   season &lt;chr&gt;, season_type &lt;chr&gt;, role &lt;chr&gt;</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
