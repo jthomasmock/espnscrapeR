@@ -2,7 +2,7 @@
 % Please edit documentation in R/scrape_team_stats_nfl.R
 \name{scrape_team_stats_nfl}
 \alias{scrape_team_stats_nfl}
-\title{Scrape NFL stats from nfl.com}
+\title{Scrape NFL stats from nfl.com at the team level.}
 \usage{
 scrape_team_stats_nfl(
   season = 2019,
@@ -24,8 +24,10 @@ scrape_team_stats_nfl(
 tibble
 }
 \description{
-Scrape NFL stats from nfl.com
+Please note that the column names are identical between offense/defense and you should reference the 'role' column for offensive or defensive stats.
 }
 \examples{
 scrape_team_stats_nfl(season = 2018, stats = "GAME_STATS", role = "offense")
+
+scrape_team_stats_nfl(season = "2014, stats = "TEAM_PASSING", role = "defense)
 }

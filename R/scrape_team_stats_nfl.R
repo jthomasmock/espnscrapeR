@@ -1,4 +1,6 @@
-#' Scrape NFL stats from nfl.com
+#' Scrape NFL stats from nfl.com at the team level.
+#'
+#' Please note that the column names are identical between offense/defense and you should reference the 'role' column for offensive or defensive stats.
 #'
 #' @param stats character - either "GAME_STATS", "SCORING", "TEAM_PASSING", "TEAM_RUSHING", "TEAM_RECEIVING", or "OFFENSIVE_LINE"
 #' @param season character or numeric - greater than 1970
@@ -15,6 +17,8 @@
 #'
 #' @examples
 #' scrape_team_stats_nfl(season = 2018, stats = "GAME_STATS", role = "offense")
+#'
+#' scrape_team_stats_nfl(season = "2014, stats = "TEAM_PASSING", role = "defense)
 scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "offense", season_type = "Regular") {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
@@ -115,18 +119,18 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
   }
 
   clean_rushing <- function(input_df) {
-    
+
     # clean_rush_names <- janitor::make_clean_names(
     #   as.character(cleaned_tibble[1,])
     # )
-    
+
     clean_rush_names <- c(
       "rank", "team", "games", "pts_game", "pts_total", "rush_att",
       "rush_att_g", "rush_yds", "rush_avg", "rush_yds_g", "rush_td",
       "rush_long", "rush_1st", "rush_1st_pct", "rush_20_plus",
       "rush_40_plus", "rush_fumbles"
     )
-    
+
     # renamed_tibble <- purrr::set_names(
     #   cleaned_tibble,
       # nm = c(
@@ -136,13 +140,13 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
       #   "rush_40_plus", "rush_fumbles"
       # )
     # )
-    
+
     renamed_tibble <- purrr::set_names(input_df, nm = clean_rush_names)
-    
+
     suppressMessages(
-      dplyr::mutate(renamed_tibble, rush_yds = readr::parse_number(rush_yds)) %>% 
+      dplyr::mutate(renamed_tibble, rush_yds = readr::parse_number(rush_yds)) %>%
         readr::type_convert()
-        
+
       )
   }
 
