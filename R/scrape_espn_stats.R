@@ -66,14 +66,30 @@ scrape_espn_stats <- function(season = 2019, stats = "receiving", season_type = 
     dplyr::bind_cols() %>%
     janitor::clean_names() %>%
     dplyr::as_tibble() %>%
-    dplyr::mutate(yds = readr::parse_number(yds),
-           team = stringr::str_extract(stringr::str_sub(name, -3), "[::A-Z::]+"),
-           name = stringr::str_remove(name, team)) %>%
+    dplyr::mutate(
+      # get rid of the comma and convert to numeric
+      yds = readr::parse_number(yds),
+      # if there is a player with multiple teams
+      # We need to figure out how many teams and then
+      slash_ct = stringr::str_count(name, "/"),
+      chr_ct = slash_ct * (-4) - 3,
+      team = stringr::str_sub(name, chr_ct),
+      team = stringr::str_remove(team, "[::a-z::]"),
+      team = dplyr::if_else(
+        # Find players with Jr/Sr/II/III/IV etc and drop them
+        stringr::str_sub(team, 1) %in% c("I", "V", ".") & !stringr::str_detect(team, "IND"),
+        # TRUE
+        stringr::str_sub(team, 2, stringr::str_length(team)),
+        # FALSE
+        team),
+      team = stringr::str_remove(team, "\\."),
+      name = stringr::str_remove(name, team)) %>%
     dplyr::arrange(desc(yds)) %>%
     dplyr::mutate(rank = dplyr::row_number(),
            season = season,
            season_type = dplyr::if_else(season_type == 2, "Regular", "Playoffs")) %>%
-    dplyr::select(season, season_type, rank, name, team, dplyr::everything(), -rk) %>%
+    dplyr::select(season, season_type, rank, name, team, dplyr::everything(),
+                  -rk, -slash_ct, -chr_ct) %>%
     purrr::set_names(nm = fix_names)
   }
 
