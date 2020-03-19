@@ -100,11 +100,13 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
         nm = c(
           "rank", "team", "games", "pts_game", "pts_total", "pass_comp",
           "pass_att", "pass_comp_pct", "pass_att_g", "pass_yds", "pass_avg",
-          "pass_yds_g", "pass_td", "pass_int", "pass_1st", "pass_1st_pct",
+          "pass_yds_g", "pass_td", "pass_int", "pass_first", "pass_first_pct",
           "pass_long", "pass_20_plus", "pass_40_plus", "pass_sack", "pass_rating"
         )
       ) %>%
-      dplyr::mutate(pass_yds = readr::parse_number(pass_yds)))
+      dplyr::mutate(pass_yds = readr::parse_number(pass_yds),
+                    pass_comp_pct = pass_comp_pct/100,
+                    pass_first_pct = pass_first_pct/100))
   }
 
   clean_receiving <- function(input_df) {
@@ -127,14 +129,16 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
     clean_rush_names <- c(
       "rank", "team", "games", "pts_game", "pts_total", "rush_att",
       "rush_att_g", "rush_yds", "rush_avg", "rush_yds_g", "rush_td",
-      "rush_long", "rush_1st", "rush_1st_pct", "rush_20_plus",
+      "rush_long", "rush_first", "rush_first_pct", "rush_20_plus",
       "rush_40_plus", "rush_fumbles"
     )
 
     renamed_tibble <- purrr::set_names(input_df, nm = clean_rush_names)
 
     suppressMessages(
-      dplyr::mutate(renamed_tibble, rush_yds = readr::parse_number(rush_yds)) %>%
+      dplyr::mutate(renamed_tibble,
+                    rush_yds = readr::parse_number(rush_yds),
+                    rush_first_pct = rush_first_pct / 100) %>%
         readr::type_convert()
 
       )
@@ -162,6 +166,7 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
         dplyr::mutate(
           plays_scrimmage = readr::parse_number(plays_scrimmage),
           third_pct = third_pct / 100,
+          fourth_pct = fourth_pct / 100,
           penalty_yds = readr::parse_number(penalty_yds),
           top_min = as.double(substr(time_of_poss, 1, 2)) * 60,
           top_sec = as.double(substr(time_of_poss, 4, 5)) + top_min,
