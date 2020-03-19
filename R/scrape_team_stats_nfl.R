@@ -124,26 +124,12 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
 
   clean_rushing <- function(input_df) {
 
-    # clean_rush_names <- janitor::make_clean_names(
-    #   as.character(cleaned_tibble[1,])
-    # )
-
     clean_rush_names <- c(
       "rank", "team", "games", "pts_game", "pts_total", "rush_att",
       "rush_att_g", "rush_yds", "rush_avg", "rush_yds_g", "rush_td",
       "rush_long", "rush_1st", "rush_1st_pct", "rush_20_plus",
       "rush_40_plus", "rush_fumbles"
     )
-
-    # renamed_tibble <- purrr::set_names(
-    #   cleaned_tibble,
-      # nm = c(
-      #   "rank", "team", "games", "pts_game", "pts_total", "rush_att",
-      #   "rush_att_g", "rush_yds", "rush_avg", "rush_yds_g", "rush_td",
-      #   "rush_long", "rush_1st", "rush_1st_pct", "rush_20_plus",
-      #   "rush_40_plus", "rush_fumbles"
-      # )
-    # )
 
     renamed_tibble <- purrr::set_names(input_df, nm = clean_rush_names)
 
@@ -155,16 +141,23 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
   }
 
   clean_game <- function(input_df) {
+
+    clean_game_names <- c(
+      "rank", "team", "games", "pts_game", "pts_total", "plays_scrimmage",
+      "yds_game", "yds_play", "first_down_g", "third_conv", "third_att",
+      "third_pct", "fourth_conv", "fourth_att", "fourth_pct", "penalty",
+      "penalty_yds", "time_of_poss", "fumbles_total", "fumbles_lost",
+      "turnover_ratio"
+    )
+
+    role_game_names <- dplyr::if_else(role == "defense",
+                               list(clean_game_names[1:20]),
+                               list(clean_game_names))[[1]]
+
     suppressMessages(
       input_df %>%
         purrr::set_names(
-          nm = c(
-            "rank", "team", "games", "pts_game", "pts_total", "plays_scrimmage",
-            "yds_game", "yds_play", "first_down_g", "third_conv", "third_att",
-            "third_pct", "fourth_conv", "fourth_att", "fourth_pct", "penalty",
-            "penalty_yds", "time_of_poss", "fumbles_total", "fumbles_lost",
-            "turnover_ratio"
-          )
+          nm = role_game_names
         ) %>%
         dplyr::mutate(
           plays_scrimmage = readr::parse_number(plays_scrimmage),
