@@ -12,6 +12,7 @@
 #' @importFrom xml2 read_html
 #' @importFrom glue glue
 #' @importFrom readr parse_number type_convert
+#' @importFrom stringr str_remove
 #' @export
 #' @return tibble
 #'
@@ -89,7 +90,7 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
           )
         ) %>%
         dplyr::slice(-1) %>%
-        dplyr::mutate(rush_yds = readr::parse_number(rush_yds)) %>%
+        dplyr::mutate(rush_yds = stringr::str_remove(rush_yds, ",")) %>%
         readr::type_convert()
     )
   }
@@ -104,7 +105,7 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
           "pass_long", "pass_20_plus", "pass_40_plus", "pass_sack", "pass_rating"
         )
       ) %>%
-      dplyr::mutate(pass_yds = readr::parse_number(pass_yds),
+      dplyr::mutate(pass_yds = stringr::str_remove(pass_yds, ","),
                     pass_comp_pct = pass_comp_pct/100,
                     pass_first_pct = pass_first_pct/100))
   }
@@ -119,7 +120,7 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
         )
       ) %>%
       dplyr::mutate(
-        rec_yds = readr::parse_number(rec_yds),
+        rec_yds = stringr::str_remove(rec_yds, ","),
         rec_first_pct = rec_first_pct / 100
       ))
   }
@@ -137,7 +138,7 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
 
     suppressMessages(
       dplyr::mutate(renamed_tibble,
-                    rush_yds = readr::parse_number(rush_yds),
+                    rush_yds = stringr::str_remove(rush_yds, ","),
                     rush_first_pct = rush_first_pct / 100) %>%
         readr::type_convert()
 
@@ -164,10 +165,10 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
           nm = role_game_names
         ) %>%
         dplyr::mutate(
-          plays_scrimmage = readr::parse_number(plays_scrimmage),
+          plays_scrimmage = stringr::str_remove(plays_scrimmage, ","),
           third_pct = third_pct / 100,
           fourth_pct = fourth_pct / 100,
-          penalty_yds = readr::parse_number(penalty_yds),
+          penalty_yds = str_remove(penalty_yds, ","),
           top_min = as.double(substr(time_of_poss, 1, 2)) * 60,
           top_sec = as.double(substr(time_of_poss, 4, 5)) + top_min,
           time_of_poss = top_sec / 60
