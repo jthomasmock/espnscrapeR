@@ -107,7 +107,8 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
       ) %>%
       dplyr::mutate(pass_yds = as.double(stringr::str_remove(pass_yds, ",")),
                     pass_comp_pct = pass_comp_pct/100,
-                    pass_first_pct = pass_first_pct/100))
+                    pass_first_pct = pass_first_pct/100) %>%
+      readr::type_convert())
   }
 
   clean_receiving <- function(input_df) {
@@ -122,7 +123,8 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
       dplyr::mutate(
         rec_yds = as.double(stringr::str_remove(rec_yds, ",")),
         rec_first_pct = rec_first_pct / 100
-      ))
+      ) %>%
+        readr::type_convert())
   }
 
   clean_rushing <- function(input_df) {
@@ -173,7 +175,8 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
           top_sec = as.double(substr(time_of_poss, 4, 5)) + top_min,
           time_of_poss = top_sec / 60
         ) %>%
-        dplyr::select(-top_min, -top_sec)
+        dplyr::select(-top_min, -top_sec) %>%
+        readr::type_convert()
     )
   }
 
