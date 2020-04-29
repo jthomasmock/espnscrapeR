@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • espnscrapeR</title>
+<title>Scrape NFL superbowl winners for all years — scrape_superbowls • espnscrapeR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Scrape NFL superbowl winners for all years — scrape_superbowls" />
+
+<meta property="og:description" content="Scrape NFL superbowl winners for all years" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -50,7 +53,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -98,90 +101,52 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Scrape NFL superbowl winners for all years</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_superbowls.R'><code>R/scrape_superbowls.R</code></a></small>
+    <div class="hidden name"><code>scrape_superbowls.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Scrape NFL superbowl winners for all years</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>scrape_superbowls</span>()</pre>
+        
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="get_college_qbr.html">get_college_qbr()</a></code> </p>
-        </td>
-        <td><p>Get ESPN QBR for College football</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_nfl_qbr.html">get_nfl_qbr()</a></code> </p>
-        </td>
-        <td><p>Get ESPN QBR for NFL football</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_nfl_standings.html">get_nfl_standings()</a></code> </p>
-        </td>
-        <td><p>Get NFL standings for a specific season from ESPN's API</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_nfl_teams.html">get_nfl_teams()</a></code> </p>
-        </td>
-        <td><p>Return all NFL teams with their name, abbreviation,</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_espn_stats.html">scrape_espn_stats()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL stats from ESPN</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_nfl_standings.html">scrape_nfl_standings()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL standings for a specific season from ESPN's site</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_superbowls.html">scrape_superbowls()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL superbowl winners for all years</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_team_stats_nfl.html">scrape_team_stats_nfl()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL stats from nfl.com at the team level.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_weekly_leaders.html">scrape_weekly_leaders()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL stats from ESPN</p></td>
-      </tr>
-    </tbody>
-    </table>
+    <p>Returns a tibble</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Get superbowls</span>
+<span class='fu'>scrape_superbowls</span>()</div><div class='output co'>#&gt; # A tibble: 108 x 4
+#&gt;    team                season superbowl     sb_points
+#&gt;  * &lt;chr&gt;                &lt;int&gt; &lt;chr&gt;             &lt;int&gt;
+#&gt;  1 Green Bay Packers     1966 Won Superbowl        35
+#&gt;  2 Green Bay Packers     1967 Won Superbowl        33
+#&gt;  3 New York Jets         1968 Won Superbowl        16
+#&gt;  4 Kansas City Chiefs    1969 Won Superbowl        23
+#&gt;  5 Baltimore Colts       1970 Won Superbowl        16
+#&gt;  6 Dallas Cowboys        1971 Won Superbowl        24
+#&gt;  7 Miami Dolphins        1972 Won Superbowl        14
+#&gt;  8 Miami Dolphins        1973 Won Superbowl        24
+#&gt;  9 Pittsburgh Steelers   1974 Won Superbowl        16
+#&gt; 10 Pittsburgh Steelers   1975 Won Superbowl        21
+#&gt; # … with 98 more rows</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

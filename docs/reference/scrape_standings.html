@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get NFL standings for a specific season from ESPN's API — get_nfl_standings • espnscrapeR</title>
+<title>Scrape NFL standings for a specific season from ESPN's site — scrape_standings • espnscrapeR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Get NFL standings for a specific season from ESPN's API — get_nfl_standings" />
+<meta property="og:title" content="Scrape NFL standings for a specific season from ESPN's site — scrape_standings" />
 
-<meta property="og:description" content="Get NFL standings for a specific season from ESPN's API" />
+<meta property="og:description" content="Scrape NFL standings for a specific season from ESPN's site" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,18 +103,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get NFL standings for a specific season from ESPN's API</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/get_nfl_standings.R'><code>R/get_nfl_standings.R</code></a></small>
-    <div class="hidden name"><code>get_nfl_standings.Rd</code></div>
+    <h1>Scrape NFL standings for a specific season from ESPN's site</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_nfl_standings.R'><code>R/scrape_nfl_standings.R</code></a></small>
+    <div class="hidden name"><code>scrape_standings.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get NFL standings for a specific season from ESPN's API</p>
+    <p>Scrape NFL standings for a specific season from ESPN's site</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_nfl_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_standings</span>(<span class='no'>season</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,45 +132,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get standings from 2018 season</span>
-<span class='fu'>get_nfl_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2018"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2018</span></div><div class='output co'>#&gt; # A tibble: 32 x 27
-#&gt;    city  team_name abb_name full_name logos playoff_seed  wins losses
-#&gt;  * &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-#&gt;  1 Kans… Chiefs    KC       Kansas C… http…            1    12      4
-#&gt;  2 New … Patriots  NE       New Engl… http…            2    11      5
-#&gt;  3 Hous… Texans    HOU      Houston … http…            3    11      5
-#&gt;  4 Balt… Ravens    BAL      Baltimor… http…            4    10      6
-#&gt;  5 Los … Chargers  LAC      Los Ange… http…            5    12      4
-#&gt;  6 Indi… Colts     IND      Indianap… http…            6    10      6
-#&gt;  7 Pitt… Steelers  PIT      Pittsbur… http…            7     9      6
-#&gt;  8 Tenn… Titans    TEN      Tennesse… http…            8     9      7
-#&gt;  9 Clev… Browns    CLE      Clevelan… http…            9     7      8
-#&gt; 10 Miami Dolphins  MIA      Miami Do… http…           10     7      9
-#&gt; # … with 22 more rows, and 19 more variables: win_percent &lt;dbl&gt;,
-#&gt; #   games_behind &lt;dbl&gt;, ties &lt;dbl&gt;, points_for &lt;dbl&gt;, points_against &lt;dbl&gt;,
-#&gt; #   differential &lt;dbl&gt;, streak &lt;dbl&gt;, clincher &lt;dbl&gt;, league_win_percent &lt;dbl&gt;,
-#&gt; #   division_record &lt;dbl&gt;, division_wins &lt;dbl&gt;, division_ties &lt;dbl&gt;,
-#&gt; #   division_losses &lt;dbl&gt;, all_splits &lt;dbl&gt;, home &lt;dbl&gt;, road &lt;dbl&gt;,
-#&gt; #   vs_div &lt;dbl&gt;, vs_conf &lt;dbl&gt;, year &lt;chr&gt;</div><div class='input'>
+<span class='fu'>scrape_nfl_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2018"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in scrape_nfl_standings(season = "2018"): could not find function "scrape_nfl_standings"</span></div><div class='input'>
 <span class='co'># Get standings from 2010 season</span>
-<span class='fu'>get_nfl_standings</span>(<span class='fl'>2010</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2010</span></div><div class='output co'>#&gt; # A tibble: 32 x 27
-#&gt;    city  team_name abb_name full_name logos playoff_seed  wins losses
-#&gt;  * &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-#&gt;  1 Pitt… Steelers  PIT      Pittsbur… http…            0    12      4
-#&gt;  2 Indi… Colts     IND      Indianap… http…            0    10      6
-#&gt;  3 Kans… Chiefs    KC       Kansas C… http…            0    10      6
-#&gt;  4 Balt… Ravens    BAL      Baltimor… http…            0    12      4
-#&gt;  5 New … Jets      NYJ      New York… http…            0    11      5
-#&gt;  6 New … Patriots  NE       New Engl… http…            0    14      2
-#&gt;  7 San … Chargers  SD       San Dieg… http…            0     9      7
-#&gt;  8 Jack… Jaguars   JAX      Jacksonv… http…            0     8      8
-#&gt;  9 Oakl… Raiders   OAK      Oakland … http…            0     8      8
-#&gt; 10 Miami Dolphins  MIA      Miami Do… http…            0     7      9
-#&gt; # … with 22 more rows, and 19 more variables: win_percent &lt;dbl&gt;,
-#&gt; #   games_behind &lt;dbl&gt;, ties &lt;dbl&gt;, points_for &lt;dbl&gt;, points_against &lt;dbl&gt;,
-#&gt; #   differential &lt;dbl&gt;, streak &lt;dbl&gt;, clincher &lt;dbl&gt;, league_win_percent &lt;dbl&gt;,
-#&gt; #   division_record &lt;dbl&gt;, division_wins &lt;dbl&gt;, division_ties &lt;dbl&gt;,
-#&gt; #   division_losses &lt;dbl&gt;, all_splits &lt;dbl&gt;, home &lt;dbl&gt;, road &lt;dbl&gt;,
-#&gt; #   vs_div &lt;dbl&gt;, vs_conf &lt;dbl&gt;, year &lt;dbl&gt;</div><div class='input'>
+<span class='fu'>scrape_nfl_standings</span>(<span class='fl'>2000</span>)</div><div class='output co'>#&gt; <span class='error'>Error in scrape_nfl_standings(2000): could not find function "scrape_nfl_standings"</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
