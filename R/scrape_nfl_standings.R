@@ -40,7 +40,7 @@ scrape_nfl_standings <- function(season, add_superbowls = FALSE){
   team_names <- raw_season %>%
     html_node("div.tabs__content") %>%
     html_nodes("span.pr4.TeamLink__Logo") %>%
-    html_nodes("div.Image__Wrapper.aspect-ratio--child > img") %>%
+    html_nodes("a.AnchorLink > img") %>%
     html_attr("alt")
 
   team_abb <- raw_season %>%
