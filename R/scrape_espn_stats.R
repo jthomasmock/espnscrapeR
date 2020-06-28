@@ -78,7 +78,7 @@ scrape_espn_stats <- function(season = 2019, stats = "receiving", season_type = 
     dplyr::as_tibble() %>%
     dplyr::mutate(
       # get rid of the comma and convert to numeric
-      yds = readr::parse_number(yds),
+      yds = readr::parse_number(as.character(yds)),
       # if there is a player with multiple teams
       # We need to figure out how many teams and then
       slash_ct = stringr::str_count(name, "/"),
