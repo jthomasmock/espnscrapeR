@@ -93,7 +93,7 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
   # We'll wrap it in purrr::quietly() and pluck the "result"
   quiet_unnest_wider <- purrr::quietly(tidyr::unnest_wider)
 
-  purrr::pluck(raw_json, "athletes", "athlete") %>%
+  final_df <- purrr::pluck(raw_json, "athletes", "athlete") %>%
     dplyr::as_tibble() %>%
     dplyr::select(firstName:shortName, headshot, teamName:teamShortName) %>%
     dplyr::mutate(row_n = dplyr::row_number()) %>%
@@ -142,4 +142,12 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
       team_name, team_short_name, qbr_total:sack, headshot_href
     ) %>%
     dplyr::mutate_at(vars(qbr_total:sack), as.double)
+
+  final_df %>%
+    dplyr::select(!dplyr::contains("team")) %>%
+    dplyr::left_join(
+      scrape_nfl_qbr(season = season, week = week, season_type = season_type),
+      by = c("name")
+      ) %>%
+    dplyr::select(season:rank, team, dplyr::everything())
 }

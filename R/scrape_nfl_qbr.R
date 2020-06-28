@@ -8,7 +8,6 @@
 #' @param week Either NA to return season, week 1 to 4 for playoffs, or 1 to 17 for regular season.
 #' @param season_type Character - either "Regular" or "Playoffs"
 #' @return Returns a tibble
-#' @export
 #' @import tidyr dplyr purrr
 #' @importFrom dplyr %>%
 #' @importFrom jsonlite fromJSON
@@ -59,13 +58,13 @@ scrape_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
   )
 
   # Add useful messages - separated by week
-  message(
-    dplyr::if_else(
-      is.na(week),
-      glue::glue("Scraping QBR totals for {season}!"),
-      glue::glue("Scraping weekly QBR for week {week} of {season}!")
-      )
-  )
+  # message(
+  #   dplyr::if_else(
+  #     is.na(week),
+  #     glue::glue("Scraping QBR totals for {season}!"),
+  #     glue::glue("Scraping weekly QBR for week {week} of {season}!")
+  #     )
+  # )
 
   # Build up URL
   url <- dplyr::case_when(
@@ -80,7 +79,9 @@ scrape_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
     xml2::read_html() %>%
     rvest::html_table()
 
-  comb_df <- cbind(raw_tables[[1]], raw_tables[[2]])
+  comb_df <- raw_tables[[1]]
+
+  # comb_df <- cbind(raw_tables[[1]], raw_tables[[2]])
 
   comb_df %>%
     janitor::clean_names() %>%
@@ -93,7 +94,7 @@ scrape_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
         stringr::str_sub(name, -3)
         )
       ) %>%
-    dplyr::select(name, team, season, dplyr::contains("week"), dplyr::everything()) %>%
+    dplyr::select(name, team) %>%
     dplyr::mutate(team = stringr::str_remove(team, "[:lower:]+"),
            name = stringr::str_remove(name, team))
 }

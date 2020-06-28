@@ -145,37 +145,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Scrape ALL Playoff QBR from 2016 season</span>
-<span class='fu'>scrape_nfl_qbr</span>(<span class='st'>"2016"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Playoffs"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2016!</span></div><div class='output co'>#&gt; # A tibble: 12 x 13
-#&gt;    name  team  season    rk   qbr   paa plays   epa  pass   run  sack   pen
-#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1 Matt… ATL   2016       1  90.5  19.4   117  23.6  18.3   1.9  -3.1   0.2
-#&gt;  2 Aaro… GB    2016       2  83.2  15.3   151  23.1  17.1   1.3  -3.4   1.3
-#&gt;  3 Tom … NE    2016       3  75.8  11.9   161  22.3  16.5   0.6  -3.6   1.7
-#&gt;  4 Dak … DAL   2016       4  73.6   4.2    45   8     4.6   2    -0.8   0.7
-#&gt;  5 Russ… SEA   2016       5  60.3   3.6    73   8.7   4.3   1.1  -3.3   0  
-#&gt;  6 Ben … PIT   2016       6  58.7   0     108   8.6   7.3   0    -1     0.4
-#&gt;  7 Eli … NYG   2016       7  46.9  -0.3    49   3.6   3     0.2  -0.6  -0.2
-#&gt;  8 Matt… MIA   2016       8  44.9  -2      45   1.3   1.1  -0.5  -0.7   0  
-#&gt;  9 Matt… DET   2016       9  44.1  -1.1    42   2.6   3    -1.1  -0.5   0.2
-#&gt; 10 Broc… HOU   2016      10  40.6  -2.9    78   4.3   0.6   2.1  -1.2   0.4
-#&gt; 11 Alex… KC    2016      11  31.4  -2.8    42   1.5   0.9  -0.2  -0.7   0.1
-#&gt; 12 Conn… OAK   2016      12   6.5 -11.1    51  -3.8  -5.4   0    -1.5   0.1
-#&gt; # … with 1 more variable: raw &lt;dbl&gt;</div><div class='input'>
+<span class='fu'>scrape_nfl_qbr</span>(<span class='st'>"2016"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Playoffs"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</div><div class='output co'>#&gt; <span class='error'>Error in scrape_nfl_qbr("2016", season_type = "Playoffs", week = NA): could not find function "scrape_nfl_qbr"</span></div><div class='input'>
 <span class='co'># Scrape Regular season QBR for week 4 of 2019</span>
-<span class='fu'>scrape_nfl_qbr</span>(<span class='st'>"2019"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping weekly QBR for week 4 of 2019!</span></div><div class='output co'>#&gt; # A tibble: 31 x 15
-#&gt;    name  team  season  week    rk result   qbr   paa plays   epa  pass   run
-#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1 Jame… TB    2019       4     1 W55-4…  89.4   5.3    44   8.9   7.9   0  
-#&gt;  2 Cars… PHI   2019       4     2 W34-2…  86.1   2.5    32   5.5   5.8  -0.3
-#&gt;  3 Maso… PIT   2019       4     3 W27-3…  81.4   4      29   5.8   5.9   0  
-#&gt;  4 Phil… LAC   2019       4     4 W30-1…  77.1   2.4    32   5.1   6.3  -1.7
-#&gt;  5 Chas… CHI   2019       4     5 W16-6…  76.8   3.7    38   6.4   5.8   0  
-#&gt;  6 Dak … DAL   2019       4     6 L12-1…  76.6   3.1    36   6     4.3   0.8
-#&gt;  7 Matt… DET   2019       4     7 L34-3…  73.6   3.1    44   7.1   2.7   1.4
-#&gt;  8 Joe … DEN   2019       4     8 L26-2…  72.2   2.6    38   6     6.1   0  
-#&gt;  9 Aaro… GB    2019       4     9 L34-2…  69.2   4.4    63  10.4   6.6   2.8
-#&gt; 10 Bake… CLE   2019       4    10 W40-2…  69.1   1.1    37   4.4   3.8   0.2
-#&gt; # … with 21 more rows, and 3 more variables: sack &lt;dbl&gt;, pen &lt;dbl&gt;, raw &lt;dbl&gt;</div></pre>
+<span class='fu'>scrape_nfl_qbr</span>(<span class='st'>"2019"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='error'>Error in scrape_nfl_qbr("2019", season_type = "Regular", week = 4): could not find function "scrape_nfl_qbr"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
