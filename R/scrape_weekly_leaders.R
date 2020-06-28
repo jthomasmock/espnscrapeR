@@ -1,9 +1,8 @@
-#' Scrape NFL stats from ESPN
+#' Scrape weekly NFL leaders stats from ESPN
 #'
 #' @param stats character - either receiving, passing, or rushing
-#' @param season character or numeric - greater than 1990
-#' @param season_type character - either Regular or Playoffs
-#' @param week character or numeric - 1 to 17 for regular season or 1 - 4 for playoffs
+#' @param season character or numeric - greater than 2002
+#' @param week character or numeric - 1 to 17 for regular season
 #' @import purrr tidyr dplyr stringr
 #' @importFrom dplyr %>%
 #' @importFrom rvest html_table
@@ -15,40 +14,26 @@
 #'
 #' @examples
 #' scrape_weekly_leaders(season = 2002, stats = "passing", week = 1)
-scrape_weekly_leaders <- function(season = 2019, week = 1, season_type = "Regular", stats = "passing") {
+scrape_weekly_leaders <- function(season = 2019, week = 1, stats = "passing") {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
-  if (!season_type %in% c("Regular", "Playoffs")) {
-    stop("Please choose season_type of 'Regular' or 'Playoffs'")
-  }
-
   if (!stats %in% c("receiving", "rushing", "passing")) {
-    stop("Please choose season_type of 'receiving', 'rushing', or 'passing'!")
+    stop("Please choose stats of 'receiving', 'rushing', or 'passing'!")
   }
 
   if (!dplyr::between(as.numeric(season), 2002, current_year)) {
     stop(paste("Please choose season between 2002 and", current_year))
   }
 
-  if (season_type == "Regular" & !dplyr::between(as.numeric(week), 1, 17)) {
+  if (!dplyr::between(as.numeric(week), 1, 17)) {
     stop("Please choose a week between 1 and 17")
   }
 
-  if (season_type == "Playoffs" & !dplyr::between(as.numeric(week), 1, 4)) {
-    stop("Please choose a week between 1 and 3")
-  }
-
   message(
-    dplyr::if_else(
-      season_type == "Regular",
-      glue::glue("Scraping {stats} stats for week {week} from {season} {season_type} season!"),
-      glue::glue("Scraping {stats} stats for week {week} from {season} {season_type}!")
-    )
+    glue::glue("Scraping {stats} stats for week {week} from {season} season!")
   )
 
-  season_type <- dplyr::if_else(season_type == "Regular", "2", "3")
-
-  url <- glue::glue("http://www.espn.com/nfl/weekly/leaders/_/week/{week}/seasontype/{season_type}/type/{stats}")
+  url <- glue::glue("http://www.espn.com/nfl/weekly/leaders/_/week/{week}/seasontype/2/type/{stats}")
 
   pass_n <- c(
     "rank", "name", "team", "result", "pass_comp", "pass_att",
@@ -90,10 +75,9 @@ scrape_weekly_leaders <- function(season = 2019, week = 1, season_type = "Regula
     dplyr::mutate(
       rank = dplyr::row_number(),
       season = season,
-      week = week,
-      season_type = dplyr::if_else(season_type == 2, "Regular", "Playoffs")
+      week = week
     ) %>%
-    dplyr::select(season, season_type, week, rank, name, team:dplyr::contains("fumbles"))
+    dplyr::select(season, week, rank, name, team:dplyr::contains("fumbles"))
 
   suppressMessages(readr::type_convert(clean_df))
 }

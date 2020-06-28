@@ -2,21 +2,14 @@
 % Please edit documentation in R/scrape_weekly_leaders.R
 \name{scrape_weekly_leaders}
 \alias{scrape_weekly_leaders}
-\title{Scrape NFL stats from ESPN}
+\title{Scrape weekly NFL leaders stats from ESPN}
 \usage{
-scrape_weekly_leaders(
-  season = 2019,
-  week = 1,
-  season_type = "Regular",
-  stats = "passing"
-)
+scrape_weekly_leaders(season = 2019, week = 1, stats = "passing")
 }
 \arguments{
-\item{season}{character or numeric - greater than 1990}
+\item{season}{character or numeric - greater than 2002}
 
-\item{week}{character or numeric - 1 to 17 for regular season or 1 - 4 for playoffs}
-
-\item{season_type}{character - either Regular or Playoffs}
+\item{week}{character or numeric - 1 to 17 for regular season}
 
 \item{stats}{character - either receiving, passing, or rushing}
 }
@@ -24,7 +17,7 @@ scrape_weekly_leaders(
 tibble
 }
 \description{
-Scrape NFL stats from ESPN
+Scrape weekly NFL leaders stats from ESPN
 }
 \examples{
 scrape_weekly_leaders(season = 2002, stats = "passing", week = 1)

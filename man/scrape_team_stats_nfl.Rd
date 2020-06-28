@@ -4,21 +4,14 @@
 \alias{scrape_team_stats_nfl}
 \title{Scrape NFL stats from nfl.com at the team level.}
 \usage{
-scrape_team_stats_nfl(
-  season = 2019,
-  stats = "GAME_STATS",
-  role = "offense",
-  season_type = "Regular"
-)
+scrape_team_stats_nfl(season = 2019, stats = "passing", role = "offense")
 }
 \arguments{
-\item{season}{character or numeric - greater than 1970}
+\item{season}{character or numeric - greater than 1971, note that some data is missing for earlier seasons.}
 
-\item{stats}{character - either "GAME_STATS", "SCORING", "TEAM_PASSING", "TEAM_RUSHING", "TEAM_RECEIVING", or "OFFENSIVE_LINE"}
+\item{stats}{character - either "passing", "rushing", "receiving", "scoring", "downs"}
 
 \item{role}{character - "offense" or "defense"}
-
-\item{season_type}{character - either 'Regular' or 'Playoffs'}
 }
 \value{
 tibble
@@ -29,8 +22,8 @@ Please note that the column names are identical between offense/defense and you 
 \examples{
 
 # Get the NFL.com game-level stats for offense in 2018
-scrape_team_stats_nfl(season = 2018, stats = "GAME_STATS", role = "offense")
+scrape_team_stats_nfl(season = 2018, stats = "passing", role = "offense")
 
 # Get the NFL.com team-level passing stats for defense in 2014
-scrape_team_stats_nfl(season = "2014", stats = "TEAM_PASSING", role = "defense")
+scrape_team_stats_nfl(season = "2014", stats = "rushing", role = "defense")
 }

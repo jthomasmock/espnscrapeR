@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scrape NFL stats from ESPN — scrape_weekly_leaders • espnscrapeR</title>
+<title>Scrape weekly NFL leaders stats from ESPN — scrape_weekly_leaders • espnscrapeR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Scrape NFL stats from ESPN — scrape_weekly_leaders" />
-<meta property="og:description" content="Scrape NFL stats from ESPN" />
+<meta property="og:title" content="Scrape weekly NFL leaders stats from ESPN — scrape_weekly_leaders" />
+<meta property="og:description" content="Scrape weekly NFL leaders stats from ESPN" />
 
 
 
@@ -108,36 +108,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scrape NFL stats from ESPN</h1>
+    <h1>Scrape weekly NFL leaders stats from ESPN</h1>
     <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_weekly_leaders.R'><code>R/scrape_weekly_leaders.R</code></a></small>
     <div class="hidden name"><code>scrape_weekly_leaders.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Scrape NFL stats from ESPN</p>
+    <p>Scrape weekly NFL leaders stats from ESPN</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_weekly_leaders</span>(
-  <span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>,
-  <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>,
-  <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>scrape_weekly_leaders</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>season</th>
-      <td><p>character or numeric - greater than 1990</p></td>
+      <td><p>character or numeric - greater than 2002</p></td>
     </tr>
     <tr>
       <th>week</th>
-      <td><p>character or numeric - 1 to 17 for regular season or 1 - 4 for playoffs</p></td>
-    </tr>
-    <tr>
-      <th>season_type</th>
-      <td><p>character - either Regular or Playoffs</p></td>
+      <td><p>character or numeric - 1 to 17 for regular season</p></td>
     </tr>
     <tr>
       <th>stats</th>
@@ -150,21 +141,21 @@
     <p>tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>scrape_weekly_leaders</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2002</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats for week 1 from 2002 Regular season!</span></div><div class='output co'>#&gt; # A tibble: 30 x 14
-#&gt;    season season_type  week  rank name  team  result pass_comp pass_att pass_yds
-#&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-#&gt;  1   2002 Regular         1     1 Andy… CIN   L 21-…        35       51      418
-#&gt;  2   2002 Regular         1     2 Dak … DAL   W 35-…        25       32      405
-#&gt;  3   2002 Regular         1     3 Matt… DET   T 27-…        27       45      385
-#&gt;  4   2002 Regular         1     4 Case… WSH   L 32-…        30       44      380
-#&gt;  5   2002 Regular         1     5 Patr… KC    W 40-…        25       33      378
-#&gt;  6   2002 Regular         1     6 Drew… NO    W 30-…        32       43      370
-#&gt;  7   2002 Regular         1     7 Tom … NE    W 33-…        24       36      341
-#&gt;  8   2002 Regular         1     8 Phil… LAC   W 30-…        25       34      333
-#&gt;  9   2002 Regular         1     9 Lama… BAL   W 59-…        17       20      324
-#&gt; 10   2002 Regular         1    10 Cars… PHI   W 32-…        28       39      313
-#&gt; # … with 20 more rows, and 4 more variables: pass_td &lt;dbl&gt;, pass_int &lt;dbl&gt;,
-#&gt; #   sack &lt;dbl&gt;, pass_fumbles &lt;dbl&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>scrape_weekly_leaders</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2002</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats for week 1 from 2002 season!</span></div><div class='output co'>#&gt; # A tibble: 30 x 13
+#&gt;    season  week  rank name  team  result pass_comp pass_att pass_yds pass_td
+#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+#&gt;  1   2002     1     1 Andy… CIN   L 21-…        35       51      418       2
+#&gt;  2   2002     1     2 Dak … DAL   W 35-…        25       32      405       4
+#&gt;  3   2002     1     3 Matt… DET   T 27-…        27       45      385       3
+#&gt;  4   2002     1     4 Case… WSH   L 32-…        30       44      380       3
+#&gt;  5   2002     1     5 Patr… KC    W 40-…        25       33      378       3
+#&gt;  6   2002     1     6 Drew… NO    W 30-…        32       43      370       2
+#&gt;  7   2002     1     7 Tom … NE    W 33-…        24       36      341       3
+#&gt;  8   2002     1     8 Phil… LAC   W 30-…        25       34      333       3
+#&gt;  9   2002     1     9 Lama… BAL   W 59-…        17       20      324       5
+#&gt; 10   2002     1    10 Cars… PHI   W 32-…        28       39      313       3
+#&gt; # … with 20 more rows, and 3 more variables: pass_int &lt;dbl&gt;, sack &lt;dbl&gt;,
+#&gt; #   pass_fumbles &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
