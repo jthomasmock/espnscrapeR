@@ -23,5 +23,4 @@ scrape_nfl_standings(season = "2018")
 
 # Get standings from 2010 season
 scrape_nfl_standings(2000, add_superbowls = TRUE)
-
 }

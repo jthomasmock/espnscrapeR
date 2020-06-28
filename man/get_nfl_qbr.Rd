@@ -25,5 +25,4 @@ get_nfl_qbr("2016", season_type = "Playoffs", week = NA)
 
 # Get Regular season QBR for week 4 of 2019
 get_nfl_qbr("2019", season_type = "Regular", week = 4)
-
 }

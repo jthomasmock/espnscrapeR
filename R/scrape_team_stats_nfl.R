@@ -23,7 +23,6 @@
 #'
 #' # Get the NFL.com team-level passing stats for defense in 2014
 #' scrape_team_stats_nfl(season = "2014", stats = "TEAM_PASSING", role = "defense")
-#'
 scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "offense", season_type = "Regular") {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
@@ -105,9 +104,11 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
           "pass_long", "pass_20_plus", "pass_40_plus", "pass_sack", "pass_rating"
         )
       ) %>%
-      dplyr::mutate(pass_yds = as.double(stringr::str_remove(pass_yds, ",")),
-                    pass_comp_pct = pass_comp_pct/100,
-                    pass_first_pct = pass_first_pct/100) %>%
+      dplyr::mutate(
+        pass_yds = as.double(stringr::str_remove(pass_yds, ",")),
+        pass_comp_pct = pass_comp_pct / 100,
+        pass_first_pct = pass_first_pct / 100
+      ) %>%
       readr::type_convert())
   }
 
@@ -124,11 +125,10 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
         rec_yds = as.double(stringr::str_remove(rec_yds, ",")),
         rec_first_pct = rec_first_pct / 100
       ) %>%
-        readr::type_convert())
+      readr::type_convert())
   }
 
   clean_rushing <- function(input_df) {
-
     clean_rush_names <- c(
       "rank", "team", "games", "pts_game", "pts_total", "rush_att",
       "rush_att_g", "rush_yds", "rush_avg", "rush_yds_g", "rush_td",
@@ -140,15 +140,14 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
 
     suppressMessages(
       dplyr::mutate(renamed_tibble,
-                    rush_yds = as.double(stringr::str_remove(rush_yds, ",")),
-                    rush_first_pct = rush_first_pct / 100) %>%
+        rush_yds = as.double(stringr::str_remove(rush_yds, ",")),
+        rush_first_pct = rush_first_pct / 100
+      ) %>%
         readr::type_convert()
-
-      )
+    )
   }
 
   clean_game <- function(input_df) {
-
     clean_game_names <- c(
       "rank", "team", "games", "pts_game", "pts_total", "plays_scrimmage",
       "yds_game", "yds_play", "first_down_g", "third_conv", "third_att",
@@ -157,9 +156,11 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "GAME_STATS", role = "o
       "turnover_ratio"
     )
 
-    role_game_names <- dplyr::if_else(role == "defense",
-                               list(clean_game_names[1:20]),
-                               list(clean_game_names))[[1]]
+    role_game_names <- dplyr::if_else(
+      role == "defense",
+      list(clean_game_names[1:20]),
+      list(clean_game_names)
+    )[[1]]
 
     suppressMessages(
       input_df %>%

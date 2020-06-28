@@ -15,9 +15,7 @@
 #'
 #' # Get Regular season QBR for week 4 of 2019
 #' get_nfl_qbr("2019", season_type = "Regular", week = 4)
-#'
 get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
-
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Error handling to correct season type
@@ -52,10 +50,11 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
     5,
     # default to normal week
     as.numeric(week)
-    )
+  )
 
   # Add useful messages - separated by week
-  message(dplyr::if_else(is.na(week),
+  message(dplyr::if_else(
+    is.na(week),
     glue::glue("Scraping QBR totals for {season}!"),
     glue::glue("Scraping weekly QBR for week {week} of {season}!")
   ))
@@ -138,7 +137,9 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
         TRUE ~ NA_character_
       )
     ) %>%
-    dplyr::select(season:game_week, rank = row_n, first_name:short_name,
-           team_name, team_short_name, qbr_total:sack, headshot_href) %>%
+    dplyr::select(season:game_week,
+      rank = row_n, first_name:short_name,
+      team_name, team_short_name, qbr_total:sack, headshot_href
+    ) %>%
     dplyr::mutate_at(vars(qbr_total:sack), as.double)
-  }
+}

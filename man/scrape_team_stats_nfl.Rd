@@ -33,5 +33,4 @@ scrape_team_stats_nfl(season = 2018, stats = "GAME_STATS", role = "offense")
 
 # Get the NFL.com team-level passing stats for defense in 2014
 scrape_team_stats_nfl(season = "2014", stats = "TEAM_PASSING", role = "defense")
-
 }

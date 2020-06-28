@@ -21,5 +21,4 @@ get_nfl_standings(season = "2018")
 
 # Get standings from 2010 season
 get_nfl_standings(2010)
-
 }

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scrape NFL stats from nfl.com at the team level. — scrape_team_stats_nfl • espnscrapeR</title>
+<title>Scrape ESPN QBR for NFL football — scrape_nfl_qbr • espnscrapeR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Scrape NFL stats from nfl.com at the team level. — scrape_team_stats_nfl" />
-<meta property="og:description" content="Please note that the column names are identical between offense/defense and you should reference the 'role' column for offensive or defensive stats." />
+<meta property="og:title" content="Scrape ESPN QBR for NFL football — scrape_nfl_qbr" />
+<meta property="og:description" content="Scrapes QBR tables for NFL QBs by specific week or at season level." />
 
 
 
@@ -108,53 +108,74 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scrape NFL stats from nfl.com at the team level.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_team_stats_nfl.R'><code>R/scrape_team_stats_nfl.R</code></a></small>
-    <div class="hidden name"><code>scrape_team_stats_nfl.Rd</code></div>
+    <h1>Scrape ESPN QBR for NFL football</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_nfl_qbr.R'><code>R/scrape_nfl_qbr.R</code></a></small>
+    <div class="hidden name"><code>scrape_nfl_qbr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Please note that the column names are identical between offense/defense and you should reference the 'role' column for offensive or defensive stats.</p>
+    <p>Scrapes QBR tables for NFL QBs by specific week or at season level.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_team_stats_nfl</span>(
-  <span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>,
-  <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"GAME_STATS"</span>,
-  <span class='kw'>role</span> <span class='kw'>=</span> <span class='st'>"offense"</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>scrape_nfl_qbr</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>season</th>
-      <td><p>character or numeric - greater than 1970</p></td>
+      <td><p>Either numeric or character. Must be between 2006 and current season.</p></td>
     </tr>
     <tr>
-      <th>stats</th>
-      <td><p>character - either "GAME_STATS", "SCORING", "TEAM_PASSING", "TEAM_RUSHING", "TEAM_RECEIVING", or "OFFENSIVE_LINE"</p></td>
-    </tr>
-    <tr>
-      <th>role</th>
-      <td><p>character - "offense" or "defense"</p></td>
+      <th>week</th>
+      <td><p>Either NA to return season, week 1 to 4 for playoffs, or 1 to 17 for regular season.</p></td>
     </tr>
     <tr>
       <th>season_type</th>
-      <td><p>character - either 'Regular' or 'Playoffs'</p></td>
+      <td><p>Character - either "Regular" or "Playoffs"</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>tibble</p>
+    <p>Returns a tibble</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function supercedes `get_nfl_qbr` due to the ESPN API altering past data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Get the NFL.com game-level stats for offense in 2018</span>
-<span class='fu'>scrape_team_stats_nfl</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"GAME_STATS"</span>, <span class='kw'>role</span> <span class='kw'>=</span> <span class='st'>"offense"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping GAME_STATS for offense from 2018 Regular!</span></div><div class='output co'>#&gt; <span class='error'>Error in open.connection(x, "rb"): HTTP error 404.</span></div><div class='input'>
-<span class='co'># Get the NFL.com team-level passing stats for defense in 2014</span>
-<span class='fu'>scrape_team_stats_nfl</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2014"</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"TEAM_PASSING"</span>, <span class='kw'>role</span> <span class='kw'>=</span> <span class='st'>"defense"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping TEAM_PASSING for defense from 2014 Regular!</span></div><div class='output co'>#&gt; <span class='error'>Error in open.connection(x, "rb"): HTTP error 404.</span></div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Scrape ALL Playoff QBR from 2016 season</span>
+<span class='fu'>scrape_nfl_qbr</span>(<span class='st'>"2016"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Playoffs"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2016!</span></div><div class='output co'>#&gt; # A tibble: 12 x 13
+#&gt;    name  team  season    rk   qbr   paa plays   epa  pass   run  sack   pen
+#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 Matt… ATL   2016       1  90.5  19.4   117  23.6  18.3   1.9  -3.1   0.2
+#&gt;  2 Aaro… GB    2016       2  83.2  15.3   151  23.1  17.1   1.3  -3.4   1.3
+#&gt;  3 Tom … NE    2016       3  75.8  11.9   161  22.3  16.5   0.6  -3.6   1.7
+#&gt;  4 Dak … DAL   2016       4  73.6   4.2    45   8     4.6   2    -0.8   0.7
+#&gt;  5 Russ… SEA   2016       5  60.3   3.6    73   8.7   4.3   1.1  -3.3   0  
+#&gt;  6 Ben … PIT   2016       6  58.7   0     108   8.6   7.3   0    -1     0.4
+#&gt;  7 Eli … NYG   2016       7  46.9  -0.3    49   3.6   3     0.2  -0.6  -0.2
+#&gt;  8 Matt… MIA   2016       8  44.9  -2      45   1.3   1.1  -0.5  -0.7   0  
+#&gt;  9 Matt… DET   2016       9  44.1  -1.1    42   2.6   3    -1.1  -0.5   0.2
+#&gt; 10 Broc… HOU   2016      10  40.6  -2.9    78   4.3   0.6   2.1  -1.2   0.4
+#&gt; 11 Alex… KC    2016      11  31.4  -2.8    42   1.5   0.9  -0.2  -0.7   0.1
+#&gt; 12 Conn… OAK   2016      12   6.5 -11.1    51  -3.8  -5.4   0    -1.5   0.1
+#&gt; # … with 1 more variable: raw &lt;dbl&gt;</div><div class='input'>
+<span class='co'># Scrape Regular season QBR for week 4 of 2019</span>
+<span class='fu'>scrape_nfl_qbr</span>(<span class='st'>"2019"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping weekly QBR for week 4 of 2019!</span></div><div class='output co'>#&gt; # A tibble: 31 x 15
+#&gt;    name  team  season  week    rk result   qbr   paa plays   epa  pass   run
+#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 Jame… TB    2019       4     1 W55-4…  89.4   5.3    44   8.9   7.9   0  
+#&gt;  2 Cars… PHI   2019       4     2 W34-2…  86.1   2.5    32   5.5   5.8  -0.3
+#&gt;  3 Maso… PIT   2019       4     3 W27-3…  81.4   4      29   5.8   5.9   0  
+#&gt;  4 Phil… LAC   2019       4     4 W30-1…  77.1   2.4    32   5.1   6.3  -1.7
+#&gt;  5 Chas… CHI   2019       4     5 W16-6…  76.8   3.7    38   6.4   5.8   0  
+#&gt;  6 Dak … DAL   2019       4     6 L12-1…  76.6   3.1    36   6     4.3   0.8
+#&gt;  7 Matt… DET   2019       4     7 L34-3…  73.6   3.1    44   7.1   2.7   1.4
+#&gt;  8 Joe … DEN   2019       4     8 L26-2…  72.2   2.6    38   6     6.1   0  
+#&gt;  9 Aaro… GB    2019       4     9 L34-2…  69.2   4.4    63  10.4   6.6   2.8
+#&gt; 10 Bake… CLE   2019       4    10 W40-2…  69.1   1.1    37   4.4   3.8   0.2
+#&gt; # … with 21 more rows, and 3 more variables: sack &lt;dbl&gt;, pen &lt;dbl&gt;, raw &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

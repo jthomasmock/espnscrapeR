@@ -14,9 +14,7 @@
 #'
 #' # Get standings from 2010 season
 #' get_nfl_standings(2010)
-#'
-get_nfl_standings <- function(season = 2019){
-
+get_nfl_standings <- function(season = 2019) {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Small error handling to guide the limits on years
@@ -29,16 +27,17 @@ get_nfl_standings <- function(season = 2019){
   # Working version (no choosing season though)
   raw_standings <- jsonlite::fromJSON(glue::glue("https://site.api.espn.com/apis/v2/sports/football/nfl/standings?region=us&lang=en&season={season}"))
 
-  get_data_nfc <- function(row_n){
+  get_data_nfc <- function(row_n) {
     purrr::pluck(raw_standings, "children", "standings", "entries", 2, "stats", row_n, "value")
   }
 
-  get_data_afc <- function(row_n){
+  get_data_afc <- function(row_n) {
     purrr::pluck(raw_standings, "children", "standings", "entries", 1, "stats", row_n, "value")
   }
 
   clean_names_df <- purrr::pluck(raw_standings, "children", "standings", "entries", 2, "stats", 1) %>%
-    dplyr::pull(name) %>% janitor::make_clean_names()
+    dplyr::pull(name) %>%
+    janitor::make_clean_names()
 
   unnest_wider_quiet <- purrr::quietly(tidyr::unnest_wider)
 
@@ -59,7 +58,9 @@ get_nfl_standings <- function(season = 2019){
 
 
   nfc <- purrr::pluck(raw_standings, "children", "standings", "entries") %>%
-    .[[2]] %>% purrr::pluck("team") %>% as_tibble() %>%
+    .[[2]] %>%
+    purrr::pluck("team") %>%
+    as_tibble() %>%
     dplyr::mutate(row_n = row_number()) %>%
     dplyr::mutate(data = map(row_n, get_data_nfc)) %>%
     dplyr::select(location:displayName, logos, data) %>%
@@ -72,7 +73,4 @@ get_nfl_standings <- function(season = 2019){
 
   dplyr::bind_rows(afc, nfc) %>%
     dplyr::mutate(year = season)
-
-  }
-
-
+}

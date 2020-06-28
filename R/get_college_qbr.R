@@ -11,14 +11,12 @@
 #'
 #' @examples
 #'
-#'# Get college QBR from 2011 season as a whole
+#' # Get college QBR from 2011 season as a whole
 #' get_college_qbr(season = 2011, week = NA)
 #'
-#'# Get college QBR from 2019 season week 1
+#' # Get college QBR from 2019 season week 1
 #' get_college_qbr(2019, 1)
-#'
 get_college_qbr <- function(season = 2019, week = NA) {
-
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Small error handling to guide the limits on years
@@ -32,14 +30,15 @@ get_college_qbr <- function(season = 2019, week = NA) {
       is.na(week),
       glue::glue("Scraping QBR totals for {season}!"),
       glue::glue("Scraping QBR for week {week} of {season}!")
-      )
+    )
   )
 
   # Build base url
   base_url <- "https://site.web.api.espn.com/apis/fitt/v3/sports/football/college-football/qbr?region=us&lang=en&qbrType="
 
   # add base url to the weeks vs totals
-  url <- dplyr::if_else(!is.na(week),
+  url <- dplyr::if_else(
+    !is.na(week),
     glue::glue("{base_url}weeks&seasontype=2&conference=80&isqualified=true&sort=schedAdjQBR%3Adesc&season={season}&week={week}&limit=200"),
     glue::glue("{base_url}seasons&seasontype=2&conference=80&isqualified=true&sort=schedAdjQBR%3Adesc&season={season}&limit=200")
   )

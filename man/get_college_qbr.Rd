@@ -24,5 +24,4 @@ get_college_qbr(season = 2011, week = NA)
 
 # Get college QBR from 2019 season week 1
 get_college_qbr(2019, 1)
-
 }
