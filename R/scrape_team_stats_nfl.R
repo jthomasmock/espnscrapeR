@@ -62,14 +62,28 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "passing", role = "offe
     )
   }
 
+  pass_off_names <- c("team", "pass_att", "pass_comp", "pass_comp_pct", "yds_att", "pass_yds",
+                 "pass_td", "int", "pass_rating", "first_downs",
+                 "pass_first_pct", "pass_20plus", "pass_40plus",
+                 "pass_long", "sacks", "sack_yds"
+  )
+
+  pass_def_names <- c("team", "pass_att", "pass_comp", "pass_comp_pct", "yds_att", "pass_yds",
+                 "pass_td", "int", "pass_rating", "first_downs",
+                 "pass_first_pct", "pass_20plus", "pass_40plus",
+                 "pass_long", "sacks"
+  )
+
+  passing_names <- dplyr::if_else(role == "defense",
+                                  list(pass_def_names),
+                                  list(pass_off_names)
+                                  )[[1]]
+
   clean_passing <- function(input_df) {
+
     suppressMessages(input_df %>%
       purrr::set_names(
-        nm = c("team", "pass_att", "pass_comp", "pass_comp_pct", "yds_att", "pass_yds",
-               "pass_td", "int", "pass_rating", "first_downs",
-               "pass_first_pct", "pass_20plus", "pass_40plus",
-               "pass_long", "sacks", "sack_yds"
-               )
+        nm = passing_names
       ) %>%
       dplyr::mutate(
         pass_comp_pct = pass_comp_pct / 100,
