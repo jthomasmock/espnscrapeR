@@ -54,7 +54,6 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "passing", role = "offe
   clean_scoring <- function(input_df) {
     suppressMessages(
       input_df %>%
-        select(1:5, 8:dplyr::last_col()) %>%
         purrr::set_names(
           nm = c("team", "rush_td", "rec_td", "total_td", "two_pt_conv")
         ) %>%
