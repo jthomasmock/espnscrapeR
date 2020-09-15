@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scrape weekly NFL leaders stats from ESPN — scrape_weekly_leaders • espnscrapeR</title>
+<title>Scrape NFL weekly outcomes by week — scrape_nfl_weekly_standings • espnscrapeR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Scrape weekly NFL leaders stats from ESPN — scrape_weekly_leaders" />
-<meta property="og:description" content="Scrape weekly NFL leaders stats from ESPN" />
+<meta property="og:title" content="Scrape NFL weekly outcomes by week — scrape_nfl_weekly_standings" />
+<meta property="og:description" content="Scrape NFL weekly outcomes by week" />
 
 
 
@@ -108,31 +108,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scrape weekly NFL leaders stats from ESPN</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_weekly_leaders.R'><code>R/scrape_weekly_leaders.R</code></a></small>
-    <div class="hidden name"><code>scrape_weekly_leaders.Rd</code></div>
+    <h1>Scrape NFL weekly outcomes by week</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_nfl_weekly_standings.R'><code>R/scrape_nfl_weekly_standings.R</code></a></small>
+    <div class="hidden name"><code>scrape_nfl_weekly_standings.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Scrape weekly NFL leaders stats from ESPN</p>
+    <p>Scrape NFL weekly outcomes by week</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_weekly_leaders</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_nfl_weekly_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>season</th>
-      <td><p>character or numeric - greater than 2002</p></td>
+      <td><p>character or numeric - greater than 1990</p></td>
     </tr>
     <tr>
-      <th>week</th>
-      <td><p>character or numeric - 1 to 17 for regular season</p></td>
-    </tr>
-    <tr>
-      <th>stats</th>
-      <td><p>character - either receiving, passing, or rushing</p></td>
+      <th>tidy</th>
+      <td><p>logical - either TRUE to stack data by game/week or FALSE to return table as is</p></td>
     </tr>
     </table>
 
@@ -141,21 +137,39 @@
     <p>tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>scrape_weekly_leaders</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2002</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats for week 1 from 2002 season!</span></div><div class='output co'>#&gt; # A tibble: 30 x 13
-#&gt;    season  week  rank name  team  result pass_comp pass_att pass_yds pass_td
-#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1   2002     1     1 Matt… ATL   L 38-…        37       54      450       2
-#&gt;  2   2002     1     2 Aaro… GB    W 43-…        32       44      364       4
-#&gt;  3   2002     1     3 Phil… IND   L 27-…        36       46      363       1
-#&gt;  4   2002     1     4 Russ… SEA   W 38-…        31       35      322       4
-#&gt;  5   2002     1     5 Josh… BUF   W 27-…        33       46      312       2
-#&gt;  6   2002     1     6 Matt… DET   L 27-…        24       42      297       1
-#&gt;  7   2002     1     7 Dani… NYG   L 26-…        26       41      279       2
-#&gt;  8   2002     1     8 Lama… BAL   W 38-…        20       25      275       3
-#&gt;  9   2002     1     9 Jare… LAR   W 20-…        20       31      275       0
-#&gt; 10   2002     1    10 Tedd… CAR   L 34-…        22       34      270       1
-#&gt; # … with 20 more rows, and 3 more variables: pass_int &lt;dbl&gt;, sack &lt;dbl&gt;,
-#&gt; #   pass_fumbles &lt;dbl&gt;</div></pre>
+    <pre class="examples"><div class='input'>
+<span class='co'># Here we run w/ tidy = FALSE to get the exact table from PFR</span>
+<span class='fu'>scrape_nfl_weekly_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 256 x 16
+#&gt;    game_num season  week day   date  time  winner_tie home_team loser_tie
+#&gt;       &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    
+#&gt;  1        1   2020     1 Thu   Sept… 8:20… Kansas Ci… ""        Houston …
+#&gt;  2        2   2020     1 Sun   Sept… 1:00… Seattle S… "@"       Atlanta …
+#&gt;  3        3   2020     1 Sun   Sept… 1:00… Washingto… ""        Philadel…
+#&gt;  4        4   2020     1 Sun   Sept… 1:00… Buffalo B… ""        New York…
+#&gt;  5        5   2020     1 Sun   Sept… 1:00… New Engla… ""        Miami Do…
+#&gt;  6        6   2020     1 Sun   Sept… 1:00… Baltimore… ""        Clevelan…
+#&gt;  7        7   2020     1 Sun   Sept… 1:00… Las Vegas… "@"       Carolina…
+#&gt;  8        8   2020     1 Sun   Sept… 1:00… Jacksonvi… ""        Indianap…
+#&gt;  9        9   2020     1 Sun   Sept… 1:00… Green Bay… "@"       Minnesot…
+#&gt; 10       10   2020     1 Sun   Sept… 1:00… Chicago B… "@"       Detroit …
+#&gt; # … with 246 more rows, and 7 more variables: pts_winner &lt;dbl&gt;,
+#&gt; #   pts_loser &lt;dbl&gt;, yds_winner &lt;dbl&gt;, turnovers_winner &lt;dbl&gt;, yds_loser &lt;dbl&gt;,
+#&gt; #   turnovers_loser &lt;dbl&gt;, winner &lt;dbl&gt;</div><div class='input'>
+<span class='co'># Here we scrape the outcome and stack the games on top of eachother</span>
+<span class='fu'>scrape_nfl_weekly_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 512 x 12
+#&gt;    game_num season  week day   date  time  team  home_team points yards
+#&gt;       &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1        1   2020     1 Thu   Sept… 8:20… Kans…         1     34   369
+#&gt;  2        1   2020     1 Thu   Sept… 8:20… Hous…         0     20   360
+#&gt;  3        2   2020     1 Sun   Sept… 1:00… Seat…         0     38   383
+#&gt;  4        2   2020     1 Sun   Sept… 1:00… Atla…         1     25   506
+#&gt;  5        3   2020     1 Sun   Sept… 1:00… Wash…         1     27   258
+#&gt;  6        3   2020     1 Sun   Sept… 1:00… Phil…         0     17   327
+#&gt;  7        4   2020     1 Sun   Sept… 1:00… Buff…         1     27   410
+#&gt;  8        4   2020     1 Sun   Sept… 1:00… New …         0     17   254
+#&gt;  9        5   2020     1 Sun   Sept… 1:00… New …         1     21   372
+#&gt; 10        5   2020     1 Sun   Sept… 1:00… Miam…         0     11   278
+#&gt; # … with 502 more rows, and 2 more variables: turnovers &lt;dbl&gt;, winner &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -21,4 +21,5 @@ Scrape NFL stats from ESPN
 }
 \examples{
 scrape_espn_stats(season = 2000, stats = "passing")
+
 }

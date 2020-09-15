@@ -14,6 +14,8 @@
 #'
 #' @examples
 #' scrape_espn_stats(season = 2000, stats = "passing")
+#'
+
 scrape_espn_stats <- function(season = 2019, stats = "receiving", season_type = "Regular") {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
