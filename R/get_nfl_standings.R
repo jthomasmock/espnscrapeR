@@ -54,7 +54,11 @@ get_nfl_standings <- function(season = 2019) {
     purrr::pluck("result") %>%
     purrr::set_names(nm = c("city", "team_name", "abb_name", "full_name", "logos", clean_names_df)) %>%
     dplyr::arrange(playoff_seed) %>%
-    dplyr::mutate(logos = dplyr::pull(logos[[1]], 1))
+    dplyr::mutate(
+      logos = purrr::map_chr(
+        logos,
+        ~ dplyr::select(.x, href) %>% dplyr::slice(1) %>% dplyr::pull())
+      )
 
 
   nfc <- purrr::pluck(raw_standings, "children", "standings", "entries") %>%
@@ -68,8 +72,12 @@ get_nfl_standings <- function(season = 2019) {
     unnest_wider_quiet(data) %>%
     purrr::pluck("result") %>%
     purrr::set_names(nm = c("city", "team_name", "abb_name", "full_name", "logos", clean_names_df)) %>%
-    dplyr::arrange(playoff_seed) %>%
-    dplyr::mutate(logos = dplyr::pull(logos[[1]], 1))
+    dplyr::arrange(playoff_seed)  %>%
+    dplyr::mutate(
+      logos = purrr::map_chr(
+        logos,
+        ~ dplyr::select(.x, href) %>% dplyr::slice(1) %>% dplyr::pull())
+    )
 
   dplyr::bind_rows(afc, nfc) %>%
     dplyr::mutate(year = season)
