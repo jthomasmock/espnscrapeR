@@ -66,7 +66,7 @@ scrape_nfl_weekly_standings <- function(season = 2020, tidy = FALSE) {
       winner = case_when(
         pts_winner > pts_loser ~ 1,
         pts_winner < pts_loser ~ 0,
-        pts_winner == pts_loser ~ NA_real_,
+        pts_winner == pts_loser ~ 0.5,
         TRUE ~ NA_real_
         ),
       playoffs = if_else(winner_tie %in% c(playoff_teams), 1, 0)
