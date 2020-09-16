@@ -67,8 +67,7 @@ scrape_nfl_weekly_standings <- function(season = 2020, tidy = FALSE) {
         pts_winner < pts_loser ~ 0,
         pts_winner == pts_loser ~ 0.5,
         TRUE ~ NA_real_
-        ),
-      playoffs = if_else(winner_tie %in% c(playoff_teams), 1, 0)
+        )
       ) %>%
     select(game_num, everything())
 
@@ -94,7 +93,8 @@ scrape_nfl_weekly_standings <- function(season = 2020, tidy = FALSE) {
           )
         )
     ) %>%
-    arrange(week, game_num)
+    mutate(playoffs = if_else(team %in% c(playoff_teams), 1, 0))
+
 
   if (tidy == TRUE) {
     tidy_df
