@@ -30,7 +30,6 @@ scrape_nfl_weekly_standings <- function(season = 2020, tidy = FALSE) {
 
   message(glue::glue("Scraping standings from {season}!"))
 
-
   raw_html <- read_html(url)
 
   replace_names <- c(
