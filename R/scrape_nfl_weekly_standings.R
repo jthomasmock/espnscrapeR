@@ -28,6 +28,9 @@ scrape_nfl_weekly_standings <- function(season = 2020, tidy = FALSE) {
 
   url <- glue::glue("https://www.pro-football-reference.com/years/{season}/games.htm")
 
+  message(glue::glue("Scraping standings from {season}!"))
+
+
   raw_html <- read_html(url)
 
   replace_names <- c(
@@ -36,16 +39,27 @@ scrape_nfl_weekly_standings <- function(season = 2020, tidy = FALSE) {
     "yds_loser", "turnovers_loser"
   )
 
-  clean_df <- raw_html %>%
+
+  raw_df <- raw_html %>%
     html_node("#games") %>%
     html_table() %>%
     set_names(nm = replace_names) %>%
-    tibble() %>%
-    filter(week %in% as.character(c(1:17))) %>%
+    tibble()
+
+  playoff_teams <- c(
+    raw_df %>% filter(grepl(x = week, pattern = "Wild|Div|Conf|Super")) %>%
+      pull(winner_tie),
+    raw_df %>% filter(grepl(x = week, pattern = "Wild|Div|Conf|Super")) %>%
+      pull(loser_tie)
+  ) %>%
+    unique()
+
+  clean_df <- raw_df %>%
+    filter(!week %in% c("", "Week")) %>%
     mutate(season = as.integer(season)) %>%
     select(season, everything(), -boxscore) %>%
-    mutate_at(vars(week, pts_winner:turnovers_loser), as.double) %>%
-    group_by(week) %>%
+    mutate_at(vars(pts_winner:turnovers_loser), as.double) %>%
+    group_by(pts_winner) %>%
     mutate(game_num = row_number()) %>%
     ungroup() %>%
     mutate(
@@ -54,9 +68,11 @@ scrape_nfl_weekly_standings <- function(season = 2020, tidy = FALSE) {
         pts_winner < pts_loser ~ 0,
         pts_winner == pts_loser ~ NA_real_,
         TRUE ~ NA_real_
-        )
+        ),
+      playoffs = if_else(winner_tie %in% c(playoff_teams), 1, 0)
       ) %>%
     select(game_num, everything())
+
 
   tidy_df <- clean_df %>%
     select(game_num, season:winner_tie, home_team, contains("winner")) %>%
