@@ -66,12 +66,14 @@ scrape_nfl_standings <- function(season, add_superbowls = FALSE) {
     dplyr::mutate(
       playoffs = dplyr::if_else(conf_rank <= 6, "Made Playoffs", "Missed Playoffs"),
       playoff_rank = dplyr::case_when(
-        conf_rank == 1 ~ "Division and Home Field",
+        conf_rank == 1 ~ "Division, Home Field and Bye",
         conf_rank == 2 ~ "Division and Bye",
+        conf_rank == 2 & season >= 2020 ~ "Division",
         conf_rank == 3 ~ "Division",
         conf_rank == 4 ~ "Division",
         conf_rank == 5 ~ "Wild Card",
         conf_rank == 6 ~ "Wild Card",
+        conf_rank == 7 & season >= 2020 ~ "Wild Card"
         TRUE ~ "Missed Playoffs"
       )
     ) %>%
