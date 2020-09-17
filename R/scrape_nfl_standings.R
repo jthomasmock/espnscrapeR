@@ -64,6 +64,11 @@ scrape_nfl_standings <- function(season, add_superbowls = FALSE) {
     dplyr::mutate(conf_rank = dplyr::row_number()) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(
+      team_abb = team_abb,
+      team = team_names,
+      season = as.integer(season)
+    ) %>%
+    dplyr::mutate(
       playoffs = dplyr::if_else(conf_rank <= 6, "Made Playoffs", "Missed Playoffs"),
       playoff_rank = dplyr::case_when(
         conf_rank == 1 ~ "Division, Home Field and Bye",
@@ -73,14 +78,9 @@ scrape_nfl_standings <- function(season, add_superbowls = FALSE) {
         conf_rank == 4 ~ "Division",
         conf_rank == 5 ~ "Wild Card",
         conf_rank == 6 ~ "Wild Card",
-        conf_rank == 7 & season >= 2020 ~ "Wild Card"
+        conf_rank == 7 & season >= 2020 ~ "Wild Card",
         TRUE ~ "Missed Playoffs"
       )
-    ) %>%
-    dplyr::mutate(
-      team_abb = team_abb,
-      team = team_names,
-      season = as.integer(season)
     ) %>%
     dplyr::mutate(team_logo = glue::glue(
       "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/scoreboard/{team_abb}.png&h=500&w=500"
@@ -99,4 +99,5 @@ scrape_nfl_standings <- function(season, add_superbowls = FALSE) {
     raw_standings %>%
       purrr::set_names(nm = tolower(names(raw_standings)))
   }
-}
+
+  }
