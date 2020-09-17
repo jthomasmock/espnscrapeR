@@ -60,8 +60,10 @@ scrape_nfl_standings <- function(season, add_superbowls = FALSE) {
 
   raw_standings <- dplyr::bind_rows(nfc_table, afc_table) %>%
     dplyr::as_tibble() %>%
+    dplyr::group_by(conf_name) %>%
+    dplyr::mutate(conf_rank = dplyr::row_number()) %>%
+    dplyr::ungroup() %>%
     dplyr::mutate(
-      conf_rank = dplyr::row_number(),
       playoffs = dplyr::if_else(conf_rank <= 6, "Made Playoffs", "Missed Playoffs"),
       playoff_rank = dplyr::case_when(
         conf_rank == 1 ~ "Division and Home Field",
