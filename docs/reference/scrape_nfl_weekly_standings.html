@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -139,37 +139,38 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Here we run w/ tidy = FALSE to get the exact table from PFR</span>
-<span class='fu'>scrape_nfl_weekly_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 256 x 16
-#&gt;    game_num season  week day   date  time  winner_tie home_team loser_tie
-#&gt;       &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    
-#&gt;  1        1   2020     1 Thu   Sept… 8:20… Kansas Ci… ""        Houston …
-#&gt;  2        2   2020     1 Sun   Sept… 1:00… Seattle S… "@"       Atlanta …
-#&gt;  3        3   2020     1 Sun   Sept… 1:00… Washingto… ""        Philadel…
-#&gt;  4        4   2020     1 Sun   Sept… 1:00… Buffalo B… ""        New York…
-#&gt;  5        5   2020     1 Sun   Sept… 1:00… New Engla… ""        Miami Do…
-#&gt;  6        6   2020     1 Sun   Sept… 1:00… Baltimore… ""        Clevelan…
-#&gt;  7        7   2020     1 Sun   Sept… 1:00… Las Vegas… "@"       Carolina…
-#&gt;  8        8   2020     1 Sun   Sept… 1:00… Jacksonvi… ""        Indianap…
-#&gt;  9        9   2020     1 Sun   Sept… 1:00… Green Bay… "@"       Minnesot…
-#&gt; 10       10   2020     1 Sun   Sept… 1:00… Chicago B… "@"       Detroit …
+<span class='fu'>scrape_nfl_weekly_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping standings from 2020!</span></div><div class='output co'>#&gt; # A tibble: 256 x 16
+#&gt;    game_num season week  day   date  time  winner_tie home_team loser_tie
+#&gt;       &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    
+#&gt;  1        1   2020 1     Thu   Sept… 8:20… Kansas Ci… ""        Houston …
+#&gt;  2        1   2020 1     Sun   Sept… 1:00… Seattle S… "@"       Atlanta …
+#&gt;  3        1   2020 1     Sun   Sept… 1:00… Jacksonvi… ""        Indianap…
+#&gt;  4        2   2020 1     Sun   Sept… 1:00… Las Vegas… "@"       Carolina…
+#&gt;  5        1   2020 1     Sun   Sept… 1:00… Green Bay… "@"       Minnesot…
+#&gt;  6        2   2020 1     Sun   Sept… 1:00… Washingto… ""        Philadel…
+#&gt;  7        3   2020 1     Sun   Sept… 1:00… Buffalo B… ""        New York…
+#&gt;  8        4   2020 1     Sun   Sept… 1:00… Chicago B… "@"       Detroit …
+#&gt;  9        1   2020 1     Sun   Sept… 1:00… New Engla… ""        Miami Do…
+#&gt; 10        2   2020 1     Sun   Sept… 1:00… Baltimore… ""        Clevelan…
 #&gt; # … with 246 more rows, and 7 more variables: pts_winner &lt;dbl&gt;,
 #&gt; #   pts_loser &lt;dbl&gt;, yds_winner &lt;dbl&gt;, turnovers_winner &lt;dbl&gt;, yds_loser &lt;dbl&gt;,
 #&gt; #   turnovers_loser &lt;dbl&gt;, winner &lt;dbl&gt;</div><div class='input'>
 <span class='co'># Here we scrape the outcome and stack the games on top of eachother</span>
-<span class='fu'>scrape_nfl_weekly_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 512 x 12
-#&gt;    game_num season  week day   date  time  team  home_team points yards
-#&gt;       &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1        1   2020     1 Thu   Sept… 8:20… Kans…         1     34   369
-#&gt;  2        1   2020     1 Thu   Sept… 8:20… Hous…         0     20   360
-#&gt;  3        2   2020     1 Sun   Sept… 1:00… Seat…         0     38   383
-#&gt;  4        2   2020     1 Sun   Sept… 1:00… Atla…         1     25   506
-#&gt;  5        3   2020     1 Sun   Sept… 1:00… Wash…         1     27   258
-#&gt;  6        3   2020     1 Sun   Sept… 1:00… Phil…         0     17   327
-#&gt;  7        4   2020     1 Sun   Sept… 1:00… Buff…         1     27   410
-#&gt;  8        4   2020     1 Sun   Sept… 1:00… New …         0     17   254
-#&gt;  9        5   2020     1 Sun   Sept… 1:00… New …         1     21   372
-#&gt; 10        5   2020     1 Sun   Sept… 1:00… Miam…         0     11   278
-#&gt; # … with 502 more rows, and 2 more variables: turnovers &lt;dbl&gt;, winner &lt;dbl&gt;</div></pre>
+<span class='fu'>scrape_nfl_weekly_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping standings from 2020!</span></div><div class='output co'>#&gt; # A tibble: 512 x 13
+#&gt;    game_num season week  day   date  time  team  home_team points yards
+#&gt;       &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1        1   2020 1     Thu   Sept… 8:20… Kans…         1     34   369
+#&gt;  2        1   2020 1     Sun   Sept… 1:00… Seat…         0     38   383
+#&gt;  3        1   2020 1     Sun   Sept… 1:00… Jack…         1     27   241
+#&gt;  4        2   2020 1     Sun   Sept… 1:00… Las …         0     34   372
+#&gt;  5        1   2020 1     Sun   Sept… 1:00… Gree…         0     43   522
+#&gt;  6        2   2020 1     Sun   Sept… 1:00… Wash…         1     27   239
+#&gt;  7        3   2020 1     Sun   Sept… 1:00… Buff…         1     27   404
+#&gt;  8        4   2020 1     Sun   Sept… 1:00… Chic…         0     27   363
+#&gt;  9        1   2020 1     Sun   Sept… 1:00… New …         1     21   357
+#&gt; 10        2   2020 1     Sun   Sept… 1:00… Balt…         1     38   381
+#&gt; # … with 502 more rows, and 3 more variables: turnovers &lt;dbl&gt;, winner &lt;dbl&gt;,
+#&gt; #   playoffs &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

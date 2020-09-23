@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Page not found (404) • espnscrapeR</title>
+<title>Scrape ESPN FPI ratings for a specific season from ESPN's site — scrape_fpi • espnscrapeR</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,13 +33,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Page not found (404)" />
+<meta property="og:title" content="Scrape ESPN FPI ratings for a specific season from ESPN's site — scrape_fpi" />
+<meta property="og:description" content="Scrape ESPN FPI ratings for a specific season from ESPN's site" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +71,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">espnscrapeR</a>
+        <a class="navbar-link" href="../index.html">espnscrapeR</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
@@ -78,13 +79,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -105,23 +106,59 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Page not found (404)</h1>
+    <h1>Scrape ESPN FPI ratings for a specific season from ESPN's site</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_fpi.R'><code>R/scrape_fpi.R</code></a></small>
+    <div class="hidden name"><code>scrape_fpi.Rd</code></div>
     </div>
 
-Content not found. Please use links in the navbar.
+    <div class="ref-description">
+    <p>Scrape ESPN FPI ratings for a specific season from ESPN's site</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>scrape_fpi</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"FPI"</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>season</th>
+      <td><p>Either numeric or character</p></td>
+    </tr>
+    <tr>
+      <th>stat</th>
+      <td><p>One of 'FPI', 'EFF' or 'PROJ'</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Returns a tibble</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Get team offensive and defensive efficiency from 2020 season</span>
+<span class='fu'>scrape_fpi</span>(<span class='fl'>2020</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"EFF"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping EFF for 2020!</span></div><div class='output co'>#&gt; # A tibble: 32 x 11
+#&gt;    season team  w_l   eff_ove rnk_ove eff_off rnk_off eff_def rnk_def eff_spe
+#&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;
+#&gt;  1   2020 Balt… 2-0      94.4       1    88.8       4    82.4       1    78.3
+#&gt;  2   2020 Gree… 2-0      87.1       2    94         1    35.7      15    62.7
+#&gt;  3   2020 Buff… 2-0      79         3    90.6       3    57.3       8    24.2
+#&gt;  4   2020 Seat… 2-0      75.2       4    84.9       5    42.9      12    75.6
+#&gt;  5   2020 Pitt… 2-0      75         5    68.9      14    76.9       2    32.5
+#&gt;  6   2020 Ariz… 2-0      71.9       6    62.2      17    66         4    62.7
+#&gt;  7   2020 Las … 2-0      70         7    90.6       2    20.6      26    57.4
+#&gt;  8   2020 Los … 2-0      67.3       8    80.5       7    49.2      11    36.5
+#&gt;  9   2020 Kans… 2-0      67.2       9    81.1       6    30        21    73  
+#&gt; 10   2020 San … 1-1      66.1      10    70.8      13    50.5      10    66.6
+#&gt; # … with 22 more rows, and 1 more variable: rnk_spe &lt;int&gt;</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
-
 
 
       <footer>
