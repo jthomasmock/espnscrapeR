@@ -39,6 +39,10 @@ scrape_fpi <- function(season = 2020, stat = "FPI"){
       "def", "st", "sos", "rem_sos", "avgwp"
     )
 
+    trend_data <- fpi_html %>%
+      html_nodes("td:nth-child(4) > div") %>%
+      html_attr("class")
+
     table_fpi <- suppressWarnings(
       fpi_html %>%
         html_table() %>%
@@ -49,6 +53,12 @@ scrape_fpi <- function(season = 2020, stat = "FPI"){
           across(c(fpi, off:st), as.double),
           across(c(rk, trend, sos:avgwp), as.integer),
           season = season
+        ) %>%
+        mutate(
+          trend = if_else(
+            trend_data[rk] == "trend negative",
+            as.integer(trend * -1),
+            trend)
         ) %>%
         select(season, everything()) %>%
         tibble()
