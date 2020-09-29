@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • espnscrapeR</title>
+<title>Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site — scrape_espn_win_rate • espnscrapeR</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site — scrape_espn_win_rate" />
+<meta property="og:description" content="Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,114 +106,41 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_espn_win_rate.R'><code>R/scrape_espn_win_rate.R</code></a></small>
+    <div class="hidden name"><code>scrape_espn_win_rate.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>scrape_espn_win_rate</span>()</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_college_qbr.html">get_college_qbr()</a></code> </p>
-        </td>
-        <td><p>Get ESPN QBR for College football</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_nfl_qbr.html">get_nfl_qbr()</a></code> </p>
-        </td>
-        <td><p>Get ESPN QBR for NFL football</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_nfl_standings.html">get_nfl_standings()</a></code> </p>
-        </td>
-        <td><p>Get NFL standings for a specific season from ESPN's API</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_nfl_teams.html">get_nfl_teams()</a></code> </p>
-        </td>
-        <td><p>Return all NFL teams with their name, abbreviation,</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_espn_stats.html">scrape_espn_stats()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL stats from ESPN</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_espn_win_rate.html">scrape_espn_win_rate()</a></code> </p>
-        </td>
-        <td><p>Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_fpi.html">scrape_fpi()</a></code> </p>
-        </td>
-        <td><p>Scrape ESPN FPI ratings for a specific season from ESPN's site</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_nfl_qbr.html">scrape_nfl_qbr()</a></code> </p>
-        </td>
-        <td><p>Scrape ESPN QBR for NFL football</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_nfl_standings.html">scrape_nfl_standings()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL standings for a specific season from ESPN's site</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_nfl_weekly_standings.html">scrape_nfl_weekly_standings()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL weekly outcomes by week</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_superbowls.html">scrape_superbowls()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL superbowl winners for all years</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_team_stats_nfl.html">scrape_team_stats_nfl()</a></code> </p>
-        </td>
-        <td><p>Scrape NFL stats from nfl.com at the team level.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrape_weekly_leaders.html">scrape_weekly_leaders()</a></code> </p>
-        </td>
-        <td><p>Scrape weekly NFL leaders stats from ESPN</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Returns a tibble</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Get off and def pass/run win rates</span>
+<span class='fu'>scrape_espn_win_rate</span>()</div><div class='output co'>#&gt; # A tibble: 128 x 5
+#&gt;     rank team                 win_pct stat               role   
+#&gt;    &lt;int&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;  
+#&gt;  1     1 Pittsburgh Steelers     0.6  Pass Rush Win Rate Defense
+#&gt;  2     2 Tampa Bay Buccaneers    0.56 Pass Rush Win Rate Defense
+#&gt;  3     3 Buffalo Bills           0.56 Pass Rush Win Rate Defense
+#&gt;  4     4 Philadelphia Eagles     0.51 Pass Rush Win Rate Defense
+#&gt;  5     5 Carolina Panthers       0.49 Pass Rush Win Rate Defense
+#&gt;  6     6 Atlanta Falcons         0.49 Pass Rush Win Rate Defense
+#&gt;  7     7 Los Angeles Chargers    0.49 Pass Rush Win Rate Defense
+#&gt;  8     8 Kansas City Chiefs      0.48 Pass Rush Win Rate Defense
+#&gt;  9     9 Cleveland Browns        0.48 Pass Rush Win Rate Defense
+#&gt; 10    10 Houston Texans          0.47 Pass Rush Win Rate Defense
+#&gt; # … with 118 more rows</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
