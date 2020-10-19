@@ -24,35 +24,31 @@ scrape_espn_win_rate <- function(){
     "Run Block Win Rate"
   )
 
-  nodes_in <- c(
-    "#article-feed > article:nth-child(1) > div > div.article-body > p:nth-child(39)",
-    "#article-feed > article:nth-child(1) > div > div.article-body > p:nth-child(43)",
-    "#article-feed > article:nth-child(1) > div > div.article-body > p:nth-child(47)",
-    "#article-feed > article:nth-child(1) > div > div.article-body > p:nth-child(52)"
-  )
-
   raw_html <- read_html(pbwr_url)
 
-  get_table <- function(node_in, measure){
+  raw_text <- raw_html %>%
+    html_nodes("#article-feed > article:nth-child(1) > div > div.article-body > p") %>%
+    html_text()
 
-    raw_html %>%
-      html_node(node_in) %>%
-      html_text() %>%
-      str_split("\n") %>%
-      .[[1]] %>%
-      tibble(data = .) %>%
-      separate(data, into = c("rank", "team", "win_pct"), sep = "\\. |, ") %>%
-      mutate(
-        rank = as.integer(rank),
-        win_pct = parse_number(win_pct)/100,
-        stat = measure,
-        role = if_else(str_detect(measure, "Block"), "Offense", "Defense")
-      )
-  }
-
-  df_out <- map2_dfr(nodes_in, stats_in, ~get_table(.x, .y))
-
-  df_out
+  enframe(raw_text) %>%
+    filter(str_detect(value, "1. ")) %>%
+    mutate(name = c(
+      "Pass Rush Win Rate",
+      "Run Stop Win Rate",
+      "Pass Block Win Rate",
+      "Run Block Win Rate"
+    )) %>%
+    mutate(value = str_split(value, "\n")) %>%
+    unnest_longer(value) %>%
+    separate(value, into = c("rank", "team", "win_pct"), sep = "\\. |, ") %>%
+    mutate(
+      rank = as.integer(rank),
+      win_pct = str_remove(win_pct, "%"),
+      win_pct = as.double(win_pct)
+      ) %>%
+    rename(stat = name, stat_rank = rank)
 
 }
+
+scrape_espn_win_rate()
 
