@@ -9,6 +9,7 @@
 #' @importFrom xml2 read_html
 #' @importFrom purrr map2_dfr
 #' @importFrom rvest html_node html_text
+#' @importFrom tibble enframe
 #' @examples
 #' # Get off and def pass/run win rates
 #' scrape_espn_win_rate()
@@ -30,7 +31,7 @@ scrape_espn_win_rate <- function(){
     html_nodes("#article-feed > article:nth-child(1) > div > div.article-body > p") %>%
     html_text()
 
-  enframe(raw_text) %>%
+  tibble::enframe(raw_text) %>%
     filter(str_detect(value, "1. ")) %>%
     mutate(name = c(
       "Pass Rush Win Rate",
