@@ -58,9 +58,7 @@ scrape_nfl_weekly_standings <- function(season = 2020, tidy = FALSE) {
     mutate(season = as.integer(season)) %>%
     select(season, everything(), -boxscore) %>%
     mutate_at(vars(pts_winner:turnovers_loser), as.double) %>%
-    group_by(pts_winner) %>%
     mutate(game_num = row_number()) %>%
-    ungroup() %>%
     mutate(
       winner = case_when(
         pts_winner > pts_loser ~ 1,
