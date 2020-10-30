@@ -14,6 +14,8 @@
 
 get_nfl_schedule <- function(season){
 
+  message(glue::glue("Returning data for {season}!"))
+
   # year > 2000
   schedule_api <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?lang=en&region=us&calendartype=whitelist&limit=1000&dates={season}")
 

@@ -43,7 +43,8 @@ get_espn_win_prob <- function(game_id){
     hoist(clock, clock = "displayValue") %>%
     hoist(type, play_type = "text") %>%
     select(-type) %>%
-    janitor::clean_names()
+    janitor::clean_names() %>%
+    mutate(game_id = game_id)
 
   raw_df
 
