@@ -23,7 +23,6 @@ gt_theme_espn <- function(data, ...){
       table_body.hlines.color = "#f6f7f7",
       source_notes.font.size = 12,
       table.font.size = 16,
-      table.width = px(700),
       heading.align = "left",
       heading.title.font.size = 24,
       table.border.top.color = "transparent",
