@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site — scrape_espn_win_rate • espnscrapeR</title>
+<title>Apply ESPN theme to a gt table — gt_theme_espn • espnscrapeR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site — scrape_espn_win_rate" />
-<meta property="og:description" content="Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site" />
+<meta property="og:title" content="Apply ESPN theme to a gt table — gt_theme_espn" />
+<meta property="og:description" content="Apply ESPN theme to a gt table" />
 
 
 
@@ -108,38 +108,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/scrape_espn_win_rate.R'><code>R/scrape_espn_win_rate.R</code></a></small>
-    <div class="hidden name"><code>scrape_espn_win_rate.Rd</code></div>
+    <h1>Apply ESPN theme to a gt table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/gt_theme_espn.R'><code>R/gt_theme_espn.R</code></a></small>
+    <div class="hidden name"><code>gt_theme_espn.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site</p>
+    <p>Apply ESPN theme to a gt table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_espn_win_rate</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>)</pre>
+    <pre class="usage"><span class='fu'>gt_theme_espn</span>(<span class='no'>data</span>, <span class='no'>...</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>An existing gt table object</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Optional additional arguments to gt::table_options()</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Returns a tibble</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Get off and def pass/run win rates</span>
-<span class='fu'>scrape_espn_win_rate</span>()</div><div class='output co'>#&gt; # A tibble: 128 x 6
-#&gt;    stat               stat_rank team                 win_pct date_updated season
-#&gt;    &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-#&gt;  1 Pass Rush Win Rate         1 Atlanta Falcons           55 Nov 3, 2020    2020
-#&gt;  2 Pass Rush Win Rate         2 Pittsburgh Steelers       54 Nov 3, 2020    2020
-#&gt;  3 Pass Rush Win Rate         3 Tampa Bay Buccaneers      54 Nov 3, 2020    2020
-#&gt;  4 Pass Rush Win Rate         4 Buffalo Bills             51 Nov 3, 2020    2020
-#&gt;  5 Pass Rush Win Rate         5 Philadelphia Eagles       50 Nov 3, 2020    2020
-#&gt;  6 Pass Rush Win Rate         6 Baltimore Ravens          49 Nov 3, 2020    2020
-#&gt;  7 Pass Rush Win Rate         7 Miami Dolphins            48 Nov 3, 2020    2020
-#&gt;  8 Pass Rush Win Rate         8 Arizona Cardinals         47 Nov 3, 2020    2020
-#&gt;  9 Pass Rush Win Rate         9 Los Angeles Rams          47 Nov 3, 2020    2020
-#&gt; 10 Pass Rush Win Rate        10 Cleveland Browns          46 Nov 3, 2020    2020
-#&gt; # … with 118 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

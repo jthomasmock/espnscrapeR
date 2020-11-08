@@ -46,5 +46,4 @@ get_nfl_schedule <- function(season){
   all_games
 }
 
-get_nfl_schedule(2019)
 
