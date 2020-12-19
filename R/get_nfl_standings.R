@@ -58,7 +58,8 @@ get_nfl_standings <- function(season = 2019) {
       logos = purrr::map_chr(
         logos,
         ~ dplyr::select(.x, href) %>% dplyr::slice(1) %>% dplyr::pull())
-      )
+      ) %>%
+    dplyr::mutate(conf = "AFC")
 
 
   nfc <- purrr::pluck(raw_standings, "children", "standings", "entries") %>%
@@ -77,7 +78,8 @@ get_nfl_standings <- function(season = 2019) {
       logos = purrr::map_chr(
         logos,
         ~ dplyr::select(.x, href) %>% dplyr::slice(1) %>% dplyr::pull())
-    )
+    ) %>%
+    dplyr::mutate(conf = "NFC")
 
   dplyr::bind_rows(afc, nfc) %>%
     dplyr::mutate(year = season)
