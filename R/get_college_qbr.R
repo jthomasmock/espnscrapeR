@@ -16,7 +16,7 @@
 #'
 #' # Get college QBR from 2019 season week 1
 #' get_college_qbr(2019, 1)
-get_college_qbr <- function(season = 2019, week = NA) {
+get_college_qbr <- function(season = 2020, week = NA) {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Small error handling to guide the limits on years
@@ -39,8 +39,9 @@ get_college_qbr <- function(season = 2019, week = NA) {
   # add base url to the weeks vs totals
   url <- dplyr::if_else(
     !is.na(week),
-    glue::glue("{base_url}weeks&seasontype=2&conference=80&isqualified=true&sort=schedAdjQBR%3Adesc&season={season}&week={week}&limit=200"),
-    glue::glue("{base_url}seasons&seasontype=2&conference=80&isqualified=true&sort=schedAdjQBR%3Adesc&season={season}&limit=200")
+    glue::glue("{base_url}weeks&season={season}&week={week}&limit=200"),
+    glue::glue("{base_url}seasons&limit=200&season={season}")
+
   )
 
   raw_json <- fromJSON(url)
@@ -56,7 +57,7 @@ get_college_qbr <- function(season = 2019, week = NA) {
 
   purrr::pluck(raw_json, "athletes", "athlete") %>%
     dplyr::as_tibble() %>%
-    dplyr::select(firstName:shortName, teamName:teamShortName, age) %>%
+    dplyr::select(firstName:shortName, teamName:teamShortName) %>%
     dplyr::mutate(row_n = dplyr::row_number()) %>%
     dplyr::mutate(data = map(row_n, get_qbr_data)) %>%
     # lots of name_repair here that I am silencing
@@ -64,7 +65,7 @@ get_college_qbr <- function(season = 2019, week = NA) {
     purrr::pluck("result") %>%
     purrr::set_names(nm = c(
       "first_name", "last_name", "name", "short_name",
-      "team_name", "team_short_name", "age", "row_n", "qbr_total",
+      "team_name", "team_short_name", "row_n", "qbr_total",
       "points_added", "qb_plays", "total_epa", "pass", "run",
       "exp_sack", "penalty", "raw_qbr", "sack"
     )) %>%
