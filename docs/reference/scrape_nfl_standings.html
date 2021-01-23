@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +91,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/jthomasmock/espnscrapeR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -155,22 +155,7 @@
 #&gt; #   pa &lt;int&gt;, diff &lt;int&gt;, strk &lt;chr&gt;, playoffs &lt;chr&gt;, playoff_rank &lt;chr&gt;,
 #&gt; #   team_logo &lt;glue&gt;</div><div class='input'>
 <span class='co'># Get standings from 2010 season</span>
-<span class='fu'>scrape_nfl_standings</span>(<span class='fl'>2000</span>, <span class='kw'>add_superbowls</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2000</span></div><div class='output co'>#&gt; <span class='message'>Adding Superbowls!</span></div><div class='output co'>#&gt; # A tibble: 31 x 22
-#&gt;    team  team_abb season conf_name conf_rank     w     l     t   pct home  away 
-#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
-#&gt;  1 Tenn… TEN        2000 AFC               1    13     3     0 0.813 7-1   6-2  
-#&gt;  2 Balt… BAL        2000 AFC               2    12     4     0 0.75  6-2   6-2  
-#&gt;  3 Oakl… OAK        2000 AFC               3    12     4     0 0.75  7-1   5-3  
-#&gt;  4 Miam… MIA        2000 AFC               4    11     5     0 0.688 5-3   6-2  
-#&gt;  5 Denv… DEN        2000 AFC               5    11     5     0 0.688 6-2   5-3  
-#&gt;  6 Indi… IND        2000 AFC               6    10     6     0 0.625 6-2   4-4  
-#&gt;  7 Pitt… PIT        2000 AFC               7     9     7     0 0.563 4-4   5-3  
-#&gt;  8 New … NYJ        2000 AFC               8     9     7     0 0.563 5-3   4-4  
-#&gt;  9 Buff… BUF        2000 AFC               9     8     8     0 0.5   5-3   3-5  
-#&gt; 10 Kans… KC         2000 AFC              10     7     9     0 0.438 5-3   2-6  
-#&gt; # … with 21 more rows, and 11 more variables: div &lt;chr&gt;, conf &lt;chr&gt;, pf &lt;int&gt;,
-#&gt; #   pa &lt;int&gt;, diff &lt;int&gt;, strk &lt;chr&gt;, playoffs &lt;chr&gt;, playoff_rank &lt;chr&gt;,
-#&gt; #   team_logo &lt;glue&gt;, superbowl &lt;chr&gt;, sb_points &lt;int&gt;</div></pre>
+<span class='fu'>scrape_nfl_standings</span>(<span class='fl'>2000</span>, <span class='kw'>add_superbowls</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2000</span></div><div class='output co'>#&gt; <span class='message'>Adding Superbowls!</span></div><div class='output co'>#&gt; <span class='error'>Error: Invalid index: out of bounds</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

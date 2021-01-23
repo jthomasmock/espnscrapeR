@@ -4,7 +4,7 @@
 \alias{get_college_qbr}
 \title{Get ESPN QBR for College football}
 \usage{
-get_college_qbr(season = 2019, week = NA)
+get_college_qbr(season = 2020, week = NA)
 }
 \arguments{
 \item{season}{Numeric or character - greater than 2004}
