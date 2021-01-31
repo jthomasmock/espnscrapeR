@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -134,21 +134,36 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get standings from 2018 season</span>
-<span class='fu'>get_nfl_schedule</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2018"</span>)</div><div class='output co'>#&gt; <span class='message'>Returning data for 2018!</span></div><div class='output co'>#&gt; # A tibble: 333 x 11
-#&gt;    game_id home_team_id away_team_id uid   date  name  shortName  year
-#&gt;    &lt;chr&gt;          &lt;int&gt;        &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;
-#&gt;  1 400999…           12           10 s:20… 2018… Tenn… TEN @ KC   2017
-#&gt;  2 400999…           14            1 s:20… 2018… Atla… ATL @ LAR  2017
-#&gt;  3 400999…           30            2 s:20… 2018… Buff… BUF @ JAX  2017
-#&gt;  4 400999…           18           29 s:20… 2018… Caro… CAR @ NO   2017
-#&gt;  5 400999…           21            1 s:20… 2018… Atla… ATL @ PHI  2017
-#&gt;  6 400999…           17           10 s:20… 2018… Tenn… TEN @ NE   2017
-#&gt;  7 400999…           23           30 s:20… 2018… Jack… JAX @ PIT  2017
-#&gt;  8 400999…           16           18 s:20… 2018… New … NO @ MIN   2017
-#&gt;  9 400999…           17           30 s:20… 2018… Jack… JAX @ NE   2017
-#&gt; 10 400999…           21           16 s:20… 2018… Minn… MIN @ PHI  2017
-#&gt; # … with 323 more rows, and 3 more variables: seasonType &lt;int&gt;,
-#&gt; #   home_team &lt;chr&gt;, away_team &lt;chr&gt;</div></pre>
+<span class='fu'>get_nfl_schedule</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2018"</span>)</div><div class='output co'>#&gt; <span class='message'>Returning data for 2018!</span></div><div class='output co'>#&gt; # A tibble: 333 x 53
+#&gt;    matchup matchup_short season  type game_id game_uid game_date attendance
+#&gt;    &lt;chr&gt;   &lt;chr&gt;          &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;int&gt;
+#&gt;  1 Tennes… TEN @ KC        2017     3 400999… s:20~l:… 2018-01-…      73319
+#&gt;  2 Atlant… ATL @ LAR       2017     3 400999… s:20~l:… 2018-01-…      74300
+#&gt;  3 Buffal… BUF @ JAX       2017     3 400999… s:20~l:… 2018-01-…      69442
+#&gt;  4 Caroli… CAR @ NO        2017     3 400999… s:20~l:… 2018-01-…      73186
+#&gt;  5 Atlant… ATL @ PHI       2017     3 400999… s:20~l:… 2018-01-…      69596
+#&gt;  6 Tennes… TEN @ NE        2017     3 400999… s:20~l:… 2018-01-…      65878
+#&gt;  7 Jackso… JAX @ PIT       2017     3 400999… s:20~l:… 2018-01-…      64524
+#&gt;  8 New Or… NO @ MIN        2017     3 400999… s:20~l:… 2018-01-…      66612
+#&gt;  9 Jackso… JAX @ NE        2017     3 400999… s:20~l:… 2018-01-…      65878
+#&gt; 10 Minnes… MIN @ PHI       2017     3 400999… s:20~l:… 2018-01-…      69596
+#&gt; # … with 323 more rows, and 45 more variables: home_team_name &lt;chr&gt;,
+#&gt; #   home_team_logo &lt;chr&gt;, home_team_abb &lt;chr&gt;, home_team_id &lt;chr&gt;,
+#&gt; #   home_team_location &lt;chr&gt;, home_team_full &lt;chr&gt;, home_team_color &lt;chr&gt;,
+#&gt; #   home_score &lt;chr&gt;, home_win &lt;int&gt;, home_record &lt;chr&gt;, away_team_name &lt;chr&gt;,
+#&gt; #   away_team_logo &lt;chr&gt;, away_team_abb &lt;chr&gt;, away_team_id &lt;chr&gt;,
+#&gt; #   away_team_location &lt;chr&gt;, away_team_full &lt;chr&gt;, away_team_color &lt;chr&gt;,
+#&gt; #   away_score &lt;chr&gt;, away_win &lt;int&gt;, away_record &lt;chr&gt;, status_name &lt;chr&gt;,
+#&gt; #   broadcast_market &lt;chr&gt;, broadcast_name &lt;chr&gt;, pass_leader_yards &lt;dbl&gt;,
+#&gt; #   pass_leader_stat &lt;chr&gt;, pass_leader_name &lt;chr&gt;,
+#&gt; #   pass_leader_shortname &lt;chr&gt;, pass_leader_headshot &lt;chr&gt;,
+#&gt; #   pass_leader_team_id &lt;chr&gt;, pass_leader_pos &lt;chr&gt;, rush_leader_yards &lt;dbl&gt;,
+#&gt; #   rush_leader_stat &lt;chr&gt;, rush_leader_name &lt;chr&gt;,
+#&gt; #   rush_leader_shortname &lt;chr&gt;, rush_leader_headshot &lt;chr&gt;,
+#&gt; #   rush_leader_team_id &lt;chr&gt;, rush_leader_pos &lt;chr&gt;, rec_leader_yards &lt;dbl&gt;,
+#&gt; #   rec_leader_stat &lt;chr&gt;, rec_leader_name &lt;chr&gt;, rec_leader_shortname &lt;chr&gt;,
+#&gt; #   rec_leader_headshot &lt;chr&gt;, rec_leader_team_id &lt;chr&gt;, rec_leader_pos &lt;chr&gt;,
+#&gt; #   startDate &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

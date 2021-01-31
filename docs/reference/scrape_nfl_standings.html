@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -155,7 +155,10 @@
 #&gt; #   pa &lt;int&gt;, diff &lt;int&gt;, strk &lt;chr&gt;, playoffs &lt;chr&gt;, playoff_rank &lt;chr&gt;,
 #&gt; #   team_logo &lt;glue&gt;</div><div class='input'>
 <span class='co'># Get standings from 2010 season</span>
-<span class='fu'>scrape_nfl_standings</span>(<span class='fl'>2000</span>, <span class='kw'>add_superbowls</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2000</span></div><div class='output co'>#&gt; <span class='message'>Adding Superbowls!</span></div><div class='output co'>#&gt; <span class='error'>Error: Invalid index: out of bounds</span></div></pre>
+<span class='fu'>scrape_nfl_standings</span>(<span class='fl'>2000</span>, <span class='kw'>add_superbowls</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2000</span></div><div class='output co'>#&gt; <span class='message'>Adding Superbowls!</span></div><div class='output co'>#&gt; <span class='error'>Error: Problem with `mutate()` input `sb_points`.</span>
+#&gt; <span class='error'>x Input `sb_points` can't be recycled to size 54.</span>
+#&gt; <span class='error'>ℹ Input `sb_points` is `as.integer(substr(sb_scores, 1, 2))`.</span>
+#&gt; <span class='error'>ℹ Input `sb_points` must be size 54 or 1, not 0.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
