@@ -57,7 +57,9 @@ get_nfl_boxscore_players <- function(game_id){
     pivot_wider(names_from = stat_labels, values_from = stats, id_cols = c(id:displayName)) %>%
     rename(
       player_id = id, player_uid = uid, player_guid = guid,
-      first_name = firstName, last_name = lastName, full_name = displayName
+      first_name = firstName, last_name = lastName, full_name = displayName,
+      rush_att = rush_car, def_solo_tkl = def_solo, def_tkl = def_tot,
+      rec_total = rec_rec, fum_total = fum_fum, int_total = int_int
     ) %>%
     separate(pass_cpatt, into = c("pass_att", "pass_cmp"), sep = "/", convert = TRUE) %>%
     separate(pass_sacks, into = c("pass_sacks", "pass_sack_yds"), sep = "-", convert = TRUE) %>%

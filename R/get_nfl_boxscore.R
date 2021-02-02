@@ -68,7 +68,7 @@ get_nfl_boxscore <- function(game_id){
       id_cols = c(team_id)
     ) %>%
     separate(pass_sacks, into = c("pass_sacks", "pass_sack_yds"), sep = "-", convert = TRUE) %>%
-    separate(pass_cpatt, into = c("pass_att", "pass_comp"), sep = "/", convert = TRUE) %>%
+    separate(pass_cpatt, into = c("pass_att", "pass_cmp"), sep = "/", convert = TRUE) %>%
     separate(kick_fg, into = c("kick_fg_made", "kick_fg_att"), sep = "/", convert = TRUE) %>%
     separate(kick_xp, into = c("kick_xp_made", "kick_xp_att"), sep = "/", convert = TRUE) %>%
     mutate(across(pass_att:punt_long, ~ suppressWarnings(as.double(.x)))) %>%
