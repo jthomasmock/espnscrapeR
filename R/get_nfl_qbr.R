@@ -8,6 +8,7 @@
 #' @import tidyr dplyr purrr
 #' @importFrom dplyr %>%
 #' @importFrom jsonlite fromJSON
+#' @importFrom janitor clean_names
 #' @importFrom glue glue
 #' @examples
 #' # Get ALL Playoff QBR from 2016 season
@@ -82,72 +83,135 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
   )
 
   # Read in the raw json from ESPN
-  raw_json <- jsonlite::fromJSON(url)
+  raw_json <- jsonlite::fromJSON(url, simplifyVector = FALSE)
 
-  # Get the QBR stats by each player (row_n = player)
-  get_qbr_data <- function(row_n) {
-    purrr::pluck(raw_json, "athletes", "categories", row_n, "totals", 1)
+  in_nm <- c(
+    "qbr_total",
+    "pts_added",
+    "qb_plays",
+    "epa_total",
+    "pass",
+    "run",
+    "exp_sack",
+    "penalty",
+    "qbr_raw",
+    "sack"
+  )
+
+  if (is.na(week)) {
+    final_df <- raw_json[["athletes"]] %>%
+      tibble::enframe() %>%
+      tidyr::unnest_wider(value) %>%
+      tidyr::hoist(categories, vals = list(1, "totals")) %>%
+      dplyr::select(-name, -categories) %>%
+      tidyr::unnest_wider(athlete) %>%
+      tidyr::hoist(
+        headshot,
+        headshot_href = "href"
+      ) %>%
+      dplyr::select(
+        team_abb = teamShortName,
+        player_id = id,
+        short_name = shortName,
+        vals,
+        first_name = firstName,
+        last_name = lastName,
+        name = displayName,
+        headshot_href,
+        team = teamName
+      ) %>%
+      dplyr::mutate(vals = purrr::map(vals, ~ purrr::set_names(.x, in_nm))) %>%
+      tidyr::unnest_wider(vals) %>%
+      dplyr::mutate(dplyr::across(qbr_total:sack, as.double)) %>%
+      dplyr::mutate(
+        rank = rank(desc(qbr_total)),
+        game_week = "Season Total",
+        season = season,
+        season_type = season_type
+      ) %>%
+      dplyr::select(
+        season,
+        season_type,
+        game_week,
+        team_abb,
+        player_id,
+        short_name,
+        rank,
+        qbr_total:sack,
+        first_name,
+        last_name,
+        name,
+        headshot_href,
+        team
+      )
+  } else {
+    final_df <- raw_json[["athletes"]] %>%
+      tibble::enframe() %>%
+      tidyr::unnest_wider(value) %>%
+      tidyr::hoist(categories, vals = list(1, "totals")) %>%
+      tidyr::hoist(
+        game,
+        game_id = "id",
+        game_date = "date",
+        game_score = "score",
+        home_away = "homeAway",
+        week_num = "weekNumber",
+        week_text = "weekText",
+        opp_id = list("teamOpponent", "id"),
+        opp_abb = list("teamOpponent", "abbreviation"),
+        opp_team = list("teamOpponent", "displayName"),
+        opp_name = list("teamOpponent", "name")
+      ) %>%
+      dplyr::select(-name, -categories, -game) %>%
+      tidyr::unnest_wider(athlete) %>%
+      tidyr::hoist(
+        headshot,
+        headshot_href = "href"
+      ) %>%
+      dplyr::select(
+        game_id,
+        week_num,
+        week_text,
+        team_abb = teamShortName,
+        player_id = id,
+        short_name = shortName,
+        vals,
+        first_name = firstName,
+        last_name = lastName,
+        name = displayName,
+        headshot_href,
+        team = teamName,
+        opp_id:opp_name,
+      ) %>%
+      dplyr::mutate(vals = purrr::map(vals, ~ purrr::set_names(.x, in_nm))) %>%
+      tidyr::unnest_wider(vals) %>%
+      dplyr::mutate(dplyr::across(qbr_total:sack, as.double)) %>%
+      dplyr::mutate(
+        rank = rank(desc(qbr_total)),
+        game_week = as.integer(week),
+        season = season,
+        season_type = season_type
+      ) %>%
+      dplyr::select(
+        season,
+        season_type,
+        game_id,
+        game_week,
+        week_text,
+        team_abb,
+        player_id,
+        short_name,
+        rank,
+        qbr_total:sack,
+        first_name,
+        last_name,
+        name,
+        headshot_href,
+        team,
+        opp_id:opp_name,
+        week_num
+      )
   }
 
-  # unnest_wider() has noisy name repair
-  # We'll wrap it in purrr::quietly() and pluck the "result"
-  quiet_unnest_wider <- purrr::quietly(tidyr::unnest_wider)
-
-  final_df <- purrr::pluck(raw_json, "athletes", "athlete") %>%
-    dplyr::as_tibble() %>%
-    dplyr::select(firstName:shortName, headshot, teamName:teamShortName) %>%
-    dplyr::mutate(row_n = dplyr::row_number()) %>%
-    dplyr::mutate(data = purrr::map(row_n, get_qbr_data)) %>%
-    # lots of name_repair here that I am silencing
-    quiet_unnest_wider(data) %>%
-    purrr::pluck("result") %>%
-
-    # Names we need to add from the unnest_wider()
-    purrr::set_names(nm = c(
-      "first_name", "last_name", "name",
-      "short_name", "headshot_href", "team_name",
-      "team_short_name", "row_n", "qbr_total",
-      "points_added", "qb_plays", "total_epa",
-      "pass", "run", "exp_sack", "penalty", "raw_qbr", "sack"
-    )) %>%
-    # Add season and season type back to the main tibble
-    dplyr::mutate(
-      season = as.double(season),
-      season_type = season_type,
-      # Get the headshot url
-      headshot_href = dplyr::pull(headshot_href, href),
-
-      # Clean up the week numbers if playoffs or regular season
-      game_week = dplyr::case_when(
-        !is.na(week_current) ~ as.character(week_current),
-        !is.na(week_current) & season_type == "Playoffs" ~ as.character(
-          factor(week_current,
-            levels = c(1:5),
-            labels = c(
-              "Wild Card",
-              "Divisional",
-              "Conference Championship",
-              "Super Bowl",
-              "Super Bowl"
-            )
-          )
-        ),
-        is.na(week_current) & season_type == "Playoffs" ~ "Playoff Total",
-        is.na(week_current) & season_type == "Regular" ~ "Season Total",
-        TRUE ~ NA_character_
-      )
-    ) %>%
-    dplyr::select(season:game_week,
-      rank = row_n, first_name:short_name,
-      team_name, team_short_name, qbr_total:sack, headshot_href
-    ) %>%
-    dplyr::mutate_at(vars(qbr_total:sack), as.double)
-
-  final_df %>%
-    dplyr::select(!dplyr::contains("team")) %>%
-    dplyr::left_join(
-      scrape_nfl_qbr(season = season, week = week, season_type = season_type),
-      by = c("name")
-      ) %>%
-    dplyr::select(season:rank, team, dplyr::everything())
+  final_df
 }
