@@ -42,26 +42,25 @@ get_nfl_boxscore <- function(game_id){
     unnest_wider(statistics) %>%
     unchop(cols = c(labels, descriptions, totals)) %>%
     unchop(cols = c(labels, descriptions, totals)) %>%
-    mutate(name = substr(name, 1, 4)) %>%
-    unite(col = "stat_labels", name, labels, sep = "_") %>%
-    mutate(stat_labels = tolower(stat_labels) %>% str_replace("/| ", "_")) %>%
     mutate(
-      stat_labels = str_replace(stat_labels, "rece", "rec"),
-      stat_labels = str_replace(stat_labels, "defe", "def"),
-      stat_labels = str_replace(stat_labels, "inte", "int"),
-      stat_labels = case_when(
-        stat_labels == "kick_long" & str_detect(descriptions, "Return") ~ "kick_long_return",
-        stat_labels == "kick_long" & str_detect(descriptions, "Field") ~ "kick_long_fg",
-        stat_labels == "punt_no" & str_detect(descriptions, "Return") ~ "punt_no_returns",
-        stat_labels == "punt_no" & str_detect(descriptions, "Return", negate = TRUE) ~ "punt_no",
-        stat_labels == "punt_avg" & str_detect(descriptions, "Return") ~ "punt_avg_return",
-        stat_labels == "punt_avg" & str_detect(descriptions, "Return", negate = TRUE) ~ "punt_avg",
-        stat_labels == "punt_long" & str_detect(descriptions, "Return") ~ "punt_long_return",
-        stat_labels == "punt_long" & str_detect(descriptions, "Return", negate = TRUE) ~ "punt_long",
-        stat_labels == "punt_yds" & str_detect(text, "Return", negate = TRUE) ~ "punt_yds",
-        stat_labels == "punt_yds" & str_detect(text, "Return") ~ "punt_yds_return",
-        TRUE ~ stat_labels
+      name = case_when(
+        name == "passing" ~ "pass",
+        name == "rushing" ~ "rush",
+        name == "receiving" ~ "rec",
+        name == "fumbles" ~ "fum",
+        name == "defensive" ~ "def",
+        name == "interceptions" ~ "int",
+        name == "kickReturns" ~ "kick_ret",
+        name == "puntReturns" ~ "punt_ret",
+        name == "kicking" ~ "kick",
+        name == "punting" ~ "punt",
+        TRUE ~ name
       )
+    ) %>%
+    unite(stat_labels, sep = "_", name, labels) %>%
+    mutate(
+      stat_labels = tolower(stat_labels) %>% gsub(x = ., pattern = "/", replacement = "p"),
+      stat_labels = gsub(x = stat_labels, pattern = " ", replacement = "_"),
     ) %>%
     pivot_wider(
       names_from = stat_labels,
@@ -69,14 +68,14 @@ get_nfl_boxscore <- function(game_id){
       id_cols = c(team_id)
     ) %>%
     separate(pass_sacks, into = c("pass_sacks", "pass_sack_yds"), sep = "-", convert = TRUE) %>%
-    separate(pass_c_att, into = c("pass_att", "pass_comp"), sep = "/", convert = TRUE) %>%
+    separate(pass_cpatt, into = c("pass_att", "pass_comp"), sep = "/", convert = TRUE) %>%
     separate(kick_fg, into = c("kick_fg_made", "kick_fg_att"), sep = "/", convert = TRUE) %>%
     separate(kick_xp, into = c("kick_xp_made", "kick_xp_att"), sep = "/", convert = TRUE) %>%
     mutate(across(pass_att:punt_long, ~ suppressWarnings(as.double(.x)))) %>%
     rename(
       rec_total = rec_rec,
       int_total = int_int,
-      fumb_total = fumb_fum,
+      fum_total = fum_fum,
       rush_att = rush_car,
       def_tkl = def_tot,
       def_solo_tkl = def_solo,
@@ -95,8 +94,8 @@ get_nfl_boxscore <- function(game_id){
     hoist(
       statistics,
       first_downs = list(1, "displayValue"),
-      passing_1st_downs = list(2, "displayValue"),
-      rushing_1st_downs = list(3, "displayValue"),
+      pass_1st_downs = list(2, "displayValue"),
+      rush_1st_downs = list(3, "displayValue"),
       first_downs_from_penalties = list(4, "displayValue"),
       third_down_efficiency = list(5, "displayValue"),
       fourth_down_efficiency = list(6, "displayValue"),
@@ -107,15 +106,13 @@ get_nfl_boxscore <- function(game_id){
       red_zone_made_att = list(19, "displayValue"),
       penalties = list(20, "displayValue"),
       turnovers = list(21, "displayValue"),
-      defensive_special_teams_tds = list(24, "displayValue"),
+      def_sp_tds = list(24, "displayValue"),
       possess_time = list(25, "displayValue")
     ) %>%
     separate(third_down_efficiency, c("third_down_conv", "third_down_att"), sep = "-", convert = TRUE) %>%
     separate(fourth_down_efficiency, c("fourth_down_conv", "fourth_down_att"), sep = "-", convert = TRUE) %>%
-
     separate(red_zone_made_att, c("redzone_att", "redzone_conv"), sep = "-", convert = TRUE) %>%
     separate(penalties, c("penalties", "pen_yards"), sep = "-", convert = TRUE) %>%
-    rename(def_sp_tds = defensive_special_teams_tds) %>%
     mutate(across(first_downs:def_sp_tds, as.double)) %>%
     select(-statistics)
 

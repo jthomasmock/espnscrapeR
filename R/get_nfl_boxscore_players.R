@@ -34,22 +34,36 @@ get_nfl_boxscore_players <- function(game_id){
     unchop(cols = c(labels, descriptions, totals, stats)) %>%
     unchop(cols = c(labels, descriptions, totals, stats)) %>%
     select(-links) %>%
+    mutate(
+      name = case_when(
+        name == "passing" ~ "pass",
+        name == "rushing" ~ "rush",
+        name == "receiving" ~ "rec",
+        name == "fumbles" ~ "fum",
+        name == "defensive" ~ "def",
+        name == "interceptions" ~ "int",
+        name == "kickReturns" ~ "kick_ret",
+        name == "puntReturns" ~ "punt_ret",
+        name == "kicking" ~ "kick",
+        name == "punting" ~ "punt",
+        TRUE ~ name
+      )
+      ) %>%
     unite(stat_labels, sep = "_", name, labels) %>%
     mutate(
       stat_labels = tolower(stat_labels) %>% gsub(x = ., pattern = "/", replacement = "p"),
       stat_labels = gsub(x = stat_labels, pattern = " ", replacement = "_"),
     ) %>%
     pivot_wider(names_from = stat_labels, values_from = stats, id_cols = c(id:displayName)) %>%
-    # mutate(stat_category = names(.)[7] %>% gsub(x=., "[_].*", ""), .after = displayName) %>%
     rename(
       player_id = id, player_uid = uid, player_guid = guid,
       first_name = firstName, last_name = lastName, full_name = displayName
     ) %>%
-    separate(passing_cpatt, into = c("passing_att", "passing_cmp"), sep = "/", convert = TRUE) %>%
-    separate(passing_sacks, into = c("passing_sacks", "passing_sack_yards"), sep = "-", convert = TRUE) %>%
-    separate(kicking_fg, into = c("kicking_fg_att", "kicking_fg_made"), sep = "/", convert = TRUE) %>%
-    separate(kicking_xp, into = c("kicking_xp_att", "kicking_xp_made"), sep = "/", convert = TRUE) %>%
-    mutate(across(c(passing_yds:punting_long), ~suppressWarnings(as.double(.x))))
+    separate(pass_cpatt, into = c("pass_att", "pass_cmp"), sep = "/", convert = TRUE) %>%
+    separate(pass_sacks, into = c("pass_sacks", "pass_sack_yds"), sep = "-", convert = TRUE) %>%
+    separate(kick_fg, into = c("kick_fg_att", "kick_fg_made"), sep = "/", convert = TRUE) %>%
+    separate(kick_xp, into = c("kick_xp_att", "kick_xp_made"), sep = "/", convert = TRUE) %>%
+    mutate(across(c(pass_yds:punt_long), ~suppressWarnings(as.double(.x))))
 
   player_id_df <- raw_json[["boxscore"]][["players"]] %>%
     tibble(data = .) %>%
@@ -108,17 +122,6 @@ get_nfl_boxscore_players <- function(game_id){
 
     ) %>%
     relocate(week, .after = date)
-
-  # left_join(category_game_summary, gen_boxscore, by = "team_id") %>%
-  #   left_join(game_header, by = "team_id") %>%
-  #   select(
-  #     contains("game"), contains("season"), date, week, home_away, winner,
-  #     contains("team"), everything(), -team_location
-  #   )  %>%
-  #   mutate(
-  #     winner = as.integer(winner),
-  #     team_score = as.integer(team_score)
-  #   )
 
   left_join(wide_game_summary, player_id_df, by = "player_id") %>%
     left_join(game_header, by = "team_id") %>%
