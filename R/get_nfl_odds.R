@@ -59,14 +59,14 @@ get_nfl_odds <- function(game_id) {
       tibble(
         location = c("home", "away"),
         win_proj_fpi = c(
-          raw_json$predictor$homeTeam$gameProjection,
-          away_win_pct_fpi = raw_json$predictor$awayTeam$gameProjection
+          as.double(raw_json$predictor$homeTeam$gameProjection),
+          as.double(away_win_pct_fpi = raw_json$predictor$awayTeam$gameProjection)
         )
       ),
       by = "location"
     ) %>%
     left_join(team_df, by = "location") %>%
-    mutate(game_id = game_id)
+    mutate(game_id = game_id, win_proj_fpi = as.double(win_proj_fpi))
 
   odds_df
 }

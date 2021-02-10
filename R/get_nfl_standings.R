@@ -14,7 +14,7 @@
 #'
 #' # Get standings from 2010 season
 #' get_nfl_standings(2010)
-get_nfl_standings <- function(season = 2019) {
+get_nfl_standings <- function(season = 2019, quiet = FALSE) {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Small error handling to guide the limits on years
@@ -22,65 +22,108 @@ get_nfl_standings <- function(season = 2019) {
     stop(paste("Please choose season between 1990 and", current_year))
   }
 
-  message(glue::glue("Scraping {season}"))
+  if(isFALSE(quiet)){
+    message(glue::glue("Returning {season}"))
+  }
 
   # Working version (no choosing season though)
-  raw_standings <- jsonlite::fromJSON(glue::glue("https://site.api.espn.com/apis/v2/sports/football/nfl/standings?region=us&lang=en&season={season}"))
+  raw_standings <- jsonlite::fromJSON(
+    glue::glue("https://site.api.espn.com/apis/v2/sports/football/nfl/standings?region=us&lang=en&season={season}"),
+    simplifyVector = FALSE
+  )
 
-  get_data_nfc <- function(row_n) {
-    purrr::pluck(raw_standings, "children", "standings", "entries", 2, "stats", row_n, "value")
-  }
+  names_fix <- tibble(
+    type = c(
+      "playoffseed",
+      "wins",
+      "losses",
+      "winpercent",
+      "gamesbehind",
+      "ties",
+      "pointsfor",
+      "pointsagainst",
+      "differential",
+      "streak",
+      "clincher",
+      "divisionrecord",
+      "divisionwins",
+      "divisionties",
+      "divisionlosses",
+      "total",
+      "home",
+      "road",
+      "vsdiv",
+      "vsconf"
+    ),
+    abb = c(
+      "seed",
+      "wins",
+      "losses",
+      "win_pct",
+      "g_behind",
+      "ties",
+      "pts_for",
+      "pts_against",
+      "pts_diff",
+      "streak",
+      "div_clincher",
+      "record_div",
+      "div_wins",
+      "div_ties",
+      "div_losses",
+      "record",
+      "record_home",
+      "record_away",
+      "record_div",
+      "record_conf"
+    )
+  )
 
-  get_data_afc <- function(row_n) {
-    purrr::pluck(raw_standings, "children", "standings", "entries", 1, "stats", row_n, "value")
-  }
-
-  clean_names_df <- purrr::pluck(raw_standings, "children", "standings", "entries", 2, "stats", 1) %>%
-    dplyr::pull(name) %>%
-    janitor::make_clean_names()
-
-  unnest_wider_quiet <- purrr::quietly(tidyr::unnest_wider)
-
-
-  afc <- purrr::pluck(raw_standings, "children", "standings", "entries") %>%
-    .[[1]] %>%
-    purrr::pluck("team") %>%
-    as_tibble() %>%
-    dplyr::mutate(row_n = row_number()) %>%
-    dplyr::mutate(data = map(row_n, get_data_afc)) %>%
-    dplyr::select(location:displayName, logos, data) %>%
-    purrr::set_names(nm = c("city", "team_name", "abb_name", "full_name", "logos", "data")) %>%
-    unnest_wider_quiet(data) %>%
-    purrr::pluck("result") %>%
-    purrr::set_names(nm = c("city", "team_name", "abb_name", "full_name", "logos", clean_names_df)) %>%
-    dplyr::arrange(playoff_seed) %>%
-    dplyr::mutate(
-      logos = purrr::map_chr(
-        logos,
-        ~ dplyr::select(.x, href) %>% dplyr::slice(1) %>% dplyr::pull())
-      ) %>%
-    dplyr::mutate(conf = "AFC")
-
-
-  nfc <- purrr::pluck(raw_standings, "children", "standings", "entries") %>%
-    .[[2]] %>%
-    purrr::pluck("team") %>%
-    as_tibble() %>%
-    dplyr::mutate(row_n = row_number()) %>%
-    dplyr::mutate(data = map(row_n, get_data_nfc)) %>%
-    dplyr::select(location:displayName, logos, data) %>%
-    purrr::set_names(nm = c("city", "team_name", "abb_name", "full_name", "logos", "data")) %>%
-    unnest_wider_quiet(data) %>%
-    purrr::pluck("result") %>%
-    purrr::set_names(nm = c("city", "team_name", "abb_name", "full_name", "logos", clean_names_df)) %>%
-    dplyr::arrange(playoff_seed)  %>%
-    dplyr::mutate(
-      logos = purrr::map_chr(
-        logos,
-        ~ dplyr::select(.x, href) %>% dplyr::slice(1) %>% dplyr::pull())
+  full_stand <- raw_standings[["children"]] %>%
+    tibble(data = .) %>%
+    unnest_wider(data) %>%
+    select(conf = abbreviation, standings) %>%
+    unnest_wider(standings) %>%
+    unnest_longer(entries) %>%
+    unnest_wider(entries) %>%
+    select(conf, season, team, stats) %>%
+    unnest_wider(team) %>%
+    hoist(logos, team_logo = list(1, "href")) %>%
+    select(
+      conf,
+      season,
+      team_id = id,
+      team_location = location,
+      team_name = name,
+      team_abb = abbreviation,
+      team_full = displayName,
+      team_logo,
+      stats
     ) %>%
-    dplyr::mutate(conf = "NFC")
+    unnest_longer(stats) %>%
+    unnest_wider(stats) %>%
+    mutate(value = as.character(value)) %>%
+    mutate(value = if_else(is.na(value), displayValue, value)) %>%
+    select(conf:team_logo, type, value) %>%
+    left_join(names_fix, by = "type") %>%
+    filter(!(abb == "record_div" & str_length(value) < 2)) %>%
+    filter(!is.na(abb), abb != "NA") %>%
+    filter(abb != "div_clincher") %>%
+    select(-type) %>%
+    pivot_wider(
+      names_from = abb,
+      values_from = value,
+      id_cols = conf:team_logo
+    ) %>%
+    separate(record_home, c("home_wins", "home_losses"), convert = TRUE, extra = "drop") %>%
+    separate(record_away, c("away_wins", "away_losses"), convert = TRUE, extra = "drop") %>%
+    separate(record_div, c("div_wins", "div_losses"), convert = TRUE, extra = "drop") %>%
+    separate(record_conf, c("conf_wins", "conf_losses"), convert = TRUE, extra = "drop") %>%
+    mutate(across(c(seed:div_losses, -record), as.double)) %>%
+    group_by(conf) %>%
+    arrange(conf, desc(win_pct), g_behind) %>%
+    mutate(seed = row_number()) %>%
+    ungroup()
 
-  dplyr::bind_rows(afc, nfc) %>%
-    dplyr::mutate(year = season)
+  full_stand
 }

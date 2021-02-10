@@ -141,11 +141,31 @@ get_nfl_pbp <- function(game_id){
            away_win = as.integer(away_win),) %>%
     select(!where(is.list), -timeValid)
 
-  bind_cols(nfl_pbp, game_header) %>%
+
+
+  combo_df <- bind_cols(nfl_pbp, game_header) %>%
     select(
       contains("game"), contains("season"), date, week, drive_id,pos_team_abb,
       play_id, play_type, yards_gained, play_desc, everything()
       )
+  if(raw_json[["header"]][["season"]][["year"]] >= 2015){
+
+    wp_df <- raw_json[["winprobability"]] %>%
+      tibble(data = .) %>%
+      hoist(
+        data,
+        play_id = "playId",
+        home_wp = "homeWinPercentage",
+        tie_percentage = "tiePercentage",
+        game_sec_remaining = "secondsLeft"
+      )
+
+    combo_df %>%
+      left_join(wp_df, by = "play_id")
+
+  } else {
+    combo_df
+  }
 
 
 }
