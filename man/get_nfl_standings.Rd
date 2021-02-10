@@ -4,7 +4,7 @@
 \alias{get_nfl_standings}
 \title{Get NFL standings for a specific season from ESPN's API}
 \usage{
-get_nfl_standings(season = 2019)
+get_nfl_standings(season = 2019, quiet = FALSE)
 }
 \arguments{
 \item{season}{Either numeric or character}

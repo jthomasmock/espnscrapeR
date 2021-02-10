@@ -118,9 +118,9 @@ get_538_elo <- function(season = 2020, stat = "weekly_elo") {
 #' @examples
 #'
 #' # Get historic elo for specific team
-#' get_538_elo_historical(team = "PIT")
+#' get_538_elo_historical(team = "pit")
 
-get_538_elo_historical <- function(team){
+get_538_elo_historical <- function(team = "pit"){
 
   all_teams <- c(
     "ari", "atl", "bal", "buf", "car", "chi", "cin", "dal", "den", "det",

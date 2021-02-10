@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Get NFL standings for a specific season from ESPN's API</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_nfl_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>)</pre>
+    <pre class="usage"><span class='fu'>get_nfl_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,45 +134,45 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get standings from 2018 season</span>
-<span class='fu'>get_nfl_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2018"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2018</span></div><div class='output co'>#&gt; # A tibble: 32 x 28
-#&gt;    city  team_name abb_name full_name logos playoff_seed  wins losses
-#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-#&gt;  1 Kans… Chiefs    KC       Kansas C… http…            1    12      4
-#&gt;  2 New … Patriots  NE       New Engl… http…            2    11      5
-#&gt;  3 Hous… Texans    HOU      Houston … http…            3    11      5
-#&gt;  4 Balt… Ravens    BAL      Baltimor… http…            4    10      6
-#&gt;  5 Los … Chargers  LAC      Los Ange… http…            5    12      4
-#&gt;  6 Indi… Colts     IND      Indianap… http…            6    10      6
-#&gt;  7 Pitt… Steelers  PIT      Pittsbur… http…            7     9      6
-#&gt;  8 Tenn… Titans    TEN      Tennesse… http…            8     9      7
-#&gt;  9 Clev… Browns    CLE      Clevelan… http…            9     7      8
-#&gt; 10 Miami Dolphins  MIA      Miami Do… http…           10     7      9
-#&gt; # … with 22 more rows, and 20 more variables: win_percent &lt;dbl&gt;,
-#&gt; #   games_behind &lt;dbl&gt;, ties &lt;dbl&gt;, points_for &lt;dbl&gt;, points_against &lt;dbl&gt;,
-#&gt; #   differential &lt;dbl&gt;, streak &lt;dbl&gt;, clincher &lt;dbl&gt;, league_win_percent &lt;dbl&gt;,
-#&gt; #   division_record &lt;dbl&gt;, division_wins &lt;dbl&gt;, division_ties &lt;dbl&gt;,
-#&gt; #   division_losses &lt;dbl&gt;, all_splits &lt;dbl&gt;, home &lt;dbl&gt;, road &lt;dbl&gt;,
-#&gt; #   vs_div &lt;dbl&gt;, vs_conf &lt;dbl&gt;, conf &lt;chr&gt;, year &lt;chr&gt;</div><div class='input'>
+<span class='fu'>get_nfl_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2018"</span>)</div><div class='output co'>#&gt; <span class='message'>Returning 2018</span></div><div class='output co'>#&gt; # A tibble: 32 x 28
+#&gt;    conf  season team_id team_location team_name team_abb team_full team_logo
+#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;    
+#&gt;  1 AFC     2018 24      Los Angeles   Chargers  LAC      Los Ange… https://…
+#&gt;  2 AFC     2018 12      Kansas City   Chiefs    KC       Kansas C… https://…
+#&gt;  3 AFC     2018 34      Houston       Texans    HOU      Houston … https://…
+#&gt;  4 AFC     2018 17      New England   Patriots  NE       New Engl… https://…
+#&gt;  5 AFC     2018 33      Baltimore     Ravens    BAL      Baltimor… https://…
+#&gt;  6 AFC     2018 11      Indianapolis  Colts     IND      Indianap… https://…
+#&gt;  7 AFC     2018 23      Pittsburgh    Steelers  PIT      Pittsbur… https://…
+#&gt;  8 AFC     2018 10      Tennessee     Titans    TEN      Tennesse… https://…
+#&gt;  9 AFC     2018 5       Cleveland     Browns    CLE      Clevelan… https://…
+#&gt; 10 AFC     2018 15      Miami         Dolphins  MIA      Miami Do… https://…
+#&gt; # … with 22 more rows, and 20 more variables: seed &lt;int&gt;, wins &lt;dbl&gt;,
+#&gt; #   losses &lt;dbl&gt;, win_pct &lt;dbl&gt;, g_behind &lt;dbl&gt;, ties &lt;dbl&gt;, pts_for &lt;dbl&gt;,
+#&gt; #   pts_against &lt;dbl&gt;, pts_diff &lt;dbl&gt;, streak &lt;dbl&gt;, div_ties &lt;dbl&gt;,
+#&gt; #   record &lt;chr&gt;, home_wins &lt;dbl&gt;, home_losses &lt;dbl&gt;, away_wins &lt;dbl&gt;,
+#&gt; #   away_losses &lt;dbl&gt;, conf_wins &lt;dbl&gt;, conf_losses &lt;dbl&gt;, div_wins &lt;dbl&gt;,
+#&gt; #   div_losses &lt;dbl&gt;</div><div class='input'>
 <span class='co'># Get standings from 2010 season</span>
-<span class='fu'>get_nfl_standings</span>(<span class='fl'>2010</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2010</span></div><div class='output co'>#&gt; # A tibble: 32 x 28
-#&gt;    city  team_name abb_name full_name logos playoff_seed  wins losses
-#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-#&gt;  1 Pitt… Steelers  PIT      Pittsbur… http…            0    12      4
-#&gt;  2 Indi… Colts     IND      Indianap… http…            0    10      6
-#&gt;  3 Kans… Chiefs    KC       Kansas C… http…            0    10      6
-#&gt;  4 Balt… Ravens    BAL      Baltimor… http…            0    12      4
-#&gt;  5 New … Jets      NYJ      New York… http…            0    11      5
-#&gt;  6 New … Patriots  NE       New Engl… http…            0    14      2
-#&gt;  7 San … Chargers  SD       San Dieg… http…            0     9      7
-#&gt;  8 Jack… Jaguars   JAX      Jacksonv… http…            0     8      8
-#&gt;  9 Oakl… Raiders   OAK      Oakland … http…            0     8      8
-#&gt; 10 Miami Dolphins  MIA      Miami Do… http…            0     7      9
-#&gt; # … with 22 more rows, and 20 more variables: win_percent &lt;dbl&gt;,
-#&gt; #   games_behind &lt;dbl&gt;, ties &lt;dbl&gt;, points_for &lt;dbl&gt;, points_against &lt;dbl&gt;,
-#&gt; #   differential &lt;dbl&gt;, streak &lt;dbl&gt;, clincher &lt;dbl&gt;, league_win_percent &lt;dbl&gt;,
-#&gt; #   division_record &lt;dbl&gt;, division_wins &lt;dbl&gt;, division_ties &lt;dbl&gt;,
-#&gt; #   division_losses &lt;dbl&gt;, all_splits &lt;dbl&gt;, home &lt;dbl&gt;, road &lt;dbl&gt;,
-#&gt; #   vs_div &lt;dbl&gt;, vs_conf &lt;dbl&gt;, conf &lt;chr&gt;, year &lt;dbl&gt;</div></pre>
+<span class='fu'>get_nfl_standings</span>(<span class='fl'>2010</span>)</div><div class='output co'>#&gt; <span class='message'>Returning 2010</span></div><div class='output co'>#&gt; # A tibble: 32 x 28
+#&gt;    conf  season team_id team_location team_name team_abb team_full team_logo
+#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;    
+#&gt;  1 AFC     2010 17      New England   Patriots  NE       New Engl… https://…
+#&gt;  2 AFC     2010 23      Pittsburgh    Steelers  PIT      Pittsbur… https://…
+#&gt;  3 AFC     2010 33      Baltimore     Ravens    BAL      Baltimor… https://…
+#&gt;  4 AFC     2010 20      New York      Jets      NYJ      New York… https://…
+#&gt;  5 AFC     2010 11      Indianapolis  Colts     IND      Indianap… https://…
+#&gt;  6 AFC     2010 12      Kansas City   Chiefs    KC       Kansas C… https://…
+#&gt;  7 AFC     2010 24      San Diego     Chargers  SD       San Dieg… https://…
+#&gt;  8 AFC     2010 30      Jacksonville  Jaguars   JAX      Jacksonv… https://…
+#&gt;  9 AFC     2010 13      Oakland       Raiders   OAK      Oakland … https://…
+#&gt; 10 AFC     2010 15      Miami         Dolphins  MIA      Miami Do… https://…
+#&gt; # … with 22 more rows, and 20 more variables: seed &lt;int&gt;, wins &lt;dbl&gt;,
+#&gt; #   losses &lt;dbl&gt;, win_pct &lt;dbl&gt;, g_behind &lt;dbl&gt;, ties &lt;dbl&gt;, pts_for &lt;dbl&gt;,
+#&gt; #   pts_against &lt;dbl&gt;, pts_diff &lt;dbl&gt;, streak &lt;dbl&gt;, div_ties &lt;dbl&gt;,
+#&gt; #   record &lt;chr&gt;, home_wins &lt;dbl&gt;, home_losses &lt;dbl&gt;, away_wins &lt;dbl&gt;,
+#&gt; #   away_losses &lt;dbl&gt;, conf_wins &lt;dbl&gt;, conf_losses &lt;dbl&gt;, div_wins &lt;dbl&gt;,
+#&gt; #   div_losses &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

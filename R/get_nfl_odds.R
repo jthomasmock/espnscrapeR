@@ -60,7 +60,7 @@ get_nfl_odds <- function(game_id) {
         location = c("home", "away"),
         win_proj_fpi = c(
           as.double(raw_json$predictor$homeTeam$gameProjection),
-          as.double(away_win_pct_fpi = raw_json$predictor$awayTeam$gameProjection)
+          as.double(raw_json$predictor$awayTeam$gameProjection)
         )
       ),
       by = "location"

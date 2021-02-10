@@ -16,13 +16,6 @@
 
 get_espn_win_prob <- function(game_id){
 
-  current_year <- as.double(substr(Sys.Date(), 1, 4))
-
-  # Error handling for limits on season
-  if (!dplyr::between(as.numeric(season), 2015, current_year)) {
-    stop(paste("Please choose season between 2015 and", current_year))
-  }
-
   raw_url <-glue::glue("https://www.espn.com/nfl/game?gameId={game_id}")
 
   raw_html <- raw_url %>%

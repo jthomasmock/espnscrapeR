@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return all NFL teams with their name, abbreviation, — get_nfl_teams • espnscrapeR</title>
+<title>Get historical ELO ratings from FiveThirtyEight — get_538_elo_historical • espnscrapeR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Return all NFL teams with their name, abbreviation, — get_nfl_teams" />
-<meta property="og:description" content="Return all NFL teams with their name, abbreviation," />
+<meta property="og:title" content="Get historical ELO ratings from FiveThirtyEight — get_538_elo_historical" />
+<meta property="og:description" content="Get historical ELO ratings from FiveThirtyEight" />
 
 
 
@@ -108,40 +108,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return all NFL teams with their name, abbreviation,</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/get_nfl_teams.R'><code>R/get_nfl_teams.R</code></a></small>
-    <div class="hidden name"><code>get_nfl_teams.Rd</code></div>
+    <h1>Get historical ELO ratings from FiveThirtyEight</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jthomasmock/espnscrapeR/blob/master/R/get_538_elo.R'><code>R/get_538_elo.R</code></a></small>
+    <div class="hidden name"><code>get_538_elo_historical.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Return all NFL teams with their name, abbreviation,</p>
+    <p>Get historical ELO ratings from FiveThirtyEight</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_nfl_teams</span>()</pre>
+    <pre class="usage"><span class='fu'>get_538_elo_historical</span>(<span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"pit"</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>team</th>
+      <td><p>character, team abbreviated name, must be one of "ari", "atl", "bal", "buf", "car", "chi", "cin", "dal", "den", "det", "gb", "hou", "ind", "jax", "kc", "oak", "lac", "lar", "mia", "min", "ne", "no", "nyg", "nyj", "phi", "pit", "sf", "sea", "tb", "ten", "wsh"</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-
+    <p>Returns a tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>get_nfl_teams</span>()</div><div class='output co'>#&gt; <span class='message'>Getting NFL teams!</span></div><div class='output co'>#&gt; # A tibble: 32 x 8
-#&gt;    uid   team_name team_nickname team_short_name full_name team_color
-#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;     
-#&gt;  1 22    Cardinals Arizona       ARI             Arizona … #A40227   
-#&gt;  2 1     Falcons   Atlanta       ATL             Atlanta … #000000   
-#&gt;  3 33    Ravens    Baltimore     BAL             Baltimor… #2B025B   
-#&gt;  4 2     Bills     Buffalo       BUF             Buffalo … #04407F   
-#&gt;  5 29    Panthers  Carolina      CAR             Carolina… #2177B0   
-#&gt;  6 3     Bears     Chicago       CHI             Chicago … #152644   
-#&gt;  7 4     Bengals   Cincinnati    CIN             Cincinna… #FF2700   
-#&gt;  8 5     Browns    Cleveland     CLE             Clevelan… #4C230E   
-#&gt;  9 6     Cowboys   Dallas        DAL             Dallas C… #002E4D   
-#&gt; 10 7     Broncos   Denver        DEN             Denver B… #002E4D   
-#&gt; # … with 22 more rows, and 2 more variables: alternate_color &lt;chr&gt;, logo &lt;chr&gt;</div></pre>
+<span class='co'># Get historic elo for specific team</span>
+<span class='fu'>get_538_elo_historical</span>(<span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"pit"</span>)</div><div class='output co'>#&gt; # A tibble: 1,453 x 11
+#&gt;    team  espn_uid espn_abb  year   elo opp   pts_for pts_against week 
+#&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;       &lt;int&gt; &lt;chr&gt;
+#&gt;  1 pit   23       PIT      1933  1300  &lt;NA&gt;       NA          NA &lt;NA&gt; 
+#&gt;  2 pit   23       PIT      1933. 1283. nyg         2          23 Week…
+#&gt;  3 pit   23       PIT      1933. 1292. crd        14          13 Week…
+#&gt;  4 pit   23       PIT      1933. 1270. bos         6          21 Week…
+#&gt;  5 pit   23       PIT      1933. 1293. red        17           3 Week…
+#&gt;  6 pit   23       PIT      1933. 1285. gb          0          47 Week…
+#&gt;  7 pit   23       PIT      1933. 1286. red         0           0 Week…
+#&gt;  8 pit   23       PIT      1934. 1306. bos        16          14 Week…
+#&gt;  9 pit   23       PIT      1934. 1313. bkn         3           3 Week…
+#&gt; 10 pit   23       PIT      1934. 1280. bkn         0          32 Week…
+#&gt; # … with 1,443 more rows, and 2 more variables: date &lt;date&gt;, week_num &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
