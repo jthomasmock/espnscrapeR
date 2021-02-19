@@ -59,10 +59,12 @@ get_nfl_schedule <- function(season){
       away_record = list(2, "records", 1, "summary"),
     ) %>%
     mutate(home_win = as.integer(home_win),
-           away_win = as.integer(away_win))
+           away_win = as.integer(away_win),
+           home_score = as.integer(home_score),
+           away_score = as.integer(away_score))
 
   if("leaders" %in% names(nfl_data)){
-    nfl_data %>%
+    schedule_out <- nfl_data %>%
       hoist(
         leaders,
         pass_leader_yards = list(1, "leaders", 1, "value"),
@@ -88,13 +90,19 @@ get_nfl_schedule <- function(season){
         rec_leader_headshot = list(3, "leaders", 1, "athlete", "headshot"),
         rec_leader_team_id = list(3, "leaders", 1, "team", "id"),
         rec_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation"),
-      ) %>%
-      hoist(
-        broadcasts,
-        broadcast_market = list(1, "market"),
-        broadcast_name = list(1, "names", 1)
-      ) %>%
-      select(!where(is.list))
+      )
+
+    if("broadcasts" %in% names(schedule_out)) {
+      schedule_out %>%
+        hoist(
+          broadcasts,
+          broadcast_market = list(1, "market"),
+          broadcast_name = list(1, "names", 1)
+        ) %>%
+        select(!where(is.list))
+    } else {
+      schedule_out
+    }
   } else {
     nfl_data %>% select(!where(is.list))
   }
