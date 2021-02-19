@@ -18,13 +18,17 @@ get_nfl_schedule <- function(season){
 
   max_year <- substr(Sys.Date(), 1,4)
 
-  if(!(as.integer(season) %in% c(1969:max_year))){
+  if(!(as.integer(substr(season, 1, 4)) %in% c(1969:max_year))){
     message(paste("Error: Season must be between 1969 and", max_year))
   }
 
   # year > 1969
   season <- as.character(season)
-  season_dates <- glue::glue("{season}0101-{season}1231")
+  if(nchar(season) > 4){
+    season_dates <- season
+  } else {
+    season_dates <- glue::glue("{season}0101-{season}1231")
+  }
 
   schedule_api <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?lang=en&region=us&limit=1000&dates={season_dates}")
 
