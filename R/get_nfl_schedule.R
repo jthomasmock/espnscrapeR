@@ -69,7 +69,7 @@ get_nfl_schedule <- function(season){
       away_team_color = list(2, "team", "color"),
       away_score = list(2, "score"),
       away_win = list(2, "winner"),
-      away_record = list(2, "records", 1, "summary"),
+      away_record = list(2, "records", 1, "summary")
     ) %>%
     mutate(home_win = as.integer(home_win),
            away_win = as.integer(away_win),
@@ -102,7 +102,7 @@ get_nfl_schedule <- function(season){
         rec_leader_shortname = list(3, "leaders", 1, "athlete", "shortName"),
         rec_leader_headshot = list(3, "leaders", 1, "athlete", "headshot"),
         rec_leader_team_id = list(3, "leaders", 1, "team", "id"),
-        rec_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation"),
+        rec_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation")
       )
 
     if("broadcasts" %in% names(schedule_out)) {
