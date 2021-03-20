@@ -108,7 +108,7 @@ get_538_elo <- function(season = 2020, stat = "weekly_elo") {
 
 #' Get historical ELO ratings from FiveThirtyEight
 #'
-#' @param team character, team abbreviated name, must be one of "ari", "atl", "bal", "buf", "car", "chi", "cin", "dal", "den", "det", "gb", "hou", "ind", "jax", "kc", "oak", "lac", "lar", "mia", "min", "ne", "no", "nyg", "nyj", "phi", "pit", "sf", "sea", "tb", "ten", "wsh"
+#' @param team character, team abbreviated name, must be one of "ari", "atl", "bal", "buf", "car", "chi", "cin", "cle", "dal", "den", "det", "gb", "hou", "ind", "jax", "kc", "oak", "lac", "lar", "mia", "min", "ne", "no", "nyg", "nyj", "phi", "pit", "sf", "sea", "tb", "ten", "wsh"
 #' @return Returns a tibble
 #' @export
 #' @import tidyr dplyr purrr
@@ -123,7 +123,7 @@ get_538_elo <- function(season = 2020, stat = "weekly_elo") {
 get_538_elo_historical <- function(team = "pit"){
 
   all_teams <- c(
-    "ari", "atl", "bal", "buf", "car", "chi", "cin", "dal", "den", "det",
+    "ari", "atl", "bal", "buf", "car", "chi", "cin", "cle", "dal", "den", "det",
     "gb", "hou", "ind", "jax", "kc", "oak", "lac", "lar", "mia", "min", "ne",
     "no", "nyg", "nyj", "phi", "pit", "sf", "sea", "tb", "ten", "wsh"
   )
@@ -132,9 +132,11 @@ get_538_elo_historical <- function(team = "pit"){
     message(
       glue::glue(
         "Team not found, please use one of {paste0(all_teams, collapse = ', ')}"
-        )
       )
+    )
   }
+
+
 
   join_teams <- tibble(
     team = c(
@@ -143,23 +145,29 @@ get_538_elo_historical <- function(team = "pit"){
       "ind","jax","kc","oak","lac","lar","mia","min",
       "ne","no","nyg","nyj","phi","pit","sf","sea","tb",
       "ten","wsh"
-      ),
+    ),
     espn_uid = c(
       "22","1","33","2","29","3",
       "4","5","6","7","8","9","34","11","30","12",
       "13","24","14","15","16","17","18","19","20","21",
       "23","25","26","27","10","28"
-      ),
+    ),
     espn_abb = c(
       "ARI","ATL","BAL","BUF",
       "CAR","CHI","CIN","CLE","DAL","DEN","DET","GB","HOU",
       "IND","JAX","KC","LV","LAC","LAR","MIA","MIN",
       "NE","NO","NYG","NYJ","PHI","PIT","SF","SEA","TB",
       "TEN","WSH"
-      )
+    )
   )
 
-  url_in <- glue::glue("https://projects.fivethirtyeight.com/complete-history-of-the-nfl/data/{team}.json")
+  url_team <- dplyr::case_when(
+    team == "lar" ~ "stl",
+    team == "lac" ~ "sd",
+    TRUE ~ team
+  )
+
+  url_in <- glue::glue("https://projects.fivethirtyeight.com/complete-history-of-the-nfl/data/{url_team}.json")
 
   elo_json <- fromJSON(url_in, simplifyVector = FALSE)
 
