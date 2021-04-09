@@ -43,7 +43,7 @@ get_nfl_schedule <- function(season){
     rename(matchup = name, matchup_short = shortName, game_id = id, game_uid = uid, game_date = date) %>%
     hoist(status,
           status_name = list("type", "name")) %>%
-    select(!any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "venue", "type"))) %>%
+    select(!any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "type"))) %>%
     unnest_wider(season) %>%
     rename(season = year) %>%
     select(-any_of("status")) %>%
@@ -105,6 +105,20 @@ get_nfl_schedule <- function(season){
         rec_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation")
       )
 
+    if('venue' %in% names(schedule_out)){
+      schedule_out = schedule_out %>%
+        hoist(
+          venue,
+          venue.id = 'id',
+          venue.name = 'fullName',
+          venue.city = list('address', 'city'),
+          venue.state = list('address', 'state'),
+          capacity = 'capacity',
+          indoor = 'indoor'
+        ) %>%
+        select(-venue) %>%
+        rename(venue=venue.name)
+    }
     if("broadcasts" %in% names(schedule_out)) {
       schedule_out %>%
         hoist(
