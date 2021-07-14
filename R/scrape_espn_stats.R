@@ -41,7 +41,7 @@ scrape_espn_stats <- function(season = 2019, stats = "receiving", season_type = 
 
   season_type <- dplyr::if_else(season_type == "Regular", "2", "3")
 
-  url <- glue::glue("https://www.espn.com/nfl/stats/player/_/stat/{stats}/season/{season}/seasontype/{season_type}&limit=500")
+  url_in <- glue::glue("https://www.espn.com/nfl/stats/player/_/stat/{stats}/season/{season}/seasontype/{season_type}&limit=500")
 
   pass_n <- c(
     "season", "season_type", "pass_rank", "name", "team", "pos",
@@ -72,7 +72,7 @@ scrape_espn_stats <- function(season = 2019, stats = "receiving", season_type = 
     stats == "receiving" ~ list(rec_n)
   )[[1]]
 
-  url %>%
+  url_in %>%
     xml2::read_html() %>%
     rvest::html_table(fill = TRUE) %>%
     dplyr::bind_cols() %>%

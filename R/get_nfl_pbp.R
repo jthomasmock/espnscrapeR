@@ -6,7 +6,7 @@
 #' @export
 #' @import tidyr dplyr purrr
 #' @importFrom dplyr %>%
-#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET content stop_for_status
 #' @importFrom glue glue
 #' @examples
 #' # Get NFL play-by-play for a specific game
@@ -15,9 +15,13 @@
 
 get_nfl_pbp <- function(game_id){
 
-  raw_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event={game_id}&enable=ranks,odds,linescores,logos")
+  game_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary")
 
-  raw_json <- fromJSON(raw_url, simplifyVector = FALSE)
+  raw_get <- httr::GET(game_url, query = list(event = game_id, enable = "ranks,odds,linescores,logos"))
+
+  httr::stop_for_status(raw_get)
+
+  raw_json <- httr::content(raw_get)
 
   nfl_pbp <- raw_json[["drives"]][["previous"]] %>%
     tibble(data = .) %>%

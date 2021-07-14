@@ -6,7 +6,7 @@
 #' @export
 #' @import tidyr dplyr
 #' @importFrom dplyr %>%
-#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET content stop_for_status
 #' @importFrom glue glue
 #' @examples
 #' # Get odds from a specific game
@@ -14,11 +14,15 @@
 
 get_nfl_odds <- function(game_id) {
 
-  game_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event={game_id}&enable=ranks,odds,linescores")
+  game_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary")
 
-  raw_json <- fromJSON(game_url, simplifyVector = FALSE)
+  raw_get <- httr::GET(game_url, query = list(event = game_id, enable = "ranks,odds,linescores,logos"))
 
-  team_df <- raw_json$boxscore$teams %>%
+  httr::stop_for_status(raw_get)
+
+  raw_json <- httr::content(raw_get)
+
+  team_df <- raw_json[["boxscore"]][["teams"]] %>%
     tibble(data = .) %>%
     unnest_wider(data) %>%
     unnest_wider(team) %>%
@@ -29,7 +33,7 @@ get_nfl_odds <- function(game_id) {
       team_abb = abbreviation, team_logo = logo
       )
 
-  odds_df <- raw_json$pickcenter %>%
+  odds_df <- raw_json[["pickcenter"]] %>%
     tibble(data = .) %>%
     unnest_wider(data) %>%
     rename(over_under = overUnder, spread_team = details) %>%

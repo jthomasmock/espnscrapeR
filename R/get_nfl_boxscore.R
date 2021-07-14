@@ -7,7 +7,7 @@
 #' @import tidyr dplyr purrr
 #' @importFrom dplyr %>%
 #' @importFrom dplyr %>%
-#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET content stop_for_status
 #' @importFrom stringr str_detect
 #' @importFrom glue glue
 #' @examples
@@ -18,9 +18,13 @@
 
 get_nfl_boxscore <- function(game_id){
 
-  game_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event={game_id}&enable=ranks,odds,linescores,logos")
+  game_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary")
 
-  raw_json <- fromJSON(game_url, simplifyVector = FALSE)
+  raw_get <- httr::GET(game_url, query = list(event = game_id, enable = "ranks,odds,linescores,logos"))
+
+  httr::stop_for_status(raw_get)
+
+  raw_json <- httr::content(raw_get)
 
   category_game_summary_raw <- raw_json[["boxscore"]][["players"]] %>%
     tibble(data = .) %>%
