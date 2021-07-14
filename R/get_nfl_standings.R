@@ -4,16 +4,17 @@
 #'
 #' @return Returns a tibble
 #' @export
-#' @import tidyr dplyr purrr
+#' @import tidyr dplyr purrr httr
 #' @importFrom dplyr %>%
 #' @importFrom jsonlite fromJSON
-#' @importFrom glue glue
 #' @examples
 #' # Get standings from 2018 season
 #' get_nfl_standings(season = "2018")
 #'
 #' # Get standings from 2010 season
 #' get_nfl_standings(2010)
+#'
+#'
 get_nfl_standings <- function(season = 2019, quiet = FALSE) {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
@@ -26,11 +27,33 @@ get_nfl_standings <- function(season = 2019, quiet = FALSE) {
     message(glue::glue("Returning {season}"))
   }
 
+
+
   # Working version (no choosing season though)
-  raw_standings <- jsonlite::fromJSON(
-    glue::glue("https://site.api.espn.com/apis/v2/sports/football/nfl/standings?region=us&lang=en&season={season}"),
-    simplifyVector = FALSE
+  raw_url <- "https://site.api.espn.com/apis/v2/sports/football/nfl/standings"
+
+  request <- httr::GET(
+    raw_url,
+    query = list(
+      season = season
+    )
   )
+
+  if (httr::http_error(request)) {
+    stop(
+      sprintf(
+        "ESPN API request failed [%s]\n%s\n<%s>",
+        httr::status_code(resp),
+        parsed$message,
+        parsed$documentation_url
+      ),
+      call. = FALSE
+    )
+  }
+
+  resp <- httr::content(request, as = "text", encoding = "UTF-8")
+
+  raw_standings <- jsonlite::parse_json(resp)
 
   names_fix <- tibble(
     type = c(

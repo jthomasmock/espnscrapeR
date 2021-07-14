@@ -5,7 +5,7 @@
 #' @param season_type Character - either "Regular" or "Playoffs"
 #' @return Returns a tibble
 #' @export
-#' @import tidyr dplyr purrr
+#' @import tidyr dplyr purrr httr
 #' @importFrom dplyr %>%
 #' @importFrom jsonlite fromJSON
 #' @importFrom janitor clean_names
@@ -16,7 +16,7 @@
 #'
 #' # Get Regular season QBR for week 4 of 2019
 #' get_nfl_qbr("2019", season_type = "Regular", week = 4)
-get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
+get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Error handling to correct season type
@@ -30,8 +30,8 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
   }
 
   # Error handling for limits on regular season weeks
-  if (!is.na(week) & season_type == "Regular" & !dplyr::between(as.numeric(week), 1, 17)) {
-    stop("Please choose regular season week between 1 and 17")
+  if (!is.na(week) & season_type == "Regular" & !dplyr::between(as.numeric(week), 1, 18)) {
+    stop("Please choose regular season week between 1 and 18")
   }
 
   # Error handling for limits on playoff weeks
@@ -48,9 +48,9 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
     # Logic check to fix years where superbowl = 5
     season_type == "Playoffs" & as.numeric(week) == 4 & season >= 2009,
     # outcome = 5
-    5,
+    5L,
     # default to normal week
-    as.numeric(week)
+    as.integer(week)
   )
 
   # Add useful messages - separated by week
@@ -62,28 +62,48 @@ get_nfl_qbr <- function(season = 2019, week = NA, season_type = "Regular") {
 
   # Build up URL - not sure if this makes it easier to read, but it makes it
   # closer to 80ish characters per line
-  url_start <- "https://site.web.api.espn.com/apis/fitt/v3/sports/football/nfl/qbr?region=us&lang=en&qbrType="
-  url_body <- "&isqualified=true&sort=schedAdjQBR%3Adesc&season="
+  url_start <- "https://site.web.api.espn.com/apis/fitt/v3/sports/football/nfl/qbr"
 
-  # Each of the urls build up for season type
-  # seasontype == seasons or weeks
-  # If weeks, week = week number
-  url_1 <- glue::glue("{url_start}seasons&seasontype=2{url_body}{season}")
-  url_2 <- glue::glue("{url_start}weeks&seasontype=2{url_body}{season}&week={week}")
-  url_3 <- glue::glue("{url_start}seasons&seasontype=3{url_body}{season}")
-  url_4 <- glue::glue("{url_start}weeks&seasontype=3{url_body}{season}&week={week_current}")
+  query_type <- if (is.na(week) & season_type == "Regular") {
+    list(
+      qbrType = "seasons",
+      seasonType = 2,
+      isqualified = "true",
+      season = season
+    )
+  } else if (!is.na(week) & season_type == "Regular") {
+    list(
+      qbrType = "weeks",
+      seasontype = 2,
+      isqualified = "true",
+      season = season,
+      week = week
+    )
+  } else if (is.na(week) & season_type == "Playoffs") {
+    list(
+      qbrType = "seasons",
+      seasontype = 3,
+      isqualified = "true",
+      season = season
+    )
+  } else if (!is.na(week) & season_type == "Playoffs") {
+    list(
+      qbrType = "weeks",
+      seasontype = 3,
+      isqualified = "true",
+      season = season,
+      week = week_current
+    )
+  }
 
-  # Assign the specific urls to the specific type of input
-  url <- dplyr::case_when(
-    is.na(week) & season_type == "Regular" ~ url_1,
-    !is.na(week) & season_type == "Regular" ~ url_2,
-    is.na(week) & season_type == "Playoffs" ~ url_3,
-    !is.na(week) & season_type == "Playoffs" ~ url_4,
-    TRUE ~ NA_character_
+  raw_get <- httr::GET(
+    url = url_start,
+    query = query_type
   )
 
-  # Read in the raw json from ESPN
-  raw_json <- jsonlite::fromJSON(url, simplifyVector = FALSE)
+  httr::stop_for_status(raw_get)
+
+  raw_json <- httr::content(raw_get)
 
   in_nm <- c(
     "qbr_total",

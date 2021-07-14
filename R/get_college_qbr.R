@@ -2,9 +2,10 @@
 #'
 #' @param season Numeric or character - greater than 2004
 #' @param week Numeric or character - typically 1 to 15 or Bowls
-#' @import tidyr dplyr purrr
+#' @import tidyr dplyr purrr httr
 #' @importFrom dplyr %>%
 #' @importFrom jsonlite fromJSON
+#' @importFrom tibble enframe
 #' @importFrom glue glue
 #' @return tibble
 #' @export
@@ -17,6 +18,7 @@
 #' # Get college QBR from 2019 season week 1
 #' get_college_qbr(2019, 1)
 get_college_qbr <- function(season = 2020, week = NA) {
+
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
   # Small error handling to guide the limits on years
@@ -34,42 +36,74 @@ get_college_qbr <- function(season = 2020, week = NA) {
   )
 
   # Build base url
-  base_url <- "https://site.web.api.espn.com/apis/fitt/v3/sports/football/college-football/qbr?region=us&lang=en&qbrType="
+  base_url <- "https://site.web.api.espn.com/apis/fitt/v3/sports/football/college-football/qbr"
 
-  # add base url to the weeks vs totals
-  url <- dplyr::if_else(
-    !is.na(week),
-    glue::glue("{base_url}weeks&season={season}&week={week}&limit=200"),
-    glue::glue("{base_url}seasons&limit=200&season={season}")
+  query_type <-
+    if(!is.na(week)){
+      list(
+        qbrType = "weeks",
+        limit = 200,
+        season = season,
+        week = week
+      )
+    } else {
+      list(
+        qbrType = "seasons",
+        limit = 200,
+        season = season
+      )
+    }
 
+
+  raw_get <- httr::GET(
+    url = base_url,
+    query = list(
+      qbrType = "seasons",
+      limit = 200,
+      season = 2020
+    )
   )
 
-  raw_json <- fromJSON(url)
+  httr::stop_for_status(raw_get)
 
-  # Get the specific player's QBR stats
-  get_qbr_data <- function(row_n) {
-    purrr::pluck(raw_json, "athletes", "categories", row_n, "totals", 1)
-  }
+  raw_json <- httr::content(raw_get)
 
-  # unnest_wider() name repair is noisy
-  # Let's make it quiet with purrr::quietly()
-  quiet_unnest_wider <- purrr::quietly(tidyr::unnest_wider)
 
-  purrr::pluck(raw_json, "athletes", "athlete") %>%
-    dplyr::as_tibble() %>%
-    dplyr::select(firstName:shortName, teamName:teamShortName) %>%
-    dplyr::mutate(row_n = dplyr::row_number()) %>%
-    dplyr::mutate(data = map(row_n, get_qbr_data)) %>%
-    # lots of name_repair here that I am silencing
-    quiet_unnest_wider(data) %>%
-    purrr::pluck("result") %>%
-    purrr::set_names(nm = c(
-      "first_name", "last_name", "name", "short_name",
-      "team_name", "team_short_name", "row_n", "qbr_total",
-      "points_added", "qb_plays", "total_epa", "pass", "run",
-      "exp_sack", "penalty", "raw_qbr", "sack"
-    )) %>%
-    dplyr::mutate(season = season, week = week) %>%
-    dplyr::mutate_at(vars(qbr_total:sack), as.double) %>%
+  # qbr names
+  qbr_names <- c(
+    "qbr_total",
+    "pts_added",
+    "qb_plays",
+    "epa_total",
+    "pass",
+    "run",
+    "exp_sack",
+    "penalty",
+    "qbr_raw",
+    "sack"
+  )
+
+  purrr::pluck(raw_json, "athletes") %>%
+    tibble::enframe() %>%
+    tidyr::unnest_wider("value") %>%
+    tidyr::unnest_wider(athlete) %>%
+    tidyr::hoist(
+      categories,
+      qbr_values = list(1, "totals")
+    ) %>%
+    tidyr::hoist(
+      headshot,
+      headshot_href = "href"
+    ) %>%
+    dplyr::select(-name, -teams, -categories, -headshot, -position, -status, -links, -type) %>%
+    dplyr::mutate(qbr_names = list(qbr_names)) %>%
+    # select(id, shortName, qbr_values, qbr_names) %>%
+    tidyr::unchop(qbr_values:qbr_names) %>%
+    tidyr::unchop(qbr_values) %>%
+    tidyr::pivot_wider(names_from = qbr_names, values_from = qbr_values) %>%
+    janitor::clean_names() %>%
+    dplyr::rename(player_id = id, player_uid = uid, player_guid = guid) %>%
+    dplyr::mutate(season = as.integer(season), week = as.integer(week)) %>%
+    # dplyr::mutate_at(vars(qbr_total:sack), as.double) %>%
     dplyr::select(season, week, dplyr::everything())
 }

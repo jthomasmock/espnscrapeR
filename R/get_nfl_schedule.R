@@ -9,7 +9,8 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom glue glue
 #' @examples
-#' # Get standings from 2018 season
+#' # Get all games from 2018 season, note that this will have some overlap
+#' # between seasons, for example 2018 returns 2018-01-01 to 2018-12-31
 #' get_nfl_schedule(season = "2018")
 
 get_nfl_schedule <- function(season){
@@ -30,9 +31,19 @@ get_nfl_schedule <- function(season){
     season_dates <- glue::glue("{season}0101-{season}1231")
   }
 
-  schedule_api <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?lang=en&region=us&limit=1000&dates={season_dates}")
+  raw_url <- "http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 
-  raw_sched <- fromJSON(schedule_api, simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
+  raw_get <- httr::GET(
+    raw_url,
+    query = list(
+      limit = 1000,
+      dates = season_dates
+    )
+  )
+
+  stop_for_status(raw_get)
+
+  raw_sched <- httr::content(raw_get)
 
   nfl_data <- raw_sched[["events"]] %>%
     tibble(data = .) %>%
@@ -109,15 +120,14 @@ get_nfl_schedule <- function(season){
       schedule_out = schedule_out %>%
         hoist(
           venue,
-          venue.id = 'id',
-          venue.name = 'fullName',
-          venue.city = list('address', 'city'),
-          venue.state = list('address', 'state'),
+          venue_id = 'id',
+          venue_name = 'fullName',
+          venue_city = list('address', 'city'),
+          venue_state = list('address', 'state'),
           capacity = 'capacity',
           indoor = 'indoor'
         ) %>%
-        select(-venue) %>%
-        rename(venue=venue.name)
+        select(-venue)
     }
     if("broadcasts" %in% names(schedule_out)) {
       schedule_out %>%
