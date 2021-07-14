@@ -4,7 +4,7 @@
 #' @param stat character, must be one of "games", "weekly_elo", "weekly_rating", "distance", "qb_adj_playoff", "qb_adj"
 #' @return Returns a tibble
 #' @export
-#' @import tidyr dplyr purrr
+#' @import tidyr dplyr purrr httr
 #' @importFrom dplyr %>%
 #' @importFrom jsonlite fromJSON
 #' @importFrom glue glue
@@ -38,70 +38,74 @@ get_538_elo <- function(season = 2020, stat = "weekly_elo") {
 
     url_2015 <- "https://projects.fivethirtyeight.com/2015-nfl-predictions/data.json"
 
-    json_2015 <- fromJSON(url_2015, simplifyVector = FALSE)
+    json_2015 <- url_2015 %>%
+      httr::GET() %>%
+      httr::content()
+
   } else if (season >= 2015) {
 
     in_url <- glue::glue("https://projects.fivethirtyeight.com/{season}-nfl-predictions/data.json")
 
-    raw_json <- fromJSON(in_url, simplifyVector = FALSE)
+    raw_json <- httr::GET(in_url) %>%
+      httr::content()
   }
 
   # 2015 has a different version
   if (season == 2015 && stat == "games") {
     json_2015$games %>%
-      tibble(value = .) %>%
-      unnest_wider(value)
+      dplyr::tibble(value = .) %>%
+      tidyr::unnest_wider(value)
   } else if (season == 2015 && stat == "weekly_elo") {
     json_2015$weekly_forecasts$forecasts %>%
-      tibble(value = .) %>%
-      unnest_wider(value) %>%
-      unnest_longer(teams) %>%
-      unnest_wider(teams)
+      dplyr::tibble(value = .) %>%
+      tidyr::unnest_wider(value) %>%
+      tidyr::unnest_longer(teams) %>%
+      tidyr::unnest_wider(teams)
   } else if(season %in% c(2016:2018) && stat %in% c("qb_adj", "weekly_rating", "distance", "qb_adj_playoff")){
 
     message(paste0(stat, " not available for ", season))
 
   } else if (season >= 2019 && stat == "qb_adj_playoff") {
     raw_json$playoff_qb_adjustments %>%
-      tibble(data = .) %>%
-      unnest_wider(data)
+      dplyr::tibble(data = .) %>%
+      tidyr::unnest_wider(data)
   } else if (season >= 2019 && stat == "weekly_rating") {
     rating_df <- raw_json$weekly_forecasts$forecasts %>%
-      tibble(data = .) %>%
-      unnest_wider(data) %>%
-      unnest_wider(types) %>%
-      select(-elo) %>%
-      unnest_longer(rating) %>%
-      unnest_wider(rating)
+      dplyr::tibble(data = .) %>%
+      tidyr::unnest_wider(data) %>%
+      tidyr::unnest_wider(types) %>%
+      dplyr::select(-elo) %>%
+      tidyr::unnest_longer(rating) %>%
+      tidyr::unnest_wider(rating)
 
     rating_df
 
   } else if (season >= 2019 && stat == "weekly_elo") {
     elo_df <- raw_json$weekly_forecasts$forecasts %>%
-      enframe() %>%
-      unnest_wider(value) %>%
-      unnest_wider(types) %>%
-      select(-name, -rating) %>%
-      unnest_longer(elo) %>%
-      unnest_wider(elo)
+      tibble::enframe() %>%
+      tidyr::unnest_wider(value) %>%
+      tidyr::unnest_wider(types) %>%
+      dplyr::select(-name, -rating) %>%
+      tidyr::unnest_longer(elo) %>%
+      tidyr::unnest_wider(elo)
 
     elo_df
   } else if (season >= 2019 && stat == "games") {
     games_df <- raw_json$games %>%
-      tibble(data = .) %>%
-      unnest_wider(data)
+      dplyr::tibble(data = .) %>%
+      tidyr::unnest_wider(data)
 
     games_df
   } else if (season >= 2019 && stat == "distance") {
     distance_df <- raw_json$distances %>%
-      tibble(data = .) %>%
-      unnest_wider(data) %>%
-      unnest_longer(distances)
+      dplyr::tibble(data = .) %>%
+      tidyr::unnest_wider(data) %>%
+      tidyr::unnest_longer(distances)
     distance_df
   } else if (season >= 2019 && stat == "qb_adj") {
     qb_adj <- raw_json$qbs %>%
-      tibble(data = .) %>%
-      unnest_wider(data)
+      dplyr::tibble(data = .) %>%
+      tidyr::unnest_wider(data)
     qb_adj
   }
 }
@@ -138,7 +142,7 @@ get_538_elo_historical <- function(team = "pit"){
 
 
 
-  join_teams <- tibble(
+  join_teams <- dplyr::tibble(
     team = c(
       "ari","atl","bal","buf",
       "car","chi","cin","cle","dal","den","det","gb","hou",
@@ -169,7 +173,8 @@ get_538_elo_historical <- function(team = "pit"){
 
   url_in <- glue::glue("https://projects.fivethirtyeight.com/complete-history-of-the-nfl/data/{url_team}.json")
 
-  elo_json <- fromJSON(url_in, simplifyVector = FALSE)
+  elo_json <- httr::GET(url_in) %>%
+    httr::content()
 
   match_weeks <- tibble(
     week = c(
@@ -181,8 +186,8 @@ get_538_elo_historical <- function(team = "pit"){
   )
 
   elo_json$value %>%
-    tibble(data= .) %>%
-    hoist(
+    dplyr::tibble(data= .) %>%
+    tidyr::hoist(
       data,
       year = "x",
       elo = "y",
@@ -192,11 +197,11 @@ get_538_elo_historical <- function(team = "pit"){
       week = "w",
       date = "d"
     ) %>%
-    mutate(pts_for = suppressWarnings(unlist(pts_for) %>% as.double())) %>%
-    mutate(team = team, .before = year, date = as.Date(date, "%m/%d/%Y")) %>%
-    left_join(match_weeks, by = "week") %>%
-    left_join(join_teams, by = "team") %>%
-    select(team, espn_uid, espn_abb, everything())
+    dplyr::mutate(pts_for = suppressWarnings(unlist(pts_for) %>% as.double())) %>%
+    dplyr::mutate(team = team, .before = year, date = as.Date(date, "%m/%d/%Y")) %>%
+    dplyr::left_join(match_weeks, by = "week") %>%
+    dplyr::left_join(join_teams, by = "team") %>%
+    dplyr::select(team, espn_uid, espn_abb, dplyr::everything())
 
 
 }
