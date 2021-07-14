@@ -28,7 +28,7 @@ get_espn_win_prob <- function(game_id){
 
   extract_team_text <- function(text_in){
     text_in %>%
-      str_remove("http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2018/teams/") %>%
+      str_remove("http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/[:digit:]+/teams/") %>%
       str_remove("\\?lang=en&region=us")
   }
 
