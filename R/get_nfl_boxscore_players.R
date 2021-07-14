@@ -7,16 +7,21 @@
 #' @import tidyr dplyr purrr
 #' @importFrom dplyr %>%
 #' @importFrom dplyr %>%
-#' @importFrom jsonlite fromJSON
+#' @importFrom httr content GET stop_for_status
 #' @importFrom stringr str_detect
 #' @importFrom glue glue
 #' @examples
 #' # Get NFL play-by-play for a specific game
 #' get_nfl_boxscore_players(game_id = "300912027")
 get_nfl_boxscore_players <- function(game_id) {
-  game_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event={game_id}&enable=ranks,odds,linescores,logos")
 
-  raw_json <- fromJSON(game_url, simplifyVector = FALSE)
+  game_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary")
+
+  raw_get <- httr::GET(game_url, query = list(event = game_id, enable = "ranks,odds,linescores,logos"))
+
+  httr::stop_for_status(raw_get)
+
+  raw_json <- httr::content(raw_get)
 
   wide_game_raw <- raw_json[["boxscore"]][["players"]] %>%
     tibble(data = .) %>%

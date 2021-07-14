@@ -2,7 +2,7 @@
 #'
 #' @return
 #' @export
-#' @importFrom jsonlite fromJSON
+#' @importFrom httr content GET
 #' @import dplyr purrr
 #' @examples
 #'
@@ -10,21 +10,28 @@
 get_nfl_teams <- function() {
   message("Getting NFL teams!")
 
-  team_url <- "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams?&limit=50"
-  raw_teams <- jsonlite::fromJSON(team_url)
+  team_url <- "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams"
 
-  purrr::pluck(raw_teams, "sports", "leagues", 1, "teams", 1, "team") %>%
-    dplyr::as_tibble() %>%
-    dplyr::mutate(logos = purrr::map_chr(logos, function(df) df[1, 1])) %>%
-    dplyr::select(id, name:alternateColor, logos, -shortDisplayName) %>%
+  raw_teams <- httr::GET(team_url, query = list(limit = "50")) %>%
+    httr::content()
+
+  purrr::pluck(raw_teams, "sports", 1, "leagues", 1, "teams") %>%
+    dplyr::tibble(value = .) %>%
+    tidyr::unnest_wider(value) %>%
+    tidyr::unnest_wider(team) %>%
+    tidyr::hoist(
+      logos,
+      logo = list(1, "href")
+    ) %>%
+    dplyr::select(id, name:alternateColor, logo, -shortDisplayName) %>%
     purrr::set_names(
       nm = c(
-        "uid", "team_name", "team_nickname", "team_short_name", "full_name", "team_color",
-        "alternate_color", "logo"
+        "team_id", "team_name", "team_nickname", "team_abb", "team_full_name", "team_color",
+        "team_alt_color", "logo"
       )
     ) %>%
     dplyr::mutate(
       team_color = paste0("#", team_color),
-      alternate_color = paste0("#", alternate_color)
+      team_alt_color = paste0("#", team_alt_color)
     )
 }
