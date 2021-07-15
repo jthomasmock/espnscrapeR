@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Scrape NFL standings for a specific season from ESPN's site</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_nfl_standings</span>(<span class='no'>season</span>, <span class='kw'>add_superbowls</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_nfl_standings</span><span class='op'>(</span><span class='va'>season</span>, add_superbowls <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,27 +138,28 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get standings from 2018 season</span>
-<span class='fu'>scrape_nfl_standings</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2018"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2018</span></div><div class='output co'>#&gt; # A tibble: 32 x 20
+<span class='fu'>scrape_nfl_standings</span><span class='op'>(</span>season <span class='op'>=</span> <span class='st'>"2018"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping 2018</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 32 x 20</span>
 #&gt;    team  team_abb season conf_name conf_rank     w     l     t   pct home  away 
-#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
-#&gt;  1 Kans… KC         2018 AFC               1    12     4     0 0.75  7-1   5-3  
-#&gt;  2 Los … LAC        2018 AFC               2    12     4     0 0.75  5-3   7-1  
-#&gt;  3 New … NE         2018 AFC               3    11     5     0 0.688 8-0   3-5  
-#&gt;  4 Hous… HOU        2018 AFC               4    11     5     0 0.688 6-2   5-3  
-#&gt;  5 Balt… BAL        2018 AFC               5    10     6     0 0.625 6-2   4-4  
-#&gt;  6 Indi… IND        2018 AFC               6    10     6     0 0.625 6-2   4-4  
-#&gt;  7 Pitt… PIT        2018 AFC               7     9     6     1 0.594 5-3   4-3-1
-#&gt;  8 Tenn… TEN        2018 AFC               8     9     7     0 0.563 6-2   3-5  
-#&gt;  9 Clev… CLE        2018 AFC               9     7     8     1 0.469 5-2-1 2-6  
-#&gt; 10 Miam… MIA        2018 AFC              10     7     9     0 0.438 6-2   1-7  
-#&gt; # … with 22 more rows, and 9 more variables: div &lt;chr&gt;, conf &lt;chr&gt;, pf &lt;int&gt;,
-#&gt; #   pa &lt;int&gt;, diff &lt;int&gt;, strk &lt;chr&gt;, playoffs &lt;chr&gt;, playoff_rank &lt;chr&gt;,
-#&gt; #   team_logo &lt;glue&gt;</div><div class='input'>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> KC    KC         <span style='text-decoration: underline;'>2</span>018 AFC               1    12     4     0 0.75  7-1   5-3  
+#&gt; <span style='color: #BCBCBC;'> 2</span> LAC   LAC        <span style='text-decoration: underline;'>2</span>018 AFC               2    12     4     0 0.75  5-3   7-1  
+#&gt; <span style='color: #BCBCBC;'> 3</span> NE    NE         <span style='text-decoration: underline;'>2</span>018 AFC               3    11     5     0 0.688 8-0   3-5  
+#&gt; <span style='color: #BCBCBC;'> 4</span> HOU   HOU        <span style='text-decoration: underline;'>2</span>018 AFC               4    11     5     0 0.688 6-2   5-3  
+#&gt; <span style='color: #BCBCBC;'> 5</span> BAL   BAL        <span style='text-decoration: underline;'>2</span>018 AFC               5    10     6     0 0.625 6-2   4-4  
+#&gt; <span style='color: #BCBCBC;'> 6</span> IND   IND        <span style='text-decoration: underline;'>2</span>018 AFC               6    10     6     0 0.625 6-2   4-4  
+#&gt; <span style='color: #BCBCBC;'> 7</span> PIT   PIT        <span style='text-decoration: underline;'>2</span>018 AFC               7     9     6     1 0.594 5-3   4-3-1
+#&gt; <span style='color: #BCBCBC;'> 8</span> TEN   TEN        <span style='text-decoration: underline;'>2</span>018 AFC               8     9     7     0 0.563 6-2   3-5  
+#&gt; <span style='color: #BCBCBC;'> 9</span> CLE   CLE        <span style='text-decoration: underline;'>2</span>018 AFC               9     7     8     1 0.469 5-2-1 2-6  
+#&gt; <span style='color: #BCBCBC;'>10</span> MIA   MIA        <span style='text-decoration: underline;'>2</span>018 AFC              10     7     9     0 0.438 6-2   1-7  
+#&gt; <span style='color: #949494;'># … with 22 more rows, and 9 more variables: div &lt;chr&gt;, conf &lt;chr&gt;, pf &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pa &lt;int&gt;, diff &lt;int&gt;, strk &lt;chr&gt;, playoffs &lt;chr&gt;, playoff_rank &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   team_logo &lt;glue&gt;</span></div><div class='input'>
 <span class='co'># Get standings from 2010 season</span>
-<span class='fu'>scrape_nfl_standings</span>(<span class='fl'>2000</span>, <span class='kw'>add_superbowls</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping 2000</span></div><div class='output co'>#&gt; <span class='message'>Adding Superbowls!</span></div><div class='output co'>#&gt; <span class='error'>Error: Problem with `mutate()` input `sb_points`.</span>
-#&gt; <span class='error'>x Input `sb_points` can't be recycled to size 55.</span>
-#&gt; <span class='error'>ℹ Input `sb_points` is `as.integer(substr(sb_scores, 1, 2))`.</span>
-#&gt; <span class='error'>ℹ Input `sb_points` must be size 55 or 1, not 0.</span></div></pre>
+<span class='fu'>scrape_nfl_standings</span><span class='op'>(</span><span class='fl'>2000</span>, add_superbowls <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping 2000</span></div><div class='output co'>#&gt; <span class='message'>Adding Superbowls!</span></div><div class='output co'>#&gt; <span class='error'>Error: Problem with `mutate()` column `sb_points`.</span>
+#&gt; <span class='error'><span style='color: #0000BB;'>ℹ</span> `sb_points = as.integer(substr(sb_scores, 1, 2))`.</span>
+#&gt; <span class='error'><span style='color: #0000BB;'>ℹ</span> `sb_points` must be size 55 or 1, not 0.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -174,7 +175,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

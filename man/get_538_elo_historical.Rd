@@ -7,7 +7,7 @@
 get_538_elo_historical(team = "pit")
 }
 \arguments{
-\item{team}{character, team abbreviated name, must be one of "ari", "atl", "bal", "buf", "car", "chi", "cin", "dal", "den", "det", "gb", "hou", "ind", "jax", "kc", "oak", "lac", "lar", "mia", "min", "ne", "no", "nyg", "nyj", "phi", "pit", "sf", "sea", "tb", "ten", "wsh"}
+\item{team}{character, team abbreviated name, must be one of "ari", "atl", "bal", "buf", "car", "chi", "cin", "cle", "dal", "den", "det", "gb", "hou", "ind", "jax", "kc", "oak", "lac", "lar", "mia", "min", "ne", "no", "nyg", "nyj", "phi", "pit", "sf", "sea", "tb", "ten", "wsh"}
 }
 \value{
 Returns a tibble

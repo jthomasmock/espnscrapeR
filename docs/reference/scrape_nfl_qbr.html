@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Scrapes QBR tables for NFL QBs by specific week or at season level.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_nfl_qbr</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_nfl_qbr</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2019</span>, week <span class='op'>=</span> <span class='cn'>NA</span>, season_type <span class='op'>=</span> <span class='st'>"Regular"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,9 +145,11 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Scrape ALL Playoff QBR from 2016 season</span>
-<span class='fu'>scrape_nfl_qbr</span>(<span class='st'>"2016"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Playoffs"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</div><div class='output co'>#&gt; <span class='error'>Error in scrape_nfl_qbr("2016", season_type = "Playoffs", week = NA): could not find function "scrape_nfl_qbr"</span></div><div class='input'>
+<span class='fu'>scrape_nfl_qbr</span><span class='op'>(</span><span class='st'>"2016"</span>, season_type <span class='op'>=</span> <span class='st'>"Playoffs"</span>, week <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in scrape_nfl_qbr("2016", season_type = "Playoffs", week = NA): could not find function "scrape_nfl_qbr"</span></div><div class='input'>
 <span class='co'># Scrape Regular season QBR for week 4 of 2019</span>
-<span class='fu'>scrape_nfl_qbr</span>(<span class='st'>"2019"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='error'>Error in scrape_nfl_qbr("2019", season_type = "Regular", week = 4): could not find function "scrape_nfl_qbr"</span></div></pre>
+<span class='fu'>scrape_nfl_qbr</span><span class='op'>(</span><span class='st'>"2019"</span>, season_type <span class='op'>=</span> <span class='st'>"Regular"</span>, week <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in scrape_nfl_qbr("2019", season_type = "Regular", week = 4): could not find function "scrape_nfl_qbr"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -163,7 +165,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

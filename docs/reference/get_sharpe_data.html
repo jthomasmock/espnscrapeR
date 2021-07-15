@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Get some of Lee Sharpe's datasets from GitHub</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_sharpe_data</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"games"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_sharpe_data</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"games"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,79 +135,92 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Get NFL games and their outcomes</span>
-<span class='fu'>get_sharpe_data</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"games"</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>── Column specification ────────────────────────────────────────────────────────</span>
+<span class='fu'>get_sharpe_data</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"games"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  .default = col_double(),</span>
-#&gt; <span class='message'>  game_id = col_character(),</span>
-#&gt; <span class='message'>  game_type = col_character(),</span>
-#&gt; <span class='message'>  gameday = col_date(format = ""),</span>
-#&gt; <span class='message'>  weekday = col_character(),</span>
-#&gt; <span class='message'>  gametime = col_time(format = ""),</span>
-#&gt; <span class='message'>  away_team = col_character(),</span>
-#&gt; <span class='message'>  home_team = col_character(),</span>
-#&gt; <span class='message'>  location = col_character(),</span>
-#&gt; <span class='message'>  roof = col_character(),</span>
-#&gt; <span class='message'>  surface = col_character(),</span>
-#&gt; <span class='message'>  away_coach = col_character(),</span>
-#&gt; <span class='message'>  home_coach = col_character(),</span>
-#&gt; <span class='message'>  referee = col_character(),</span>
-#&gt; <span class='message'>  stadium_id = col_character(),</span>
-#&gt; <span class='message'>  stadium = col_character()</span>
+#&gt; <span class='message'>  game_id = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  game_type = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  gameday = <span style='color: #0000BB;'>col_date(format = "")</span>,</span>
+#&gt; <span class='message'>  weekday = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  gametime = <span style='color: #0000BB;'>col_time(format = "")</span>,</span>
+#&gt; <span class='message'>  away_team = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  home_team = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  location = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  roof = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  surface = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  away_qb_id = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  home_qb_id = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  away_qb_name = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  home_qb_name = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  away_coach = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  home_coach = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  referee = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  stadium_id = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  stadium = <span style='color: #BB0000;'>col_character()</span></span>
 #&gt; <span class='message'>)</span>
-#&gt; <span class='message'>ℹ Use `spec()` for the full column specifications.</span></div><div class='output co'>#&gt; # A tibble: 5,852 x 36
-#&gt;    game_id season game_type  week gameday    weekday gametime away_team
-#&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;   &lt;time&gt;   &lt;chr&gt;    
-#&gt;  1 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    MIN      
-#&gt;  2 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    KC       
-#&gt;  3 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    PIT      
-#&gt;  4 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    OAK      
-#&gt;  5 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    BUF      
-#&gt;  6 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    SF       
-#&gt;  7 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    CAR      
-#&gt;  8 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    NE       
-#&gt;  9 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    ARI      
-#&gt; 10 1999_0…   1999 REG           1 1999-09-12 Sunday     NA    DET      
-#&gt; # … with 5,842 more rows, and 28 more variables: away_score &lt;dbl&gt;,
-#&gt; #   home_team &lt;chr&gt;, home_score &lt;dbl&gt;, location &lt;chr&gt;, result &lt;dbl&gt;,
-#&gt; #   total &lt;dbl&gt;, overtime &lt;dbl&gt;, old_game_id &lt;dbl&gt;, away_rest &lt;dbl&gt;,
-#&gt; #   home_rest &lt;dbl&gt;, away_moneyline &lt;dbl&gt;, home_moneyline &lt;dbl&gt;,
-#&gt; #   spread_line &lt;dbl&gt;, away_spread_odds &lt;dbl&gt;, home_spread_odds &lt;dbl&gt;,
-#&gt; #   total_line &lt;dbl&gt;, under_odds &lt;dbl&gt;, over_odds &lt;dbl&gt;, div_game &lt;dbl&gt;,
-#&gt; #   roof &lt;chr&gt;, surface &lt;chr&gt;, temp &lt;dbl&gt;, wind &lt;dbl&gt;, away_coach &lt;chr&gt;,
-#&gt; #   home_coach &lt;chr&gt;, referee &lt;chr&gt;, stadium_id &lt;chr&gt;, stadium &lt;chr&gt;</div><div class='input'>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> for the full column specifications.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,124 x 41</span>
+#&gt;    game_id         season game_type  week gameday    weekday gametime away_team
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;time&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'> 1</span> 1999_01_MIN_ATL   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    MIN      
+#&gt; <span style='color: #BCBCBC;'> 2</span> 1999_01_KC_CHI    <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    KC       
+#&gt; <span style='color: #BCBCBC;'> 3</span> 1999_01_PIT_CLE   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    PIT      
+#&gt; <span style='color: #BCBCBC;'> 4</span> 1999_01_OAK_GB    <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    OAK      
+#&gt; <span style='color: #BCBCBC;'> 5</span> 1999_01_BUF_IND   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    BUF      
+#&gt; <span style='color: #BCBCBC;'> 6</span> 1999_01_SF_JAX    <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    SF       
+#&gt; <span style='color: #BCBCBC;'> 7</span> 1999_01_CAR_NO    <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    CAR      
+#&gt; <span style='color: #BCBCBC;'> 8</span> 1999_01_NE_NYJ    <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    NE       
+#&gt; <span style='color: #BCBCBC;'> 9</span> 1999_01_ARI_PHI   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    ARI      
+#&gt; <span style='color: #BCBCBC;'>10</span> 1999_01_DET_SEA   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    DET      
+#&gt; <span style='color: #949494;'># … with 6,114 more rows, and 33 more variables: away_score &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   home_team &lt;chr&gt;, home_score &lt;dbl&gt;, location &lt;chr&gt;, result &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   total &lt;dbl&gt;, overtime &lt;dbl&gt;, old_game_id &lt;dbl&gt;, espn &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   away_rest &lt;dbl&gt;, home_rest &lt;dbl&gt;, away_moneyline &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   home_moneyline &lt;dbl&gt;, spread_line &lt;dbl&gt;, away_spread_odds &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   home_spread_odds &lt;dbl&gt;, total_line &lt;dbl&gt;, under_odds &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   over_odds &lt;dbl&gt;, div_game &lt;dbl&gt;, roof &lt;chr&gt;, surface &lt;chr&gt;, temp &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   wind &lt;dbl&gt;, away_qb_id &lt;chr&gt;, home_qb_id &lt;chr&gt;, away_qb_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   home_qb_name &lt;chr&gt;, away_coach &lt;chr&gt;, home_coach &lt;chr&gt;, referee &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   stadium_id &lt;chr&gt;, stadium &lt;chr&gt;</span></div><div class='input'>
 <span class='co'># Get team abbreviations/names/etc by year</span>
-<span class='fu'>get_sharpe_data</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"teams"</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>── Column specification ────────────────────────────────────────────────────────</span>
+<span class='fu'>get_sharpe_data</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"teams"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
 #&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  season = col_double(),</span>
-#&gt; <span class='message'>  team = col_character(),</span>
-#&gt; <span class='message'>  nfl = col_character(),</span>
-#&gt; <span class='message'>  nfl_team_id = col_character(),</span>
-#&gt; <span class='message'>  pfr = col_character(),</span>
-#&gt; <span class='message'>  pff = col_double(),</span>
-#&gt; <span class='message'>  pfflabel = col_character(),</span>
-#&gt; <span class='message'>  fo = col_character(),</span>
-#&gt; <span class='message'>  full = col_character(),</span>
-#&gt; <span class='message'>  location = col_character(),</span>
-#&gt; <span class='message'>  short_location = col_character(),</span>
-#&gt; <span class='message'>  nickname = col_character(),</span>
-#&gt; <span class='message'>  hyphenated = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; # A tibble: 608 x 13
-#&gt;    season team  nfl   nfl_team_id pfr     pff pfflabel fo    full  location
-#&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   
-#&gt;  1   2002 ARI   ARI   3800        CRD      NA &lt;NA&gt;     ARI   Ariz… Arizona 
-#&gt;  2   2002 ATL   ATL   0200        ATL      NA &lt;NA&gt;     ATL   Atla… Atlanta 
-#&gt;  3   2002 BAL   BAL   0325        RAV      NA &lt;NA&gt;     BAL   Balt… Baltimo…
-#&gt;  4   2002 BUF   BUF   0610        BUF      NA &lt;NA&gt;     BUF   Buff… Buffalo 
-#&gt;  5   2002 CAR   CAR   0750        CAR      NA &lt;NA&gt;     CAR   Caro… Carolina
-#&gt;  6   2002 CHI   CHI   0810        CHI      NA &lt;NA&gt;     CHI   Chic… Chicago 
-#&gt;  7   2002 CIN   CIN   0920        CIN      NA &lt;NA&gt;     CIN   Cinc… Cincinn…
-#&gt;  8   2002 CLE   CLE   1050        CLE      NA &lt;NA&gt;     CLE   Clev… Clevela…
-#&gt;  9   2002 DAL   DAL   1200        DAL      NA &lt;NA&gt;     DAL   Dall… Dallas  
-#&gt; 10   2002 DEN   DEN   1400        DEN      NA &lt;NA&gt;     DEN   Denv… Denver  
-#&gt; # … with 598 more rows, and 3 more variables: short_location &lt;chr&gt;,
-#&gt; #   nickname &lt;chr&gt;, hyphenated &lt;chr&gt;</div></pre>
+#&gt; <span class='message'>  season = <span style='color: #00BB00;'>col_double()</span>,</span>
+#&gt; <span class='message'>  team = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  nfl = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  nfl_team_id = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  pfr = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  pff = <span style='color: #00BB00;'>col_double()</span>,</span>
+#&gt; <span class='message'>  pfflabel = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  fo = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  full = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  location = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  short_location = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  nickname = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  hyphenated = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  sbr = <span style='color: #00BB00;'>col_double()</span>,</span>
+#&gt; <span class='message'>  sbr_wins = <span style='color: #00BB00;'>col_double()</span>,</span>
+#&gt; <span class='message'>  sbr_name = <span style='color: #BB0000;'>col_character()</span>,</span>
+#&gt; <span class='message'>  draft_kings = <span style='color: #BB0000;'>col_character()</span></span>
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 640 x 17</span>
+#&gt;    season team  nfl   nfl_team_id pfr     pff pfflabel fo    full       location
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>002 ARI   ARI   3800        CRD      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       ARI   Arizona C… Arizona 
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>002 ATL   ATL   0200        ATL      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       ATL   Atlanta F… Atlanta 
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>002 BAL   BAL   0325        RAV      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       BAL   Baltimore… Baltimo…
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>002 BUF   BUF   0610        BUF      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       BUF   Buffalo B… Buffalo 
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>002 CAR   CAR   0750        CAR      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CAR   Carolina … Carolina
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>002 CHI   CHI   0810        CHI      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CHI   Chicago B… Chicago 
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>002 CIN   CIN   0920        CIN      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CIN   Cincinnat… Cincinn…
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>002 CLE   CLE   1050        CLE      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CLE   Cleveland… Clevela…
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>002 DAL   DAL   1200        DAL      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       DAL   Dallas Co… Dallas  
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>002 DEN   DEN   1400        DEN      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       DEN   Denver Br… Denver  
+#&gt; <span style='color: #949494;'># … with 630 more rows, and 7 more variables: short_location &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   nickname &lt;chr&gt;, hyphenated &lt;chr&gt;, sbr &lt;dbl&gt;, sbr_wins &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sbr_name &lt;chr&gt;, draft_kings &lt;chr&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -223,7 +236,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

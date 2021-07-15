@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Please note that the column names are identical between offense/defense and you should reference the 'role' column for offensive or defensive stats.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_team_stats_nfl</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>, <span class='kw'>role</span> <span class='kw'>=</span> <span class='st'>"offense"</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_team_stats_nfl</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2019</span>, stats <span class='op'>=</span> <span class='st'>"passing"</span>, role <span class='op'>=</span> <span class='st'>"offense"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,39 +143,41 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Get the NFL.com game-level stats for offense in 2018</span>
-<span class='fu'>scrape_team_stats_nfl</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>, <span class='kw'>role</span> <span class='kw'>=</span> <span class='st'>"offense"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping passing for offense from 2018!</span></div><div class='output co'>#&gt; # A tibble: 32 x 19
-#&gt;    season role  stat  team  pass_att pass_comp pass_comp_pct yds_att pass_yds
-#&gt;     &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;     &lt;int&gt;         &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;
-#&gt;  1   2018 OFFE… PASS… Reds…      509       311         0.611     6.5     3287
-#&gt;  2   2018 OFFE… PASS… Bucc…      625       408         0.653     8.6     5358
-#&gt;  3   2018 OFFE… PASS… Seah…      427       280         0.656     8.1     3448
-#&gt;  4   2018 OFFE… PASS… 49ers      532       331         0.622     8       4247
-#&gt;  5   2018 OFFE… PASS… Char…      512       348         0.68      8.4     4316
-#&gt;  6   2018 OFFE… PASS… Stee…      689       459         0.666     7.5     5174
-#&gt;  7   2018 OFFE… PASS… Card…      495       283         0.572     5.8     2884
-#&gt;  8   2018 OFFE… PASS… Eagl…      599       422         0.705     7.6     4524
-#&gt;  9   2018 OFFE… PASS… Jets       524       299         0.571     6.5     3404
-#&gt; 10   2018 OFFE… PASS… Gian…      583       382         0.655     7.6     4405
-#&gt; # … with 22 more rows, and 10 more variables: pass_td &lt;int&gt;, int &lt;int&gt;,
-#&gt; #   pass_rating &lt;dbl&gt;, first_downs &lt;int&gt;, pass_first_pct &lt;dbl&gt;,
-#&gt; #   pass_20plus &lt;int&gt;, pass_40plus &lt;int&gt;, pass_long &lt;chr&gt;, sacks &lt;int&gt;,
-#&gt; #   sack_yds &lt;int&gt;</div><div class='input'>
+<span class='fu'>scrape_team_stats_nfl</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2018</span>, stats <span class='op'>=</span> <span class='st'>"passing"</span>, role <span class='op'>=</span> <span class='st'>"offense"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping passing for offense from 2018!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 32 x 19</span>
+#&gt;    season role   stat   team   pass_att pass_comp pass_comp_pct yds_att pass_yds
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Redsk…      509       311         0.611     6.5     <span style='text-decoration: underline;'>3</span>287
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Bucca…      625       408         0.653     8.6     <span style='text-decoration: underline;'>5</span>358
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Seaha…      427       280         0.656     8.1     <span style='text-decoration: underline;'>3</span>448
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… 49ers       532       331         0.622     8       <span style='text-decoration: underline;'>4</span>247
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Charg…      512       348         0.68      8.4     <span style='text-decoration: underline;'>4</span>316
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Steel…      689       459         0.666     7.5     <span style='text-decoration: underline;'>5</span>174
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Cardi…      495       283         0.572     5.8     <span style='text-decoration: underline;'>2</span>884
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Eagles      599       422         0.705     7.6     <span style='text-decoration: underline;'>4</span>524
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Jets        524       299         0.571     6.5     <span style='text-decoration: underline;'>3</span>404
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>018 OFFEN… PASSI… Giants      583       382         0.655     7.6     <span style='text-decoration: underline;'>4</span>405
+#&gt; <span style='color: #949494;'># … with 22 more rows, and 10 more variables: pass_td &lt;int&gt;, int &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pass_rating &lt;dbl&gt;, first_downs &lt;int&gt;, pass_first_pct &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pass_20plus &lt;int&gt;, pass_40plus &lt;int&gt;, pass_long &lt;chr&gt;, sacks &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sack_yds &lt;int&gt;</span></div><div class='input'>
 <span class='co'># Get the NFL.com team-level passing stats for defense in 2014</span>
-<span class='fu'>scrape_team_stats_nfl</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='st'>"2014"</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"rushing"</span>, <span class='kw'>role</span> <span class='kw'>=</span> <span class='st'>"defense"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping rushing for defense from 2014!</span></div><div class='output co'>#&gt; # A tibble: 32 x 14
-#&gt;    season role  stat  team  rush_att rush_yds rush_ypc rush_td rush_20plus
-#&gt;     &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;    &lt;dbl&gt;   &lt;int&gt;       &lt;int&gt;
-#&gt;  1   2014 DEFE… RUSH… Reds…      421     1722      4.1      11           9
-#&gt;  2   2014 DEFE… RUSH… Bucc…      468     1819      3.9      15          10
-#&gt;  3   2014 DEFE… RUSH… Seah…      380     1304      3.4       8           7
-#&gt;  4   2014 DEFE… RUSH… 49ers      402     1612      4         7          10
-#&gt;  5   2014 DEFE… RUSH… Char…      438     1986      4.5      11          12
-#&gt;  6   2014 DEFE… RUSH… Stee…      368     1605      4.4       9          11
-#&gt;  7   2014 DEFE… RUSH… Card…      396     1739      4.4       9          13
-#&gt;  8   2014 DEFE… RUSH… Eagl…      473     1771      3.7      14           9
-#&gt;  9   2014 DEFE… RUSH… Jets       393     1489      3.8      10           7
-#&gt; 10   2014 DEFE… RUSH… Gian…      438     2162      4.9      15          17
-#&gt; # … with 22 more rows, and 5 more variables: rush_40plus &lt;int&gt;, rush_lng &lt;chr&gt;,
-#&gt; #   rush_first &lt;int&gt;, rush_first_pct &lt;dbl&gt;, rush_fum &lt;int&gt;</div></pre>
+<span class='fu'>scrape_team_stats_nfl</span><span class='op'>(</span>season <span class='op'>=</span> <span class='st'>"2014"</span>, stats <span class='op'>=</span> <span class='st'>"rushing"</span>, role <span class='op'>=</span> <span class='st'>"defense"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping rushing for defense from 2014!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 32 x 14</span>
+#&gt;    season role    stat   team     rush_att rush_yds rush_ypc rush_td rush_20plus
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Redskins      421     <span style='text-decoration: underline;'>1</span>722      4.1      11           9
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Buccane…      468     <span style='text-decoration: underline;'>1</span>819      3.9      15          10
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Seahawks      380     <span style='text-decoration: underline;'>1</span>304      3.4       8           7
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… 49ers         402     <span style='text-decoration: underline;'>1</span>612      4         7          10
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Chargers      438     <span style='text-decoration: underline;'>1</span>986      4.5      11          12
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Steelers      368     <span style='text-decoration: underline;'>1</span>605      4.4       9          11
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Cardina…      396     <span style='text-decoration: underline;'>1</span>739      4.4       9          13
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Eagles        473     <span style='text-decoration: underline;'>1</span>771      3.7      14           9
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Jets          393     <span style='text-decoration: underline;'>1</span>489      3.8      10           7
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>014 DEFENSE RUSHI… Giants        438     <span style='text-decoration: underline;'>2</span>162      4.9      15          17
+#&gt; <span style='color: #949494;'># … with 22 more rows, and 5 more variables: rush_40plus &lt;int&gt;, rush_lng &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   rush_first &lt;int&gt;, rush_first_pct &lt;dbl&gt;, rush_fum &lt;int&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -191,7 +193,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

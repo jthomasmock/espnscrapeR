@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Scrape NFL superbowl winners for all years</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_superbowls</span>()</pre>
+    <pre class="usage"><span class='fu'>scrape_superbowls</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -126,10 +126,10 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get superbowls</span>
-<span class='fu'>scrape_superbowls</span>()</div><div class='output co'>#&gt; <span class='error'>Error: Problem with `mutate()` input `sb_points`.</span>
-#&gt; <span class='error'>x Input `sb_points` can't be recycled to size 55.</span>
-#&gt; <span class='error'>ℹ Input `sb_points` is `as.integer(substr(sb_scores, 1, 2))`.</span>
-#&gt; <span class='error'>ℹ Input `sb_points` must be size 55 or 1, not 0.</span></div></pre>
+<span class='fu'>scrape_superbowls</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error: Problem with `mutate()` column `sb_points`.</span>
+#&gt; <span class='error'><span style='color: #0000BB;'>ℹ</span> `sb_points = as.integer(substr(sb_scores, 1, 2))`.</span>
+#&gt; <span class='error'><span style='color: #0000BB;'>ℹ</span> `sb_points` must be size 55 or 1, not 0.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -145,7 +145,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

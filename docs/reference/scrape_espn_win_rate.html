@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_espn_win_rate</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_espn_win_rate</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2020</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -126,20 +126,21 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get off and def pass/run win rates</span>
-<span class='fu'>scrape_espn_win_rate</span>()</div><div class='output co'>#&gt; # A tibble: 128 x 6
+<span class='fu'>scrape_espn_win_rate</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 128 x 6</span>
 #&gt;    stat              stat_rank team                  win_pct date_updated season
-#&gt;    &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-#&gt;  1 Pass Rush Win Ra…         1 Pittsburgh Steelers        54 Jan 5, 2021    2020
-#&gt;  2 Pass Rush Win Ra…         2 Buffalo Bills              52 Jan 5, 2021    2020
-#&gt;  3 Pass Rush Win Ra…         3 Washington Football …      50 Jan 5, 2021    2020
-#&gt;  4 Pass Rush Win Ra…         4 Atlanta Falcons            49 Jan 5, 2021    2020
-#&gt;  5 Pass Rush Win Ra…         5 Tampa Bay Buccaneers       49 Jan 5, 2021    2020
-#&gt;  6 Pass Rush Win Ra…         6 New York Jets              48 Jan 5, 2021    2020
-#&gt;  7 Pass Rush Win Ra…         7 Baltimore Ravens           48 Jan 5, 2021    2020
-#&gt;  8 Pass Rush Win Ra…         8 Philadelphia Eagles        48 Jan 5, 2021    2020
-#&gt;  9 Pass Rush Win Ra…         9 Los Angeles Rams           47 Jan 5, 2021    2020
-#&gt; 10 Pass Rush Win Ra…        10 Houston Texans             45 Jan 5, 2021    2020
-#&gt; # … with 118 more rows</div></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> Pass Rush Win Ra…         1 Pittsburgh Steelers        54 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'> 2</span> Pass Rush Win Ra…         2 Buffalo Bills              52 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'> 3</span> Pass Rush Win Ra…         3 Washington Football …      50 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'> 4</span> Pass Rush Win Ra…         4 Atlanta Falcons            49 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'> 5</span> Pass Rush Win Ra…         5 Tampa Bay Buccaneers       49 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'> 6</span> Pass Rush Win Ra…         6 New York Jets              48 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'> 7</span> Pass Rush Win Ra…         7 Baltimore Ravens           48 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'> 8</span> Pass Rush Win Ra…         8 Philadelphia Eagles        48 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'> 9</span> Pass Rush Win Ra…         9 Los Angeles Rams           47 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #BCBCBC;'>10</span> Pass Rush Win Ra…        10 Houston Texans             45 Jan 5, 2021    <span style='text-decoration: underline;'>2</span>020
+#&gt; <span style='color: #949494;'># … with 118 more rows</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -155,7 +156,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

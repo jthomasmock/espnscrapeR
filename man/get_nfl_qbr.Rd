@@ -4,7 +4,7 @@
 \alias{get_nfl_qbr}
 \title{Get ESPN QBR for NFL football}
 \usage{
-get_nfl_qbr(season = 2019, week = NA, season_type = "Regular")
+get_nfl_qbr(season = 2020, week = NA, season_type = "Regular")
 }
 \arguments{
 \item{season}{Either numeric or character}

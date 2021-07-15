@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Scrape NFL stats from ESPN</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_espn_stats</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"receiving"</span>, <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"Regular"</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_espn_stats</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2019</span>, stats <span class='op'>=</span> <span class='st'>"receiving"</span>, season_type <span class='op'>=</span> <span class='st'>"Regular"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,23 +141,24 @@
     <p>tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>scrape_espn_stats</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats from 2000 Regular season!</span></div><div class='output co'>#&gt; # A tibble: 101 x 20
-#&gt;    season season_type pass_rank name  team  pos   games_played pass_completed
-#&gt;     &lt;dbl&gt; &lt;chr&gt;           &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;int&gt;          &lt;int&gt;
-#&gt;  1   2000 Regular             1 Peyt… IND   QB              16            357
-#&gt;  2   2000 Regular             2 Jeff… SF    QB              16            355
-#&gt;  3   2000 Regular             3 Elvi… KC    QB              15            326
-#&gt;  4   2000 Regular             4 Daun… MIN   QB              16            297
-#&gt;  5   2000 Regular             5 Bret… GB    QB              16            338
-#&gt;  6   2000 Regular             6 Vinn… NYJ   QB              16            328
-#&gt;  7   2000 Regular             7 Stev… CAR   QB              16            324
-#&gt;  8   2000 Regular             8 Mark… JAX   QB              16            311
-#&gt;  9   2000 Regular             9 Kerr… NYG   QB              16            311
-#&gt; 10   2000 Regular            10 Rich… OAK   QB              16            284
-#&gt; # … with 91 more rows, and 12 more variables: pass_attempts &lt;int&gt;,
-#&gt; #   comp_percent &lt;dbl&gt;, pass_yards &lt;dbl&gt;, pass_avg &lt;dbl&gt;,
-#&gt; #   pass_yards_game &lt;dbl&gt;, pass_long &lt;int&gt;, pass_td &lt;int&gt;, pass_int &lt;int&gt;,
-#&gt; #   sack &lt;int&gt;, sack_yards &lt;int&gt;, qbr &lt;lgl&gt;, pass_rating &lt;dbl&gt;</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>scrape_espn_stats</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2000</span>, stats <span class='op'>=</span> <span class='st'>"passing"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats from 2000 Regular season!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 101 x 20</span>
+#&gt;    season season_type pass_rank name     team  pos   games_played pass_completed
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>000 Regular             1 Peyton … IND   QB              16            357
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>000 Regular             2 Jeff Ga… SF    QB              16            355
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>000 Regular             3 Elvis G… KC    QB              15            326
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>000 Regular             4 Daunte … MIN   QB              16            297
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>000 Regular             5 Brett F… GB    QB              16            338
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>000 Regular             6 Vinny T… NYJ   QB              16            328
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>000 Regular             7 Steve B… CAR   QB              16            324
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>000 Regular             8 Mark Br… JAX   QB              16            311
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>000 Regular             9 Kerry C… NYG   QB              16            311
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>000 Regular            10 Rich Ga… OAK   QB              16            284
+#&gt; <span style='color: #949494;'># … with 91 more rows, and 12 more variables: pass_attempts &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   comp_percent &lt;dbl&gt;, pass_yards &lt;dbl&gt;, pass_avg &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pass_yards_game &lt;dbl&gt;, pass_long &lt;int&gt;, pass_td &lt;int&gt;, pass_int &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sack &lt;int&gt;, sack_yards &lt;int&gt;, qbr &lt;lgl&gt;, pass_rating &lt;dbl&gt;</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -174,7 +175,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

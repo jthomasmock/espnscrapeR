@@ -18,5 +18,4 @@ Get NFL boxscore for players for a specific game from ESPN's API
 \examples{
 # Get NFL play-by-play for a specific game
 get_nfl_boxscore_players(game_id = "300912027")
-
 }

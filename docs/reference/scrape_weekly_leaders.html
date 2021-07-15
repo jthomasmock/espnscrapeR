@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Scrape weekly NFL leaders stats from ESPN</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_weekly_leaders</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_weekly_leaders</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2019</span>, week <span class='op'>=</span> <span class='fl'>1</span>, stats <span class='op'>=</span> <span class='st'>"passing"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,21 +141,22 @@
     <p>tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>scrape_weekly_leaders</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2002</span>, <span class='kw'>stats</span> <span class='kw'>=</span> <span class='st'>"passing"</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats for week 1 from 2002 season!</span></div><div class='output co'>#&gt; # A tibble: 30 x 13
-#&gt;    season  week  rank name  team  result pass_comp pass_att pass_yds pass_td
-#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1   2002     1     1 Matt… ATL   L 38-…        37       54      450       2
-#&gt;  2   2002     1     2 Aaro… GB    W 43-…        32       44      364       4
-#&gt;  3   2002     1     3 Phil… IND   L 27-…        36       46      363       1
-#&gt;  4   2002     1     4 Russ… SEA   W 38-…        31       35      322       4
-#&gt;  5   2002     1     5 Josh… BUF   W 27-…        33       46      312       2
-#&gt;  6   2002     1     6 Matt… DET   L 27-…        24       42      297       1
-#&gt;  7   2002     1     7 Dani… NYG   L 26-…        26       41      279       2
-#&gt;  8   2002     1     8 Lama… BAL   W 38-…        20       25      275       3
-#&gt;  9   2002     1     9 Jare… LAR   W 20-…        20       31      275       0
-#&gt; 10   2002     1    10 Cars… PHI   L 27-…        24       42      270       2
-#&gt; # … with 20 more rows, and 3 more variables: pass_int &lt;dbl&gt;, sack &lt;dbl&gt;,
-#&gt; #   pass_fumbles &lt;dbl&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>scrape_weekly_leaders</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2002</span>, stats <span class='op'>=</span> <span class='st'>"passing"</span>, week <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping passing stats for week 1 from 2002 season!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 30 x 13</span>
+#&gt;    season  week  rank name     team  result  pass_comp pass_att pass_yds pass_td
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>002     1     1 Matt Ry… ATL   L 38-2…        37       54      450       2
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>002     1     2 Aaron R… GB    W 43-3…        32       44      364       4
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>002     1     3 Philip … IND   L 27-2…        36       46      363       1
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>002     1     4 Russell… SEA   W 38-2…        31       35      322       4
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>002     1     5 Josh Al… BUF   W 27-1…        33       46      312       2
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>002     1     6 Matthew… DET   L 27-2…        24       42      297       1
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>002     1     7 Daniel … NYG   L 26-1…        26       41      279       2
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>002     1     8 Lamar J… BAL   W 38-6…        20       25      275       3
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>002     1     9 Jared G… LAR   W 20-1…        20       31      275       0
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>002     1    10 Carson … PHI   L 27-1…        24       42      270       2
+#&gt; <span style='color: #949494;'># … with 20 more rows, and 3 more variables: pass_int &lt;dbl&gt;, sack &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pass_fumbles &lt;dbl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -171,7 +172,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -16,6 +16,7 @@ Returns a tibble
 Get NFL schedule for a specific year from ESPN's API
 }
 \examples{
-# Get standings from 2018 season
+# Get all games from 2018 season, note that this will have some overlap
+# between seasons, for example 2018 returns 2018-01-01 to 2018-12-31
 get_nfl_schedule(season = "2018")
 }

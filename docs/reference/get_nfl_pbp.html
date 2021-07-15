@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Get NFL play-by-play for a specific game from ESPN's API</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_nfl_pbp</span>(<span class='no'>game_id</span>)</pre>
+    <pre class="usage"><span class='fu'>get_nfl_pbp</span><span class='op'>(</span><span class='va'>game_id</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,41 +134,42 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get NFL play-by-play for a specific game</span>
-<span class='fu'>get_nfl_pbp</span>(<span class='kw'>game_id</span> <span class='kw'>=</span> <span class='st'>"300912027"</span>)</div><div class='output co'>#&gt; # A tibble: 164 x 73
+<span class='fu'>get_nfl_pbp</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='st'>"300912027"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 164 x 73</span>
 #&gt;    game_id game_uid season season_type date   week drive_id pos_team_abb play_id
-#&gt;    &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;       &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;  
-#&gt;  1 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt;  2 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt;  3 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt;  4 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt;  5 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt;  6 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt;  7 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt;  8 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt;  9 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt; 10 300912… s:20~l:…   2010           2 2010…     1 3009120… TB           300912…
-#&gt; # … with 154 more rows, and 64 more variables: play_type &lt;chr&gt;,
-#&gt; #   yards_gained &lt;int&gt;, play_desc &lt;chr&gt;, drive_desc &lt;chr&gt;, pos_team_name &lt;chr&gt;,
-#&gt; #   pos_team_full &lt;chr&gt;, logo &lt;chr&gt;, drive_start_qtr &lt;int&gt;,
-#&gt; #   drive_start_clock &lt;chr&gt;, drive_start_yardline &lt;int&gt;,
-#&gt; #   drive_start_text &lt;chr&gt;, drive_end_qtr &lt;int&gt;, drive_end_clock &lt;chr&gt;,
-#&gt; #   drive_end_yardline &lt;int&gt;, drive_end_text &lt;chr&gt;, drive_time &lt;chr&gt;,
-#&gt; #   drive_yds &lt;int&gt;, drive_result_score &lt;int&gt;, drive_plays &lt;int&gt;,
-#&gt; #   drive_result &lt;chr&gt;, away_score &lt;int&gt;, home_score &lt;int&gt;, quarter &lt;int&gt;,
-#&gt; #   clock_text &lt;chr&gt;, scoring_play &lt;int&gt;, start_posteam_id &lt;chr&gt;,
-#&gt; #   start_down &lt;int&gt;, start_ydstogo &lt;int&gt;, start_yardline &lt;int&gt;,
-#&gt; #   start_ydsto_ez &lt;int&gt;, start_text &lt;chr&gt;, start_down_text &lt;chr&gt;,
-#&gt; #   start_possess_text &lt;chr&gt;, end_posteam_id &lt;chr&gt;, end_down &lt;int&gt;,
-#&gt; #   end_ydstogo &lt;int&gt;, end_yardline &lt;int&gt;, end_ydsto_ez &lt;int&gt;, end_text &lt;chr&gt;,
-#&gt; #   end_down_text &lt;chr&gt;, end_possess_text &lt;chr&gt;, score_type &lt;chr&gt;,
-#&gt; #   home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;, home_team_abb &lt;chr&gt;,
-#&gt; #   home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;, home_team_full &lt;chr&gt;,
-#&gt; #   home_team_color &lt;chr&gt;, home_team_color_alt &lt;chr&gt;, home_score_final &lt;chr&gt;,
-#&gt; #   home_win &lt;int&gt;, home_record &lt;chr&gt;, away_team_name &lt;chr&gt;,
-#&gt; #   away_team_logo &lt;chr&gt;, away_team_abb &lt;chr&gt;, away_team_id &lt;chr&gt;,
-#&gt; #   away_team_location &lt;chr&gt;, away_team_full &lt;chr&gt;, away_team_color &lt;chr&gt;,
-#&gt; #   away_team_color_alt &lt;chr&gt;, away_score_final &lt;chr&gt;, away_win &lt;int&gt;,
-#&gt; #   away_record &lt;chr&gt;</div></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 1</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'> 2</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'> 3</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'> 4</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'> 5</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'> 6</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'> 7</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'> 8</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'> 9</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #BCBCBC;'>10</span> 300912… s:20~l:…   <span style='text-decoration: underline;'>2</span>010           2 2010…     1 3009120… TB           300912…
+#&gt; <span style='color: #949494;'># … with 154 more rows, and 64 more variables: play_type &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   yards_gained &lt;int&gt;, play_desc &lt;chr&gt;, drive_desc &lt;chr&gt;, pos_team_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pos_team_full &lt;chr&gt;, logo &lt;chr&gt;, drive_start_qtr &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   drive_start_clock &lt;chr&gt;, drive_start_yardline &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   drive_start_text &lt;chr&gt;, drive_end_qtr &lt;int&gt;, drive_end_clock &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   drive_end_yardline &lt;int&gt;, drive_end_text &lt;chr&gt;, drive_time &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   drive_yds &lt;int&gt;, drive_result_score &lt;int&gt;, drive_plays &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   drive_result &lt;chr&gt;, away_score &lt;int&gt;, home_score &lt;int&gt;, quarter &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   clock_text &lt;chr&gt;, scoring_play &lt;int&gt;, start_posteam_id &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   start_down &lt;int&gt;, start_ydstogo &lt;int&gt;, start_yardline &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   start_ydsto_ez &lt;int&gt;, start_text &lt;chr&gt;, start_down_text &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   start_possess_text &lt;chr&gt;, end_posteam_id &lt;chr&gt;, end_down &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   end_ydstogo &lt;int&gt;, end_yardline &lt;int&gt;, end_ydsto_ez &lt;int&gt;, end_text &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   end_down_text &lt;chr&gt;, end_possess_text &lt;chr&gt;, score_type &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;, home_team_abb &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;, home_team_full &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   home_team_color &lt;chr&gt;, home_team_color_alt &lt;chr&gt;, home_score_final &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   home_win &lt;int&gt;, home_record &lt;chr&gt;, away_team_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   away_team_logo &lt;chr&gt;, away_team_abb &lt;chr&gt;, away_team_id &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   away_team_location &lt;chr&gt;, away_team_full &lt;chr&gt;, away_team_color &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   away_team_color_alt &lt;chr&gt;, away_score_final &lt;chr&gt;, away_win &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   away_record &lt;chr&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -184,7 +185,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

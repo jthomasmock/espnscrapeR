@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -77,15 +77,18 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("remotes")</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"jthomasmock/espnscrapeR"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"jthomasmock/espnscrapeR"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">espnscrapeR</span>)</pre></div>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># Get NFL QBR for the 2019 regular season week 4</span>
-<span class="fu"><a href="reference/get_nfl_qbr.html">get_nfl_qbr</a></span>(<span class="st">"2019"</span>, <span class="kw">season_type</span> <span class="kw">=</span> <span class="st">"Regular"</span>, <span class="kw">week</span> <span class="kw">=</span> <span class="fl">4</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jthomasmock/espnscrapeR">espnscrapeR</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get NFL QBR for the 2019 regular season week 4</span>
+<span class="fu"><a href="reference/get_nfl_qbr.html">get_nfl_qbr</a></span><span class="op">(</span><span class="st">"2019"</span>, season_type <span class="op">=</span> <span class="st">"Regular"</span>, week <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 <span class="co">#&gt; Scraping weekly QBR for week 4 of 2019!</span>
 <span class="co">#&gt; # A tibble: 31 x 21</span>
 <span class="co">#&gt;    season season_type game_week  rank first_name last_name name  short_name</span>
@@ -103,9 +106,10 @@
 <span class="co">#&gt; # … with 21 more rows, and 13 more variables: team_name &lt;chr&gt;,</span>
 <span class="co">#&gt; #   team_short_name &lt;chr&gt;, qbr_total &lt;dbl&gt;, points_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   total_epa &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   raw_qbr &lt;dbl&gt;, sack &lt;dbl&gt;, headshot_href &lt;chr&gt;</span></pre></div>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># Get NFL standings for 2010</span>
-<span class="fu"><a href="reference/get_nfl_standings.html">get_nfl_standings</a></span>(<span class="fl">2010</span>)
+<span class="co">#&gt; #   raw_qbr &lt;dbl&gt;, sack &lt;dbl&gt;, headshot_href &lt;chr&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get NFL standings for 2010</span>
+<span class="fu"><a href="reference/get_nfl_standings.html">get_nfl_standings</a></span><span class="op">(</span><span class="fl">2010</span><span class="op">)</span>
 <span class="co">#&gt; Scraping 2010</span>
 <span class="co">#&gt; # A tibble: 32 x 27</span>
 <span class="co">#&gt;    city  team_name abb_name full_name logos playoff_seed  wins losses</span>
@@ -125,9 +129,10 @@
 <span class="co">#&gt; #   differential &lt;dbl&gt;, streak &lt;dbl&gt;, clincher &lt;dbl&gt;, league_win_percent &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   division_record &lt;dbl&gt;, division_wins &lt;dbl&gt;, division_ties &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   division_losses &lt;dbl&gt;, all_splits &lt;dbl&gt;, home &lt;dbl&gt;, road &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   vs_div &lt;dbl&gt;, vs_conf &lt;dbl&gt;, year &lt;dbl&gt;</span></pre></div>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># Get NFL </span>
-<span class="fu"><a href="reference/scrape_espn_stats.html">scrape_espn_stats</a></span>(<span class="fl">2019</span>, <span class="kw">stat</span> <span class="kw">=</span> <span class="st">"rushing"</span>)
+<span class="co">#&gt; #   vs_div &lt;dbl&gt;, vs_conf &lt;dbl&gt;, year &lt;dbl&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get NFL </span>
+<span class="fu"><a href="reference/scrape_espn_stats.html">scrape_espn_stats</a></span><span class="op">(</span><span class="fl">2019</span>, stat <span class="op">=</span> <span class="st">"rushing"</span><span class="op">)</span>
 <span class="co">#&gt; Scraping rushing stats from 2019 Regular season!</span>
 <span class="co">#&gt; # A tibble: 335 x 17</span>
 <span class="co">#&gt;    season season_type rush_rank name  team  pos   games_played rush_att</span>
@@ -144,9 +149,10 @@
 <span class="co">#&gt; 10   2019 Regular            10 Dalv… MIN   RB              14      250</span>
 <span class="co">#&gt; # … with 325 more rows, and 9 more variables: rush_yards &lt;dbl&gt;, rush_avg &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   rush_long &lt;int&gt;, rush_20plus &lt;int&gt;, rush_td &lt;int&gt;, rush_yards_game &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   fumble &lt;int&gt;, fumble_lost &lt;int&gt;, rush_first_down &lt;int&gt;</span></pre></div>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="co"># Get college QBR for 2014 week 5</span>
-<span class="fu"><a href="reference/get_college_qbr.html">get_college_qbr</a></span>(<span class="kw">season</span> <span class="kw">=</span> <span class="fl">2014</span>, <span class="kw">week</span> <span class="kw">=</span> <span class="fl">5</span>)
+<span class="co">#&gt; #   fumble &lt;int&gt;, fumble_lost &lt;int&gt;, rush_first_down &lt;int&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get college QBR for 2014 week 5</span>
+<span class="fu"><a href="reference/get_college_qbr.html">get_college_qbr</a></span><span class="op">(</span>season <span class="op">=</span> <span class="fl">2014</span>, week <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 <span class="co">#&gt; Scraping QBR for week 5 of 2014!</span>
 <span class="co">#&gt; # A tibble: 106 x 20</span>
 <span class="co">#&gt;    season  week first_name last_name name  short_name team_name team_short_name</span>
@@ -164,9 +170,10 @@
 <span class="co">#&gt; # … with 96 more rows, and 12 more variables: age &lt;int&gt;, row_n &lt;int&gt;,</span>
 <span class="co">#&gt; #   qbr_total &lt;dbl&gt;, points_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, total_epa &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, raw_qbr &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   sack &lt;dbl&gt;</span></pre></div>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="co"># Get NFL teams with logos, colors, alternatives, etc</span>
-<span class="fu"><a href="reference/get_nfl_teams.html">get_nfl_teams</a></span>()
+<span class="co">#&gt; #   sack &lt;dbl&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get NFL teams with logos, colors, alternatives, etc</span>
+<span class="fu"><a href="reference/get_nfl_teams.html">get_nfl_teams</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Getting NFL teams!</span>
 <span class="co">#&gt; # A tibble: 32 x 8</span>
 <span class="co">#&gt;    uid   team_name team_nickname team_short_name full_name team_color</span>
@@ -181,7 +188,7 @@
 <span class="co">#&gt;  8 5     Browns    Cleveland     CLE             Clevelan… #4C230E   </span>
 <span class="co">#&gt;  9 6     Cowboys   Dallas        DAL             Dallas C… #002E4D   </span>
 <span class="co">#&gt; 10 7     Broncos   Denver        DEN             Denver B… #002E4D   </span>
-<span class="co">#&gt; # … with 22 more rows, and 2 more variables: alternate_color &lt;chr&gt;, logo &lt;chr&gt;</span></pre></div>
+<span class="co">#&gt; # … with 22 more rows, and 2 more variables: alternate_color &lt;chr&gt;, logo &lt;chr&gt;</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -219,7 +226,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

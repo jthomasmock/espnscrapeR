@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Get NFL in-game win probabilities for a specific game from ESPN</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_espn_win_prob</span>(<span class='no'>game_id</span>)</pre>
+    <pre class="usage"><span class='fu'>get_espn_win_prob</span><span class='op'>(</span><span class='va'>game_id</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,24 +134,22 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get win prob from specific game</span>
-<span class='fu'>get_espn_win_prob</span>(<span class='kw'>game_id</span> <span class='kw'>=</span> <span class='st'>"401030956"</span>)</div><div class='output co'>#&gt; # A tibble: 159 x 19
-#&gt;    row_id quarter home_score away_score distance yard_line pos_team_id  down
-#&gt;     &lt;int&gt;   &lt;int&gt;      &lt;int&gt;      &lt;int&gt;    &lt;int&gt;     &lt;int&gt; &lt;chr&gt;       &lt;int&gt;
-#&gt;  1      1       1          0          0        0        65 17              0
-#&gt;  2      2       1          0          0       10        25 23              1
-#&gt;  3      3       1          0          0       10        25 23              2
-#&gt;  4      4       1          0          0        3        32 23              3
-#&gt;  5      5       1          0          0       10        36 23              1
-#&gt;  6      6       1          0          0        4        42 23              2
-#&gt;  7      7       1          0          0       10        67 23              1
-#&gt;  8      8       1          0          0        6        71 23              2
-#&gt;  9      9       1          0          0        1        76 23              2
-#&gt; 10     10       1          0          0       10        80 23              1
-#&gt; # … with 149 more rows, and 11 more variables: yards_to_endzone &lt;int&gt;,
-#&gt; #   short_down_distance_text &lt;chr&gt;, possession_text &lt;chr&gt;,
-#&gt; #   down_distance_text &lt;chr&gt;, text &lt;chr&gt;, play_type &lt;chr&gt;,
-#&gt; #   home_win_percentage &lt;dbl&gt;, play_id &lt;chr&gt;, tie_percentage &lt;int&gt;,
-#&gt; #   seconds_left &lt;int&gt;, game_id &lt;chr&gt;</div></pre>
+<span class='fu'>get_espn_win_prob</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='st'>"401030956"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 160 x 9</span>
+#&gt;    row_id home_team_id away_team_id tie_percentage home_win_percentage
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>               <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>      1 23           17                        0               0.599
+#&gt; <span style='color: #BCBCBC;'> 2</span>      2 23           17                        0               0.605
+#&gt; <span style='color: #BCBCBC;'> 3</span>      3 23           17                        0               0.597
+#&gt; <span style='color: #BCBCBC;'> 4</span>      4 23           17                        0               0.592
+#&gt; <span style='color: #BCBCBC;'> 5</span>      5 23           17                        0               0.62 
+#&gt; <span style='color: #BCBCBC;'> 6</span>      6 23           17                        0               0.619
+#&gt; <span style='color: #BCBCBC;'> 7</span>      7 23           17                        0               0.637
+#&gt; <span style='color: #BCBCBC;'> 8</span>      8 23           17                        0               0.656
+#&gt; <span style='color: #BCBCBC;'> 9</span>      9 23           17                        0               0.647
+#&gt; <span style='color: #BCBCBC;'>10</span>     10 23           17                        0               0.683
+#&gt; <span style='color: #949494;'># … with 150 more rows, and 4 more variables: away_win_percentage &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sequence_number &lt;chr&gt;, play_id &lt;chr&gt;, game_id &lt;chr&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -167,7 +165,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

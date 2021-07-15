@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Scrape ESPN FPI ratings for a specific season from ESPN's site</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scrape_fpi</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='fl'>2020</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"FPI"</span>)</pre>
+    <pre class="usage"><span class='fu'>scrape_fpi</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2020</span>, stat <span class='op'>=</span> <span class='st'>"FPI"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,20 +138,21 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get team offensive and defensive efficiency from 2020 season</span>
-<span class='fu'>scrape_fpi</span>(<span class='fl'>2020</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"EFF"</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping EFF for 2020!</span></div><div class='output co'>#&gt; # A tibble: 32 x 11
-#&gt;    season team  w_l   eff_ove rnk_ove eff_off rnk_off eff_def rnk_def eff_spe
-#&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;
-#&gt;  1   2020 Gree… 14-4…    73.3       1    86.1       1    45.1      13    44.2
-#&gt;  2   2020 Buff… 15-4…    69.6       2    73.9       5    47.8      10    68.7
-#&gt;  3   2020 Tamp… 14-5…    68.6       3    75.4       4    51.8       6    51.6
-#&gt;  4   2020 Kans… 16-2…    67.5       4    82.3       2    40.2      20    48.9
-#&gt;  5   2020 Balt… 12-6…    67.1       5    64.8      12    54.2       5    67.1
-#&gt;  6   2020 New … 13-5…    64.2       6    70.3       7    51.8       7    48  
-#&gt;  7   2020 Pitt… 12-5…    61.3       7    54.7      19    66.8       2    39.7
-#&gt;  8   2020 Seat… 12-5…    61         8    63.5      14    49         9    63.8
-#&gt;  9   2020 Indi… 11-6…    60.5       9    66.5      10    44.8      14    58.4
-#&gt; 10   2020 Los … 11-7…    58.1      10    50.9      22    68.4       1    32.7
-#&gt; # … with 22 more rows, and 1 more variable: rnk_spe &lt;int&gt;</div></pre>
+<span class='fu'>scrape_fpi</span><span class='op'>(</span><span class='fl'>2020</span>, stat <span class='op'>=</span> <span class='st'>"EFF"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping EFF for 2020!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 32 x 11</span>
+#&gt;    season team     w_l   eff_ove rnk_ove eff_off rnk_off eff_def rnk_def eff_spe
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>020 Green B… 14-4…    73.3       1    86.1       1    45.1      13    44.2
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>020 Buffalo… 15-4…    69.6       2    73.9       5    47.8      10    68.7
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>020 Tampa B… 14-5…    68.6       3    75.4       4    51.8       6    51.6
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>020 Kansas … 16-2…    67.5       4    82.3       2    40.2      20    48.9
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>020 Baltimo… 12-6…    67.1       5    64.8      12    54.2       5    67.1
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>020 New Orl… 13-5…    64.2       6    70.3       7    51.8       7    48  
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>020 Pittsbu… 12-5…    61.3       7    54.7      19    66.8       2    39.7
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>020 Seattle… 12-5…    61         8    63.5      14    49         9    63.8
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>020 Indiana… 11-6…    60.5       9    66.5      10    44.8      14    58.4
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>020 Los Ang… 11-7…    58.1      10    50.9      22    68.4       1    32.7
+#&gt; <span style='color: #949494;'># … with 22 more rows, and 1 more variable: rnk_spe &lt;int&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -167,7 +168,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
