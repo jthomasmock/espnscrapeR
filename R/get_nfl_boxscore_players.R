@@ -13,6 +13,8 @@
 #' @examples
 #' # Get NFL play-by-play for a specific game
 #' get_nfl_boxscore_players(game_id = "300912027")
+#'
+
 get_nfl_boxscore_players <- function(game_id) {
 
   game_url <- glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/nfl/summary")
