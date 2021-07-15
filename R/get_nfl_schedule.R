@@ -6,7 +6,7 @@
 #' @export
 #' @import tidyr dplyr purrr
 #' @importFrom dplyr %>%
-#' @importFrom jsonlite fromJSON
+#' @importFrom httr stop_for_status GET content
 #' @importFrom glue glue
 #' @examples
 #' # Get all games from 2018 season, note that this will have some overlap
