@@ -59,7 +59,7 @@ get_nfl_boxscore_players <- function(game_id) {
         stat_labels = tolower(stat_labels) %>% gsub(x = ., pattern = "/", replacement = "p"),
         stat_labels = gsub(x = stat_labels, pattern = " ", replacement = "_"),
       ) %>%
-      pivot_wider(names_from = stat_labels, values_from = stats, id_cols = c(team, text, id:displayName)) %>%
+      pivot_wider(names_from = stat_labels, values_from = stats, id_cols = c(text, id:displayName)) %>%
       rename(
         player_id = id,
         player_uid = uid,
