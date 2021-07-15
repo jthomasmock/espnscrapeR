@@ -41,7 +41,7 @@ get_nfl_schedule <- function(season){
     )
   )
 
-  stop_for_status(raw_get)
+  httr::stop_for_status(raw_get)
 
   raw_sched <- httr::content(raw_get)
 
