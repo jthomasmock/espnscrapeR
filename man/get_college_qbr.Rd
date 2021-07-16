@@ -4,12 +4,12 @@
 \alias{get_college_qbr}
 \title{Get ESPN QBR for College football}
 \usage{
-get_college_qbr(season = 2020, week = NA)
+get_college_qbr(season = 2020, type = "season")
 }
 \arguments{
 \item{season}{Numeric or character - greater than 2004}
 
-\item{week}{Numeric or character - typically 1 to 15 or Bowls}
+\item{type}{character - "season" or "weekly"}
 }
 \value{
 tibble
@@ -19,9 +19,10 @@ Get ESPN QBR for College football
 }
 \examples{
 
-# Get college QBR from 2011 season as a whole
-get_college_qbr(season = 2011, week = NA)
+# Get college QBR from 2014 for players at season level
+get_college_qbr(season = 2014, type = "season")
 
-# Get college QBR from 2019 season week 1
-get_college_qbr(2019, 1)
+# Get weekly college QBR from 2019
+# Note the mix of playoffs/bowls and regular season
+get_college_qbr(2019, type = "weekly")
 }

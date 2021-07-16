@@ -2,7 +2,9 @@
 
 export(get_538_elo)
 export(get_538_elo_historical)
+export(get_athlete)
 export(get_college_qbr)
+export(get_depth_chart)
 export(get_espn_win_prob)
 export(get_nfl_boxscore)
 export(get_nfl_boxscore_players)

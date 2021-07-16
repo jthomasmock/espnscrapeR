@@ -117,7 +117,7 @@
     <p>Get ESPN QBR for College football</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_college_qbr</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2020</span>, week <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_college_qbr</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2020</span>, type <span class='op'>=</span> <span class='st'>"season"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,8 +127,8 @@
       <td><p>Numeric or character - greater than 2004</p></td>
     </tr>
     <tr>
-      <th>week</th>
-      <td><p>Numeric or character - typically 1 to 15 or Bowls</p></td>
+      <th>type</th>
+      <td><p>character - "season" or "weekly"</p></td>
     </tr>
     </table>
 
@@ -138,48 +138,51 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># Get college QBR from 2011 season as a whole</span>
-<span class='fu'>get_college_qbr</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2011</span>, week <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2011!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 125 x 26</span>
-#&gt;    season  week player_id player_uid     player_guid        first_name last_name
-#&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4241464   s:20~l:23~a:4… 1b10c3ae12ed70355… Mac        Jones    
-#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4362887   s:20~l:23~a:4… 7e9fbd60951e2d9a8… Justin     Fields   
-#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4362874   s:20~l:23~a:4… fb2dadd974730df63… Matt       Corral   
-#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4361259   s:20~l:23~a:4… 2430b06b1be60b7a6… Zach       Wilson   
-#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4034946   s:20~l:23~a:4… 15de87c34f4d81be4… Kyle       Trask    
-#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4244068   s:20~l:23~a:4… 29586a3c56d90866b… Dustin     Crum     
-#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4426348   s:20~l:23~a:4… f03f3238b0356f0e5… Jayden     Daniels  
-#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4360310   s:20~l:23~a:4… 76111495d1d923331… Trevor     Lawrence 
-#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4046678   s:20~l:23~a:4… 510fa7104a068535e… Ian        Book     
-#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>011    <span style='color: #BB0000;'>NA</span> 4427936   s:20~l:23~a:4… 54cca29ed4a6b64a5… Grayson    McCall   
-#&gt; <span style='color: #949494;'># … with 115 more rows, and 19 more variables: display_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   short_name &lt;chr&gt;, headshot_href &lt;chr&gt;, age &lt;int&gt;, team_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   team_short_name &lt;chr&gt;, slug &lt;chr&gt;, team_id &lt;chr&gt;, team_u_id &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   qbr_total &lt;chr&gt;, pts_added &lt;chr&gt;, qb_plays &lt;chr&gt;, epa_total &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   pass &lt;chr&gt;, run &lt;chr&gt;, exp_sack &lt;chr&gt;, penalty &lt;chr&gt;, qbr_raw &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   sack &lt;chr&gt;</span></div><div class='input'>
-<span class='co'># Get college QBR from 2019 season week 1</span>
-<span class='fu'>get_college_qbr</span><span class='op'>(</span><span class='fl'>2019</span>, <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping QBR for week 1 of 2019!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 125 x 26</span>
-#&gt;    season  week player_id player_uid     player_guid        first_name last_name
-#&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>019     1 4241464   s:20~l:23~a:4… 1b10c3ae12ed70355… Mac        Jones    
-#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>019     1 4362887   s:20~l:23~a:4… 7e9fbd60951e2d9a8… Justin     Fields   
-#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>019     1 4362874   s:20~l:23~a:4… fb2dadd974730df63… Matt       Corral   
-#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>019     1 4361259   s:20~l:23~a:4… 2430b06b1be60b7a6… Zach       Wilson   
-#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>019     1 4034946   s:20~l:23~a:4… 15de87c34f4d81be4… Kyle       Trask    
-#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>019     1 4244068   s:20~l:23~a:4… 29586a3c56d90866b… Dustin     Crum     
-#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>019     1 4426348   s:20~l:23~a:4… f03f3238b0356f0e5… Jayden     Daniels  
-#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>019     1 4360310   s:20~l:23~a:4… 76111495d1d923331… Trevor     Lawrence 
-#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>019     1 4046678   s:20~l:23~a:4… 510fa7104a068535e… Ian        Book     
-#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>019     1 4427936   s:20~l:23~a:4… 54cca29ed4a6b64a5… Grayson    McCall   
-#&gt; <span style='color: #949494;'># … with 115 more rows, and 19 more variables: display_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   short_name &lt;chr&gt;, headshot_href &lt;chr&gt;, age &lt;int&gt;, team_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   team_short_name &lt;chr&gt;, slug &lt;chr&gt;, team_id &lt;chr&gt;, team_u_id &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   qbr_total &lt;chr&gt;, pts_added &lt;chr&gt;, qb_plays &lt;chr&gt;, epa_total &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   pass &lt;chr&gt;, run &lt;chr&gt;, exp_sack &lt;chr&gt;, penalty &lt;chr&gt;, qbr_raw &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   sack &lt;chr&gt;</span></div></pre>
+<span class='co'># Get college QBR from 2014 for players at season level</span>
+<span class='fu'>get_college_qbr</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2014</span>, type <span class='op'>=</span> <span class='st'>"season"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2014!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 129 x 27</span>
+#&gt;    season week  week_text  player_id player_uid player_guid first_name last_name
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 511459    s:20~l:23… 33be1f4ad8… Marcus     Mariota  
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 545624    s:20~l:23… 9c705b0e83… J.T.       Barrett  
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 550021    s:20~l:23… 3dd077e962… Nick       Marshall 
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 504052    s:20~l:23… 2c42ed67da… Blake      Sims     
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 531104    s:20~l:23… 53bc77a8ee… Justin     Thomas   
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 512705    s:20~l:23… 0acf47c043… Connor     Cook     
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 504004    s:20~l:23… bbb3c826ab… Hutson     Mason    
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 549865    s:20~l:23… b742ddc22c… Kenny      Hill     
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 503970    s:20~l:23… d1cb582a25… Tyler      Murphy   
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 513329    s:20~l:23… 3c75884248… Cody       Kessler  
+#&gt; <span style='color: #949494;'># … with 119 more rows, and 19 more variables: display_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   short_name &lt;chr&gt;, age &lt;int&gt;, team_name &lt;chr&gt;, team_short_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   slug &lt;chr&gt;, team_id &lt;chr&gt;, team_uid &lt;chr&gt;, headshot_href &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   qbr_total &lt;dbl&gt;, pts_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sack &lt;dbl&gt;</span></div><div class='input'>
+<span class='co'># Get weekly college QBR from 2019</span>
+<span class='co'># Note the mix of playoffs/bowls and regular season</span>
+<span class='fu'>get_college_qbr</span><span class='op'>(</span><span class='fl'>2019</span>, type <span class='op'>=</span> <span class='st'>"weekly"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping QBR for all weeks of 2019!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1,647 x 35</span>
+#&gt;    season  week week_text week_type player_id player_uid  player_guid first_name
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4040715   s:20~l:23~… caceb80c63… Jalen     
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4055171   s:20~l:23~… 972702fdd9… Anthony   
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4362887   s:20~l:23~… 7e9fbd6095… Justin    
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   3915511   s:20~l:23~… e6957db55b… Joe       
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4036419   s:20~l:23~… e55adf996d… Skylar    
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4241479   s:20~l:23~… 3858bbe063… Tua       
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4361825   s:20~l:23~… f9419fec0d… Spencer   
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   3916726   s:20~l:23~… 4ae2ce0ebe… Jon       
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   3915436   s:20~l:23~… a6b089aeff… Steven    
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4259127   s:20~l:23~… 6193ac839d… Mike      
+#&gt; <span style='color: #949494;'># … with 1,637 more rows, and 27 more variables: last_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   display_name &lt;chr&gt;, short_name &lt;chr&gt;, headshot_href &lt;chr&gt;, age &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   team_name &lt;chr&gt;, team_short_name &lt;chr&gt;, slug &lt;chr&gt;, team_id &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   team_uid &lt;chr&gt;, game_id &lt;chr&gt;, game_date &lt;chr&gt;, player_home_away &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   score &lt;chr&gt;, opp_team_id &lt;chr&gt;, opp_team_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   opp_team_short_name &lt;chr&gt;, qbr_total &lt;dbl&gt;, pts_added &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;, sack &lt;dbl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
