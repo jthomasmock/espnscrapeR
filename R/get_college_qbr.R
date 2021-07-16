@@ -57,17 +57,12 @@ get_college_qbr <- function(season = 2020, week = NA) {
 
   raw_get <- httr::GET(
     url = base_url,
-    query = list(
-      qbrType = "seasons",
-      limit = 200,
-      season = 2020
-    )
+    query = query_type
   )
 
   httr::stop_for_status(raw_get)
 
   raw_json <- httr::content(raw_get)
-
 
   # qbr names
   qbr_names <- c(
@@ -97,13 +92,13 @@ get_college_qbr <- function(season = 2020, week = NA) {
     ) %>%
     dplyr::select(-name, -teams, -categories, -headshot, -position, -status, -links, -type) %>%
     dplyr::mutate(qbr_names = list(qbr_names)) %>%
-    # select(id, shortName, qbr_values, qbr_names) %>%
     tidyr::unchop(qbr_values:qbr_names) %>%
     tidyr::unchop(qbr_values) %>%
     tidyr::pivot_wider(names_from = qbr_names, values_from = qbr_values) %>%
     janitor::clean_names() %>%
-    dplyr::rename(player_id = id, player_uid = uid, player_guid = guid) %>%
+    dplyr::rename(player_id = id, player_uid = uid, player_guid = guid,
+                  team_uid = team_u_id) %>%
     dplyr::mutate(season = as.integer(season), week = as.integer(week)) %>%
-    # dplyr::mutate_at(vars(qbr_total:sack), as.double) %>%
+    dplyr::mutate_at(vars(qbr_total:sack), as.double) %>%
     dplyr::select(season, week, dplyr::everything())
 }
