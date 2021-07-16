@@ -109,10 +109,17 @@ get_college_qbr <- function(season = 2020, type = "season") {
         categories,
         qbr_values = list(1, "totals")
       ) %>%
-      tidyr::hoist(
-        headshot,
-        headshot_href = "href"
-      ) %>%
+      {
+        if ("headshot" %in% names(.)) {
+          tidyr::hoist(
+            .,
+            headshot,
+            headshot_href = "href"
+          )
+        } else {
+          .
+        }
+      } %>%
       tidyr::hoist(
         game,
         game_id = "id",
@@ -132,14 +139,27 @@ get_college_qbr <- function(season = 2020, type = "season") {
         player_guid = guid,
         team_uid = team_u_id
       ) %>%
-      dplyr::select(-name, -teams, -categories, -headshot, -position, -status, -links, -type) %>%
+      dplyr::select(
+        -any_of(
+          c(
+            "headshot",
+            "name",
+            "categories",
+            "teams",
+            "position",
+            "status",
+            "links",
+            "type"
+          )
+        )
+      ) %>%
       dplyr::mutate(qbr_names = list(qbr_names)) %>%
       tidyr::unchop(c(qbr_values, qbr_names)) %>%
       tidyr::unchop(qbr_values) %>%
       tidyr::pivot_wider(names_from = qbr_names, values_from = qbr_values) %>%
       janitor::clean_names() %>%
       dplyr::mutate(season = as.integer(season)) %>%
-      dplyr::mutate_at(vars(qbr_total:sack), as.double) %>%
+      dplyr::mutate(across(qbr_total:sack, as.double)) %>%
       dplyr::mutate(
         week_type = dplyr::if_else(
           grepl(x = week_text, pattern = "Bowl"),
@@ -149,7 +169,6 @@ get_college_qbr <- function(season = 2020, type = "season") {
       ) %>%
       dplyr::select(season, contains("week"), dplyr::everything(), -game) %>%
       dplyr::arrange(desc(week_type), week, desc(qbr_total))
-
   } else if (type == "season") {
     raw_data %>%
       tidyr::unnest_wider(value) %>%
@@ -158,12 +177,32 @@ get_college_qbr <- function(season = 2020, type = "season") {
         categories,
         qbr_values = list(1, "totals")
       ) %>%
-      tidyr::hoist(
-        headshot,
-        headshot_href = "href"
+      {
+        if ("headshot" %in% names(.)) {
+          tidyr::hoist(
+            .,
+            headshot,
+            headshot_href = "href"
+          )
+        } else {
+          .
+        }
+      } %>%
+      dplyr::select(
+        -any_of(
+          c(
+            "headshot",
+            "name",
+            "categories",
+            "teams",
+            "position",
+            "status",
+            "links",
+            "type"
+          )
+        )
       ) %>%
-      dplyr::select(-name, -teams, -categories, -headshot, -position, -status, -links, -type) %>%
-      dplyr::mutate(qbr_names = list(qbr_names)) %>%
+    dplyr::mutate(qbr_names = list(qbr_names)) %>%
       tidyr::unchop(qbr_values:qbr_names) %>%
       tidyr::unchop(qbr_values) %>%
       tidyr::pivot_wider(names_from = qbr_names, values_from = qbr_values) %>%
@@ -174,8 +213,12 @@ get_college_qbr <- function(season = 2020, type = "season") {
         player_guid = guid,
         team_uid = team_u_id
       ) %>%
-      dplyr::mutate(season = as.integer(season), week_text = "Season Level", week = NA) %>%
-      dplyr::mutate_at(vars(qbr_total:sack), as.double) %>%
+      dplyr::mutate(
+        season = as.integer(season),
+        week_text = "Season Level",
+        week = NA
+      ) %>%
+      dplyr::mutate(across(qbr_total:sack, as.double)) %>%
       dplyr::select(season, week, week_text, dplyr::everything())
   }
 }
