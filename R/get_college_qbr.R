@@ -168,7 +168,11 @@ get_college_qbr <- function(season = 2020, type = "season") {
         )
       ) %>%
       dplyr::select(season, contains("week"), dplyr::everything(), -game) %>%
-      dplyr::arrange(desc(week_type), week, desc(qbr_total))
+      dplyr::arrange(desc(week_type), week, desc(qbr_total)) %>%
+      dplyr::rename(
+        name_first = first_name, name_last = last_name,
+        name_display = display_name, name_short = short_name
+      )
   } else if (type == "season") {
     raw_data %>%
       tidyr::unnest_wider(value) %>%
@@ -219,6 +223,10 @@ get_college_qbr <- function(season = 2020, type = "season") {
         week = NA
       ) %>%
       dplyr::mutate(across(qbr_total:sack, as.double)) %>%
-      dplyr::select(season, week, week_text, dplyr::everything())
+      dplyr::select(season, week, week_text, dplyr::everything()) %>%
+      dplyr::rename(
+        name_first = first_name, name_last = last_name,
+        name_display = display_name, name_short = short_name
+      )
   }
 }
