@@ -138,27 +138,7 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
         name_last = lastName,
         name_display = displayName,
         headshot_href,
-        team = teamName
-      ) %>%
-      dplyr::mutate(vals = purrr::map(vals, ~ purrr::set_names(.x, in_nm))) %>%
-      tidyr::unnest_wider(vals) %>%
-      dplyr::mutate(dplyr::across(qbr_total:sack, as.double)) %>%
-      dplyr::mutate(
-        rank = rank(desc(qbr_total)),
-        game_week = "Season Total",
-        season = season,
-        season_type = season_type
-      ) %>%
-      dplyr::select(
-        player_id,
-        name_short,
-        vals,
-        name_first,
-        name_last,
-        name_display,
-        headshot_href,
-        team,
-        team_abb = teamShortName,
+        team = teamName,
         team_id = teamId,
         team_uid = teamUId
       ) %>%
@@ -170,7 +150,7 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
         game_week = "Season Total",
         season = season,
         season_type = season_type
-      ) %>%
+      )  %>%
       dplyr::select(
         season,
         season_type,
