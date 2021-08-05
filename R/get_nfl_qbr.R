@@ -67,7 +67,7 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
   query_type <- if (is.na(week) & season_type == "Regular") {
     list(
       qbrType = "seasons",
-      seasonType = 2,
+      seasontype = 2,
       isqualified = "true",
       season = season
     )
@@ -150,17 +150,39 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
         season_type = season_type
       ) %>%
       dplyr::select(
+        player_id = id,
+        name_short = shortName,
+        vals,
+        name_first = firstName,
+        name_last = lastName,
+        name_display = displayName,
+        headshot_href,
+        team = teamName,
+        team_abb = teamShortName,
+        team_id = teamId,
+        team_uid = teamUId
+      ) %>%
+      dplyr::mutate(vals = purrr::map(vals, ~ purrr::set_names(.x, in_nm))) %>%
+      tidyr::unnest_wider(vals) %>%
+      dplyr::mutate(dplyr::across(qbr_total:sack, as.double)) %>%
+      dplyr::mutate(
+        rank = rank(desc(qbr_total)),
+        game_week = "Season Total",
+        season = season,
+        season_type = season_type
+      ) %>%
+      dplyr::select(
         season,
         season_type,
         game_week,
         team_abb,
         player_id,
-        short_name,
+        name_short,
         rank,
         qbr_total:sack,
-        first_name,
-        last_name,
-        name,
+        name_first,
+        name_last,
+        name_display,
         headshot_href,
         team
       )
@@ -194,11 +216,11 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
         week_text,
         team_abb = teamShortName,
         player_id = id,
-        short_name = shortName,
+        name_short = shortName,
         vals,
-        first_name = firstName,
-        last_name = lastName,
-        name = displayName,
+        name_first = firstName,
+        name_last = lastName,
+        name_display = displayName,
         headshot_href,
         team = teamName,
         opp_id:opp_name,
@@ -220,17 +242,18 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
         week_text,
         team_abb,
         player_id,
-        short_name,
+        name_short,
         rank,
         qbr_total:sack,
-        first_name,
-        last_name,
-        name,
+        name_first,
+        name_last,
+        name_display,
         headshot_href,
         team,
         opp_id:opp_name,
         week_num
       )
+
   }
 
   final_df
