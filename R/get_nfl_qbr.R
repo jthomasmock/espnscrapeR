@@ -132,11 +132,11 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
       dplyr::select(
         team_abb = teamShortName,
         player_id = id,
-        short_name = shortName,
+        name_short = shortName,
         vals,
-        first_name = firstName,
-        last_name = lastName,
-        name = displayName,
+        name_first = firstName,
+        name_last = lastName,
+        name_display = displayName,
         headshot_href,
         team = teamName
       ) %>%
@@ -150,14 +150,14 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
         season_type = season_type
       ) %>%
       dplyr::select(
-        player_id = id,
-        name_short = shortName,
+        player_id,
+        name_short,
         vals,
-        name_first = firstName,
-        name_last = lastName,
-        name_display = displayName,
+        name_first,
+        name_last,
+        name_display,
         headshot_href,
-        team = teamName,
+        team,
         team_abb = teamShortName,
         team_id = teamId,
         team_uid = teamUId
