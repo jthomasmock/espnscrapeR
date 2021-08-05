@@ -23,3 +23,7 @@ Imports:
     janitor,
     readr,
     gt (>= 0.3)
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr
