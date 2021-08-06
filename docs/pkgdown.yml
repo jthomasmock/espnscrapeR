@@ -1,6 +1,7 @@
-pandoc: 2.11.4
+pandoc: 2.14.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2021-07-16T20:18Z
+articles:
+  qbr_example: qbr_example.html
+last_built: 2021-08-06T14:29Z
 

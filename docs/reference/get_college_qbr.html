@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -86,6 +86,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/qbr_example.html">QBR Examples</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -140,8 +152,8 @@
     <pre class="examples"><div class='input'>
 <span class='co'># Get college QBR from 2014 for players at season level</span>
 <span class='fu'>get_college_qbr</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2014</span>, type <span class='op'>=</span> <span class='st'>"season"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2014!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 129 x 27</span>
-#&gt;    season week  week_text  player_id player_uid player_guid first_name last_name
+</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2014!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 129 × 27</span>
+#&gt;    season week  week_text  player_id player_uid player_guid name_first name_last
 #&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
 #&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 511459    s:20~l:23… 33be1f4ad8… Marcus     Mariota  
 #&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 545624    s:20~l:23… 9c705b0e83… J.T.       Barrett  
@@ -153,8 +165,8 @@
 #&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 549865    s:20~l:23… b742ddc22c… Kenny      Hill     
 #&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 503970    s:20~l:23… d1cb582a25… Tyler      Murphy   
 #&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>014 <span style='color: #BB0000;'>NA</span>    Season Le… 513329    s:20~l:23… 3c75884248… Cody       Kessler  
-#&gt; <span style='color: #949494;'># … with 119 more rows, and 19 more variables: display_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   short_name &lt;chr&gt;, age &lt;int&gt;, team_name &lt;chr&gt;, team_short_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'># … with 119 more rows, and 19 more variables: name_display &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   name_short &lt;chr&gt;, age &lt;int&gt;, team_name &lt;chr&gt;, team_short_name &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   slug &lt;chr&gt;, team_id &lt;chr&gt;, team_uid &lt;chr&gt;, headshot_href &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   qbr_total &lt;dbl&gt;, pts_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;,</span>
@@ -162,8 +174,8 @@
 <span class='co'># Get weekly college QBR from 2019</span>
 <span class='co'># Note the mix of playoffs/bowls and regular season</span>
 <span class='fu'>get_college_qbr</span><span class='op'>(</span><span class='fl'>2019</span>, type <span class='op'>=</span> <span class='st'>"weekly"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping QBR for all weeks of 2019!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1,647 x 35</span>
-#&gt;    season  week week_text week_type player_id player_uid  player_guid first_name
+</div><div class='output co'>#&gt; <span class='message'>Scraping QBR for all weeks of 2019!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1,647 × 35</span>
+#&gt;    season  week week_text week_type player_id player_uid  player_guid name_first
 #&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
 #&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4040715   s:20~l:23~… caceb80c63… Jalen     
 #&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4055171   s:20~l:23~… 972702fdd9… Anthony   
@@ -175,14 +187,13 @@
 #&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   3916726   s:20~l:23~… 4ae2ce0ebe… Jon       
 #&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   3915436   s:20~l:23~… a6b089aeff… Steven    
 #&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4259127   s:20~l:23~… 6193ac839d… Mike      
-#&gt; <span style='color: #949494;'># … with 1,637 more rows, and 27 more variables: last_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   display_name &lt;chr&gt;, short_name &lt;chr&gt;, headshot_href &lt;chr&gt;, age &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'># … with 1,637 more rows, and 27 more variables: name_last &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   name_display &lt;chr&gt;, name_short &lt;chr&gt;, headshot_href &lt;chr&gt;, age &lt;int&gt;,</span>
 #&gt; <span style='color: #949494;'>#   team_name &lt;chr&gt;, team_short_name &lt;chr&gt;, slug &lt;chr&gt;, team_id &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   team_uid &lt;chr&gt;, game_id &lt;chr&gt;, game_date &lt;chr&gt;, player_home_away &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   score &lt;chr&gt;, opp_team_id &lt;chr&gt;, opp_team_name &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   opp_team_short_name &lt;chr&gt;, qbr_total &lt;dbl&gt;, pts_added &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;, sack &lt;dbl&gt;</span></div></pre>
+#&gt; <span style='color: #949494;'>#   qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, …</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

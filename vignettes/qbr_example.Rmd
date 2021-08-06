@@ -1,0 +1,136 @@
+---
+title: "QBR Examples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{QBR Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+This short guide focuses on using `espnscrapeR` or the `nflverse/espnscrapeR-data` repo to access QBR data.
+
+## Setup
+
+If you have never installed the necessary R packages, go ahead and expand the collapsed section below, otherwise skip ahead to the "Load and Prep" stage.
+
+<details><summary>Package Installation</summary>
+
+You'll need the following packages to get started. Note that as of now, `espnscrapeR` is not on CRAN so you'll need to install it from GitHub as seen below.
+
+```{r install, eval = FALSE}
+install.packages(c("tidyverse", "gt", "remotes"), type = "binary")
+remotes::install_github("espnscrapeR")
+```
+
+
+</details>
+
+## Load and Prep
+
+Go ahead and load the packages to get started.
+
+```{r setup}
+library(espnscrapeR)
+library(tidyverse)
+library(gt)
+```
+
+You can get the data directly from ESPN's API.
+
+```{r}
+# season level data (1x row per QB per season)
+qbr_2020 <- get_nfl_qbr(2020, week = NA)
+```
+
+But it'll be easier and recommended to just read in the data directly with either `nflreadr` or just the raw URL.
+
+```{r}
+nfl_qbr_season <- readr::read_csv("https://raw.githubusercontent.com/nflverse/espnscrapeR-data/master/data/qbr-nfl-season.csv")
+```
+
+This is the QBR values for all QBs at the season level from 2006 to now. The `dplyr::glimpse()` function can be used to quickly see the type of the columns (IE numeric, character, etc) and the top few values. You can think of it as a beefed up version of the `str()` function.
+
+```{r}
+nfl_qbr_season %>% 
+  glimpse()
+```
+
+## Work with the data
+
+### Group By
+
+We can `group_by()` the season and find the median QBR per season.
+
+```{r}
+nfl_qbr_season %>% 
+  group_by(season) %>% 
+  summarize(qbr_median = median(qbr_total), .groups = "drop")
+```
+
+We can also `group_by()` the season and find the max `n` values per season.
+
+```{r}
+top_16_per_yr <- nfl_qbr_season %>% 
+  select(season, team_abb, short_name, qbr_total) %>% 
+  # group by season
+  group_by(season) %>% 
+  # get top 16
+  slice_max(order_by = qbr_total, n = 16) %>% 
+  # add the grouped median
+  mutate(qbr_median = median(qbr_total)) %>% 
+  ungroup()
+
+top_16_per_yr
+```
+
+We can then visualize this with a quick `ggplot`.
+
+```{r}
+top_16_per_yr %>% 
+  ggplot(aes(x = season, y = qbr_total, group = season)) +
+  geom_boxplot(alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  geom_point(aes(y = qbr_median), color = "red", size = 3) +
+  theme_minimal()
+```
+
+Alternatively you can also find the median by quarterback.
+
+```{r}
+nfl_qbr_season %>%
+  group_by(short_name) %>% 
+  summarize(
+    median = median(qbr_total), 
+    years = range(season) %>% paste0(collapse = "-"),
+    active = if_else(max(season) == 2020, "Active", "Retired"),
+    .groups = "drop"
+    ) %>% 
+  arrange(desc(median))
+```
+
+
+```{r, echo=FALSE, eval = FALSE}
+nfl_qbr_season %>%
+  group_by(short_name) %>% 
+  mutate(median = median(qbr_total), q5 = quantile(qbr_total, 0.5)) %>% 
+  filter(n() > 5) %>% 
+  ungroup() %>% #select(median, q5)
+  filter(median >= median(qbr_total)) %>% 
+# %>% 
+#   # mutate(qu = quantile(qbr_total))
+#   filter(median <= quantile(qbr_total, 0.15) | median >= quantile(qbr_total, 0.75)) %>% 
+  ggplot(aes(x = qbr_total, y = fct_reorder(short_name, qbr_total), color = season)) +
+  geom_boxplot() +
+  geom_jitter() +
+  scale_color_viridis_c(direction = -1)
+```
+

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -86,6 +86,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/qbr_example.html">QBR Examples</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -136,31 +148,14 @@
     <pre class="examples"><div class='input'>
 <span class='co'># Get NFL games and their outcomes</span>
 <span class='fu'>get_sharpe_data</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"games"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  .default = col_double(),</span>
-#&gt; <span class='message'>  game_id = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  game_type = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  gameday = <span style='color: #0000BB;'>col_date(format = "")</span>,</span>
-#&gt; <span class='message'>  weekday = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  gametime = <span style='color: #0000BB;'>col_time(format = "")</span>,</span>
-#&gt; <span class='message'>  away_team = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  home_team = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  location = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  roof = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  surface = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  away_qb_id = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  home_qb_id = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  away_qb_name = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  home_qb_name = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  away_coach = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  home_coach = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  referee = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  stadium_id = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  stadium = <span style='color: #BB0000;'>col_character()</span></span>
-#&gt; <span class='message'>)</span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> for the full column specifications.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,124 x 41</span>
+</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>6124</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>41</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span>  (17): game_id, game_type, weekday, away_team, home_team, location, roof...</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span>  (22): season, week, away_score, home_score, result, total, overtime, ol...</span>
+#&gt; <span class='message'><span style='color: #0000BB;'>date</span>  (1): gameday</span>
+#&gt; <span class='message'><span style='color: #0000BB;'>time</span>  (1): gametime</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,124 × 41</span>
 #&gt;    game_id         season game_type  week gameday    weekday gametime away_team
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;time&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
 #&gt; <span style='color: #BCBCBC;'> 1</span> 1999_01_MIN_ATL   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    MIN      
@@ -179,33 +174,15 @@
 #&gt; <span style='color: #949494;'>#   away_rest &lt;dbl&gt;, home_rest &lt;dbl&gt;, away_moneyline &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   home_moneyline &lt;dbl&gt;, spread_line &lt;dbl&gt;, away_spread_odds &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   home_spread_odds &lt;dbl&gt;, total_line &lt;dbl&gt;, under_odds &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   over_odds &lt;dbl&gt;, div_game &lt;dbl&gt;, roof &lt;chr&gt;, surface &lt;chr&gt;, temp &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   wind &lt;dbl&gt;, away_qb_id &lt;chr&gt;, home_qb_id &lt;chr&gt;, away_qb_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   home_qb_name &lt;chr&gt;, away_coach &lt;chr&gt;, home_coach &lt;chr&gt;, referee &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   stadium_id &lt;chr&gt;, stadium &lt;chr&gt;</span></div><div class='input'>
+#&gt; <span style='color: #949494;'>#   over_odds &lt;dbl&gt;, div_game &lt;dbl&gt;, roof &lt;chr&gt;, surface &lt;chr&gt;, temp &lt;dbl&gt;, …</span></div><div class='input'>
 <span class='co'># Get team abbreviations/names/etc by year</span>
 <span class='fu'>get_sharpe_data</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"teams"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  season = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  team = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  nfl = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  nfl_team_id = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  pfr = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  pff = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  pfflabel = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  fo = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  full = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  location = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  short_location = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  nickname = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  hyphenated = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  sbr = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  sbr_wins = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  sbr_name = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  draft_kings = <span style='color: #BB0000;'>col_character()</span></span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 640 x 17</span>
+</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>640</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>17</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (13): team, nfl, nfl_team_id, pfr, pfflabel, fo, full, location, short_l...</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span>  (4): season, pff, sbr, sbr_wins</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 640 × 17</span>
 #&gt;    season team  nfl   nfl_team_id pfr     pff pfflabel fo    full       location
 #&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
 #&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>002 ARI   ARI   3800        CRD      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       ARI   Arizona C… Arizona 

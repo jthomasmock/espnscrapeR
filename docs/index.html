@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -46,6 +46,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/qbr_example.html">QBR Examples</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -90,105 +102,109 @@
 <code class="sourceCode R"><span class="co"># Get NFL QBR for the 2019 regular season week 4</span>
 <span class="fu"><a href="reference/get_nfl_qbr.html">get_nfl_qbr</a></span><span class="op">(</span><span class="st">"2019"</span>, season_type <span class="op">=</span> <span class="st">"Regular"</span>, week <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 <span class="co">#&gt; Scraping weekly QBR for week 4 of 2019!</span>
-<span class="co">#&gt; # A tibble: 31 x 21</span>
-<span class="co">#&gt;    season season_type game_week  rank first_name last_name name  short_name</span>
-<span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     </span>
-<span class="co">#&gt;  1   2019 Regular     4             1 Jameis     Winston   Jame… J. Winston</span>
-<span class="co">#&gt;  2   2019 Regular     4             2 Carson     Wentz     Cars… C. Wentz  </span>
-<span class="co">#&gt;  3   2019 Regular     4             3 Mason      Rudolph   Maso… M. Rudolph</span>
-<span class="co">#&gt;  4   2019 Regular     4             4 Philip     Rivers    Phil… P. Rivers </span>
-<span class="co">#&gt;  5   2019 Regular     4             5 Chase      Daniel    Chas… C. Daniel </span>
-<span class="co">#&gt;  6   2019 Regular     4             6 Dak        Prescott  Dak … D. Presco…</span>
-<span class="co">#&gt;  7   2019 Regular     4             7 Matthew    Stafford  Matt… M. Staffo…</span>
-<span class="co">#&gt;  8   2019 Regular     4             8 Joe        Flacco    Joe … J. Flacco </span>
-<span class="co">#&gt;  9   2019 Regular     4             9 Aaron      Rodgers   Aaro… A. Rodgers</span>
-<span class="co">#&gt; 10   2019 Regular     4            10 Baker      Mayfield  Bake… B. Mayfie…</span>
-<span class="co">#&gt; # … with 21 more rows, and 13 more variables: team_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   team_short_name &lt;chr&gt;, qbr_total &lt;dbl&gt;, points_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   total_epa &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   raw_qbr &lt;dbl&gt;, sack &lt;dbl&gt;, headshot_href &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 31 × 29</span>
+<span class="co">#&gt;    season season_type game_id   game_week week_text team_abb player_id name_short</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     </span>
+<span class="co">#&gt;  1 2019   Regular     401128069         4 Week 4    TB       2969939   J. Winston</span>
+<span class="co">#&gt;  2 2019   Regular     401127863         4 Week 4    PHI      2573079   C. Wentz  </span>
+<span class="co">#&gt;  3 2019   Regular     401128109         4 Week 4    PIT      3116407   M. Rudolph</span>
+<span class="co">#&gt;  4 2019   Regular     401128055         4 Week 4    LAC      5529      P. Rivers </span>
+<span class="co">#&gt;  5 2019   Regular     401128093         4 Week 4    CHI      12471     C. Daniel </span>
+<span class="co">#&gt;  6 2019   Regular     401128102         4 Week 4    DAL      2577417   D. Presco…</span>
+<span class="co">#&gt;  7 2019   Regular     401128023         4 Week 4    DET      12483     M. Staffo…</span>
+<span class="co">#&gt;  8 2019   Regular     401128097         4 Week 4    DEN      11252     J. Flacco </span>
+<span class="co">#&gt;  9 2019   Regular     401127863         4 Week 4    GB       8439      A. Rodgers</span>
+<span class="co">#&gt; 10 2019   Regular     401128018         4 Week 4    CLE      3052587   B. Mayfie…</span>
+<span class="co">#&gt; # … with 21 more rows, and 21 more variables: rank &lt;dbl&gt;, qbr_total &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   pts_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;, sack &lt;dbl&gt;, name_first &lt;chr&gt;,</span>
+<span class="co">#&gt; #   name_last &lt;chr&gt;, name_display &lt;chr&gt;, headshot_href &lt;chr&gt;, team &lt;chr&gt;,</span>
+<span class="co">#&gt; #   opp_id &lt;chr&gt;, opp_abb &lt;chr&gt;, opp_team &lt;chr&gt;, opp_name &lt;chr&gt;, week_num &lt;int&gt;</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get NFL standings for 2010</span>
 <span class="fu"><a href="reference/get_nfl_standings.html">get_nfl_standings</a></span><span class="op">(</span><span class="fl">2010</span><span class="op">)</span>
-<span class="co">#&gt; Scraping 2010</span>
-<span class="co">#&gt; # A tibble: 32 x 27</span>
-<span class="co">#&gt;    city  team_name abb_name full_name logos playoff_seed  wins losses</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 Pitt… Steelers  PIT      Pittsbur… http…            0    12      4</span>
-<span class="co">#&gt;  2 Indi… Colts     IND      Indianap… http…            0    10      6</span>
-<span class="co">#&gt;  3 Kans… Chiefs    KC       Kansas C… http…            0    10      6</span>
-<span class="co">#&gt;  4 Balt… Ravens    BAL      Baltimor… http…            0    12      4</span>
-<span class="co">#&gt;  5 New … Jets      NYJ      New York… http…            0    11      5</span>
-<span class="co">#&gt;  6 New … Patriots  NE       New Engl… http…            0    14      2</span>
-<span class="co">#&gt;  7 San … Chargers  SD       San Dieg… http…            0     9      7</span>
-<span class="co">#&gt;  8 Jack… Jaguars   JAX      Jacksonv… http…            0     8      8</span>
-<span class="co">#&gt;  9 Oakl… Raiders   OAK      Oakland … http…            0     8      8</span>
-<span class="co">#&gt; 10 Miami Dolphins  MIA      Miami Do… http…            0     7      9</span>
-<span class="co">#&gt; # … with 22 more rows, and 19 more variables: win_percent &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   games_behind &lt;dbl&gt;, ties &lt;dbl&gt;, points_for &lt;dbl&gt;, points_against &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   differential &lt;dbl&gt;, streak &lt;dbl&gt;, clincher &lt;dbl&gt;, league_win_percent &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   division_record &lt;dbl&gt;, division_wins &lt;dbl&gt;, division_ties &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   division_losses &lt;dbl&gt;, all_splits &lt;dbl&gt;, home &lt;dbl&gt;, road &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   vs_div &lt;dbl&gt;, vs_conf &lt;dbl&gt;, year &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt; Returning 2010</span>
+<span class="co">#&gt; # A tibble: 32 × 28</span>
+<span class="co">#&gt;    conf  season team_id team_location team_name team_abb team_full  team_logo   </span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;       </span>
+<span class="co">#&gt;  1 AFC     2010 17      New England   Patriots  NE       New Engla… https://a.e…</span>
+<span class="co">#&gt;  2 AFC     2010 23      Pittsburgh    Steelers  PIT      Pittsburg… https://a.e…</span>
+<span class="co">#&gt;  3 AFC     2010 33      Baltimore     Ravens    BAL      Baltimore… https://a.e…</span>
+<span class="co">#&gt;  4 AFC     2010 20      New York      Jets      NYJ      New York … https://a.e…</span>
+<span class="co">#&gt;  5 AFC     2010 11      Indianapolis  Colts     IND      Indianapo… https://a.e…</span>
+<span class="co">#&gt;  6 AFC     2010 12      Kansas City   Chiefs    KC       Kansas Ci… https://a.e…</span>
+<span class="co">#&gt;  7 AFC     2010 24      San Diego     Chargers  SD       San Diego… https://a.e…</span>
+<span class="co">#&gt;  8 AFC     2010 13      Oakland       Raiders   OAK      Oakland R… https://a.e…</span>
+<span class="co">#&gt;  9 AFC     2010 30      Jacksonville  Jaguars   JAX      Jacksonvi… https://a.e…</span>
+<span class="co">#&gt; 10 AFC     2010 15      Miami         Dolphins  MIA      Miami Dol… https://a.e…</span>
+<span class="co">#&gt; # … with 22 more rows, and 20 more variables: seed &lt;int&gt;, wins &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   losses &lt;dbl&gt;, win_pct &lt;dbl&gt;, g_behind &lt;dbl&gt;, ties &lt;dbl&gt;, pts_for &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   pts_against &lt;dbl&gt;, pts_diff &lt;dbl&gt;, streak &lt;dbl&gt;, div_ties &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   record &lt;chr&gt;, home_wins &lt;dbl&gt;, home_losses &lt;dbl&gt;, away_wins &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   away_losses &lt;dbl&gt;, conf_wins &lt;dbl&gt;, conf_losses &lt;dbl&gt;, div_wins &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   div_losses &lt;dbl&gt;</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get NFL </span>
 <span class="fu"><a href="reference/scrape_espn_stats.html">scrape_espn_stats</a></span><span class="op">(</span><span class="fl">2019</span>, stat <span class="op">=</span> <span class="st">"rushing"</span><span class="op">)</span>
 <span class="co">#&gt; Scraping rushing stats from 2019 Regular season!</span>
-<span class="co">#&gt; # A tibble: 335 x 17</span>
-<span class="co">#&gt;    season season_type rush_rank name  team  pos   games_played rush_att</span>
-<span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;           &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;int&gt;    &lt;int&gt;</span>
-<span class="co">#&gt;  1   2019 Regular             1 Derr… TEN   RB              15      303</span>
-<span class="co">#&gt;  2   2019 Regular             2 Nick… CLE   RB              16      298</span>
-<span class="co">#&gt;  3   2019 Regular             3 Chri… CAR   RB              16      287</span>
-<span class="co">#&gt;  4   2019 Regular             4 Ezek… DAL   RB              16      301</span>
-<span class="co">#&gt;  5   2019 Regular             5 Chri… SEA   RB              15      278</span>
-<span class="co">#&gt;  6   2019 Regular             6 Lama… BAL   QB              15      176</span>
-<span class="co">#&gt;  7   2019 Regular             7 Leon… JAX   RB              15      265</span>
-<span class="co">#&gt;  8   2019 Regular             8 Josh… OAK   RB              13      242</span>
-<span class="co">#&gt;  9   2019 Regular             9 Joe … CIN   RB              16      278</span>
-<span class="co">#&gt; 10   2019 Regular            10 Dalv… MIN   RB              14      250</span>
+<span class="co">#&gt; # A tibble: 335 × 17</span>
+<span class="co">#&gt;    season season_type rush_rank name           team  pos   games_played rush_att</span>
+<span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;        &lt;int&gt;    &lt;int&gt;</span>
+<span class="co">#&gt;  1   2019 Regular             1 Derrick Henry  TEN   RB              15      303</span>
+<span class="co">#&gt;  2   2019 Regular             2 Nick Chubb     CLE   RB              16      298</span>
+<span class="co">#&gt;  3   2019 Regular             3 Christian McC… CAR   RB              16      287</span>
+<span class="co">#&gt;  4   2019 Regular             4 Ezekiel Ellio… DAL   RB              16      301</span>
+<span class="co">#&gt;  5   2019 Regular             5 Chris Carson   SEA   RB              15      278</span>
+<span class="co">#&gt;  6   2019 Regular             6 Lamar Jackson  BAL   QB              15      176</span>
+<span class="co">#&gt;  7   2019 Regular             7 Leonard Fourn… JAX   RB              15      265</span>
+<span class="co">#&gt;  8   2019 Regular             8 Josh Jacobs    OAK   RB              13      242</span>
+<span class="co">#&gt;  9   2019 Regular             9 Joe Mixon      CIN   RB              16      278</span>
+<span class="co">#&gt; 10   2019 Regular            10 Dalvin Cook    MIN   RB              14      250</span>
 <span class="co">#&gt; # … with 325 more rows, and 9 more variables: rush_yards &lt;dbl&gt;, rush_avg &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   rush_long &lt;int&gt;, rush_20plus &lt;int&gt;, rush_td &lt;int&gt;, rush_yards_game &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   fumble &lt;int&gt;, fumble_lost &lt;int&gt;, rush_first_down &lt;int&gt;</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get college QBR for 2014 week 5</span>
-<span class="fu"><a href="reference/get_college_qbr.html">get_college_qbr</a></span><span class="op">(</span>season <span class="op">=</span> <span class="fl">2014</span>, week <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="co">#&gt; Scraping QBR for week 5 of 2014!</span>
-<span class="co">#&gt; # A tibble: 106 x 20</span>
-<span class="co">#&gt;    season  week first_name last_name name  short_name team_name team_short_name</span>
-<span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;          </span>
-<span class="co">#&gt;  1   2014     5 Brandon    Harris    Bran… B. Harris  Tigers    LSU            </span>
-<span class="co">#&gt;  2   2014     5 Brett      Hundley   Bret… B. Hundley Bruins    UCLA           </span>
-<span class="co">#&gt;  3   2014     5 Gary       Nova      Gary… G. Nova    Scarlet … RUTG           </span>
-<span class="co">#&gt;  4   2014     5 Deshaun    Watson    Desh… D. Watson  Tigers    CLEM           </span>
-<span class="co">#&gt;  5   2014     5 A.J.       Schurr    A.J.… A.J. Schu… Black Kn… ARMY           </span>
-<span class="co">#&gt;  6   2014     5 Nick       Marshall  Nick… N. Marsha… Tigers    AUB            </span>
-<span class="co">#&gt;  7   2014     5 Justin     Worley    Just… J. Worley  Voluntee… TENN           </span>
-<span class="co">#&gt;  8   2014     5 C.J.       Brown     C.J.… C.J. Brown Terrapins MD             </span>
-<span class="co">#&gt;  9   2014     5 Gunner     Kiel      Gunn… G. Kiel    Bearcats  CIN            </span>
-<span class="co">#&gt; 10   2014     5 Caleb      Rowe      Cale… C. Rowe    Terrapins MD             </span>
-<span class="co">#&gt; # … with 96 more rows, and 12 more variables: age &lt;int&gt;, row_n &lt;int&gt;,</span>
-<span class="co">#&gt; #   qbr_total &lt;dbl&gt;, points_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, total_epa &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, raw_qbr &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   sack &lt;dbl&gt;</span></code></pre></div>
+<span class="fu"><a href="reference/get_college_qbr.html">get_college_qbr</a></span><span class="op">(</span>season <span class="op">=</span> <span class="fl">2014</span>, type <span class="op">=</span> <span class="st">"weekly"</span><span class="op">)</span>
+<span class="co">#&gt; Scraping QBR for all weeks of 2014!</span>
+<span class="co">#&gt; # A tibble: 1,610 × 35</span>
+<span class="co">#&gt;    season  week week_text week_type player_id player_uid  player_guid name_first</span>
+<span class="co">#&gt;     &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;     </span>
+<span class="co">#&gt;  1   2014     1 Week 1    Regular   533208    s:20~l:23~… d5b378f113… Cole      </span>
+<span class="co">#&gt;  2   2014     1 Week 1    Regular   515409    s:20~l:23~… 0467fbf0ba… Everett   </span>
+<span class="co">#&gt;  3   2014     1 Week 1    Regular   551184    s:20~l:23~… c268152939… Justin    </span>
+<span class="co">#&gt;  4   2014     1 Week 1    Regular   513329    s:20~l:23~… 3c75884248… Cody      </span>
+<span class="co">#&gt;  5   2014     1 Week 1    Regular   511459    s:20~l:23~… 33be1f4ad8… Marcus    </span>
+<span class="co">#&gt;  6   2014     1 Week 1    Regular   533270    s:20~l:23~… 30a818d641… Tommy     </span>
+<span class="co">#&gt;  7   2014     1 Week 1    Regular   548240    s:20~l:23~… 26507c0b44… Tyler     </span>
+<span class="co">#&gt;  8   2014     1 Week 1    Regular   511552    s:20~l:23~… ef65357cb9… Derrius   </span>
+<span class="co">#&gt;  9   2014     1 Week 1    Regular   504866    s:20~l:23~… 61b92d9914… Brandon   </span>
+<span class="co">#&gt; 10   2014     1 Week 1    Regular   482594    s:20~l:23~… b4348fe9fd… Taysom    </span>
+<span class="co">#&gt; # … with 1,600 more rows, and 27 more variables: name_last &lt;chr&gt;,</span>
+<span class="co">#&gt; #   name_display &lt;chr&gt;, name_short &lt;chr&gt;, team_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   team_short_name &lt;chr&gt;, slug &lt;chr&gt;, team_id &lt;chr&gt;, team_uid &lt;chr&gt;,</span>
+<span class="co">#&gt; #   age &lt;int&gt;, headshot_href &lt;chr&gt;, game_id &lt;chr&gt;, game_date &lt;chr&gt;,</span>
+<span class="co">#&gt; #   player_home_away &lt;chr&gt;, score &lt;chr&gt;, opp_team_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   opp_team_name &lt;chr&gt;, opp_team_short_name &lt;chr&gt;, qbr_total &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   pts_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;, …</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get NFL teams with logos, colors, alternatives, etc</span>
 <span class="fu"><a href="reference/get_nfl_teams.html">get_nfl_teams</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Getting NFL teams!</span>
-<span class="co">#&gt; # A tibble: 32 x 8</span>
-<span class="co">#&gt;    uid   team_name team_nickname team_short_name full_name team_color</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;     </span>
-<span class="co">#&gt;  1 22    Cardinals Arizona       ARI             Arizona … #A40227   </span>
-<span class="co">#&gt;  2 1     Falcons   Atlanta       ATL             Atlanta … #000000   </span>
-<span class="co">#&gt;  3 33    Ravens    Baltimore     BAL             Baltimor… #2B025B   </span>
-<span class="co">#&gt;  4 2     Bills     Buffalo       BUF             Buffalo … #04407F   </span>
-<span class="co">#&gt;  5 29    Panthers  Carolina      CAR             Carolina… #2177B0   </span>
-<span class="co">#&gt;  6 3     Bears     Chicago       CHI             Chicago … #152644   </span>
-<span class="co">#&gt;  7 4     Bengals   Cincinnati    CIN             Cincinna… #FF2700   </span>
-<span class="co">#&gt;  8 5     Browns    Cleveland     CLE             Clevelan… #4C230E   </span>
-<span class="co">#&gt;  9 6     Cowboys   Dallas        DAL             Dallas C… #002E4D   </span>
-<span class="co">#&gt; 10 7     Broncos   Denver        DEN             Denver B… #002E4D   </span>
-<span class="co">#&gt; # … with 22 more rows, and 2 more variables: alternate_color &lt;chr&gt;, logo &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 32 × 8</span>
+<span class="co">#&gt;    team_id team_name team_nickname team_abb team_full_name     team_color</span>
+<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;              &lt;chr&gt;     </span>
+<span class="co">#&gt;  1 22      Cardinals Arizona       ARI      Arizona Cardinals  #A40227   </span>
+<span class="co">#&gt;  2 1       Falcons   Atlanta       ATL      Atlanta Falcons    #000000   </span>
+<span class="co">#&gt;  3 33      Ravens    Baltimore     BAL      Baltimore Ravens   #2B025B   </span>
+<span class="co">#&gt;  4 2       Bills     Buffalo       BUF      Buffalo Bills      #04407F   </span>
+<span class="co">#&gt;  5 29      Panthers  Carolina      CAR      Carolina Panthers  #2177B0   </span>
+<span class="co">#&gt;  6 3       Bears     Chicago       CHI      Chicago Bears      #152644   </span>
+<span class="co">#&gt;  7 4       Bengals   Cincinnati    CIN      Cincinnati Bengals #FF2700   </span>
+<span class="co">#&gt;  8 5       Browns    Cleveland     CLE      Cleveland Browns   #4C230E   </span>
+<span class="co">#&gt;  9 6       Cowboys   Dallas        DAL      Dallas Cowboys     #002E4D   </span>
+<span class="co">#&gt; 10 7       Broncos   Denver        DEN      Denver Broncos     #002E4D   </span>
+<span class="co">#&gt; # … with 22 more rows, and 2 more variables: team_alt_color &lt;chr&gt;, logo &lt;chr&gt;</span></code></pre></div>
 </div>
 </div>
   </div>

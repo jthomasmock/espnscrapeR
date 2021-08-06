@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -86,6 +86,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/qbr_example.html">QBR Examples</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -140,37 +152,37 @@
     <pre class="examples"><div class='input'>
 <span class='co'># Here we run w/ tidy = FALSE to get the exact table from PFR</span>
 <span class='fu'>scrape_nfl_weekly_standings</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2020</span>, tidy <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping standings from 2020!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 269 x 16</span>
-#&gt;    game_num season week  day   date    time  winner_tie    home_team loser_tie  
-#&gt;       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      
-#&gt; <span style='color: #BCBCBC;'> 1</span>        1   <span style='text-decoration: underline;'>2</span>020 1     Thu   2020-0… 8:20… Kansas City … <span style='color: #949494;'>""</span>        Houston Te…
-#&gt; <span style='color: #BCBCBC;'> 2</span>        2   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… Seattle Seah… <span style='color: #949494;'>"</span>@<span style='color: #949494;'>"</span>       Atlanta Fa…
-#&gt; <span style='color: #BCBCBC;'> 3</span>        3   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… Buffalo Bills <span style='color: #949494;'>""</span>        New York J…
-#&gt; <span style='color: #BCBCBC;'> 4</span>        4   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… Washington F… <span style='color: #949494;'>""</span>        Philadelph…
-#&gt; <span style='color: #BCBCBC;'> 5</span>        5   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… Green Bay Pa… <span style='color: #949494;'>"</span>@<span style='color: #949494;'>"</span>       Minnesota …
-#&gt; <span style='color: #BCBCBC;'> 6</span>        6   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… Baltimore Ra… <span style='color: #949494;'>""</span>        Cleveland …
-#&gt; <span style='color: #BCBCBC;'> 7</span>        7   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… New England … <span style='color: #949494;'>""</span>        Miami Dolp…
-#&gt; <span style='color: #BCBCBC;'> 8</span>        8   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… Jacksonville… <span style='color: #949494;'>""</span>        Indianapol…
-#&gt; <span style='color: #BCBCBC;'> 9</span>        9   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… Las Vegas Ra… <span style='color: #949494;'>"</span>@<span style='color: #949494;'>"</span>       Carolina P…
-#&gt; <span style='color: #BCBCBC;'>10</span>       10   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00… Chicago Bears <span style='color: #949494;'>"</span>@<span style='color: #949494;'>"</span>       Detroit Li…
+</div><div class='output co'>#&gt; <span class='message'>Scraping standings from 2020!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 269 × 16</span>
+#&gt;    game_num season week  day   date       time   winner_tie  home_team loser_tie
+#&gt;       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'> 1</span>        1   <span style='text-decoration: underline;'>2</span>020 1     Thu   2020-09-10 8:20PM Kansas Cit… <span style='color: #949494;'>""</span>        Houston …
+#&gt; <span style='color: #BCBCBC;'> 2</span>        2   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Seattle Se… <span style='color: #949494;'>"</span>@<span style='color: #949494;'>"</span>       Atlanta …
+#&gt; <span style='color: #BCBCBC;'> 3</span>        3   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Buffalo Bi… <span style='color: #949494;'>""</span>        New York…
+#&gt; <span style='color: #BCBCBC;'> 4</span>        4   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Washington… <span style='color: #949494;'>""</span>        Philadel…
+#&gt; <span style='color: #BCBCBC;'> 5</span>        5   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Green Bay … <span style='color: #949494;'>"</span>@<span style='color: #949494;'>"</span>       Minnesot…
+#&gt; <span style='color: #BCBCBC;'> 6</span>        6   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Baltimore … <span style='color: #949494;'>""</span>        Clevelan…
+#&gt; <span style='color: #BCBCBC;'> 7</span>        7   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM New Englan… <span style='color: #949494;'>""</span>        Miami Do…
+#&gt; <span style='color: #BCBCBC;'> 8</span>        8   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Jacksonvil… <span style='color: #949494;'>""</span>        Indianap…
+#&gt; <span style='color: #BCBCBC;'> 9</span>        9   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Las Vegas … <span style='color: #949494;'>"</span>@<span style='color: #949494;'>"</span>       Carolina…
+#&gt; <span style='color: #BCBCBC;'>10</span>       10   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Chicago Be… <span style='color: #949494;'>"</span>@<span style='color: #949494;'>"</span>       Detroit …
 #&gt; <span style='color: #949494;'># … with 259 more rows, and 7 more variables: pts_winner &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   pts_loser &lt;dbl&gt;, yds_winner &lt;dbl&gt;, turnovers_winner &lt;dbl&gt;, yds_loser &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   turnovers_loser &lt;dbl&gt;, winner &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># Here we scrape the outcome and stack the games on top of eachother</span>
 <span class='fu'>scrape_nfl_weekly_standings</span><span class='op'>(</span>season <span class='op'>=</span> <span class='fl'>2020</span>, tidy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping standings from 2020!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 538 x 13</span>
-#&gt;    game_num season week  day   date    time   team        home_team points yards
-#&gt;       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span>        1   <span style='text-decoration: underline;'>2</span>020 1     Thu   2020-0… 8:20PM Kansas Cit…         1     34   369
-#&gt; <span style='color: #BCBCBC;'> 2</span>        2   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM Seattle Se…         0     38   383
-#&gt; <span style='color: #BCBCBC;'> 3</span>        3   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM Buffalo Bi…         1     27   404
-#&gt; <span style='color: #BCBCBC;'> 4</span>        4   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM Washington…         1     27   239
-#&gt; <span style='color: #BCBCBC;'> 5</span>        5   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM Green Bay …         0     43   522
-#&gt; <span style='color: #BCBCBC;'> 6</span>        6   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM Baltimore …         1     38   381
-#&gt; <span style='color: #BCBCBC;'> 7</span>        7   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM New Englan…         1     21   357
-#&gt; <span style='color: #BCBCBC;'> 8</span>        8   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM Jacksonvil…         1     27   241
-#&gt; <span style='color: #BCBCBC;'> 9</span>        9   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM Las Vegas …         0     34   372
-#&gt; <span style='color: #BCBCBC;'>10</span>       10   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-0… 1:00PM Chicago Be…         0     27   363
+</div><div class='output co'>#&gt; <span class='message'>Scraping standings from 2020!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 538 × 13</span>
+#&gt;    game_num season week  day   date       time   team     home_team points yards
+#&gt;       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>        1   <span style='text-decoration: underline;'>2</span>020 1     Thu   2020-09-10 8:20PM Kansas …         1     34   369
+#&gt; <span style='color: #BCBCBC;'> 2</span>        2   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Seattle…         0     38   383
+#&gt; <span style='color: #BCBCBC;'> 3</span>        3   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Buffalo…         1     27   404
+#&gt; <span style='color: #BCBCBC;'> 4</span>        4   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Washing…         1     27   239
+#&gt; <span style='color: #BCBCBC;'> 5</span>        5   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Green B…         0     43   522
+#&gt; <span style='color: #BCBCBC;'> 6</span>        6   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Baltimo…         1     38   381
+#&gt; <span style='color: #BCBCBC;'> 7</span>        7   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM New Eng…         1     21   357
+#&gt; <span style='color: #BCBCBC;'> 8</span>        8   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Jackson…         1     27   241
+#&gt; <span style='color: #BCBCBC;'> 9</span>        9   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Las Veg…         0     34   372
+#&gt; <span style='color: #BCBCBC;'>10</span>       10   <span style='text-decoration: underline;'>2</span>020 1     Sun   2020-09-13 1:00PM Chicago…         0     27   363
 #&gt; <span style='color: #949494;'># … with 528 more rows, and 3 more variables: turnovers &lt;dbl&gt;, winner &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   playoffs &lt;dbl&gt;</span></div></pre>
   </div>

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -86,6 +86,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/qbr_example.html">QBR Examples</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -143,45 +155,50 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get ALL Playoff QBR from 2016 season</span>
 <span class='fu'>get_nfl_qbr</span><span class='op'>(</span><span class='st'>"2016"</span>, season_type <span class='op'>=</span> <span class='st'>"Playoffs"</span>, week <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2016!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 12 x 22</span>
-#&gt;    season season_type game_week  team_abb player_id short_name    rank qbr_total
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2016   Playoffs    Season To… ATL      11237     M. Ryan          1      90.5
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2016   Playoffs    Season To… GB       8439      A. Rodgers       2      83.2
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2016   Playoffs    Season To… NE       2330      T. Brady         3      75.8
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2016   Playoffs    Season To… DAL      2577417   D. Prescott      4      73.6
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2016   Playoffs    Season To… SEA      14881     R. Wilson        5      60.3
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2016   Playoffs    Season To… PIT      5536      B. Roethlis…     6      58.7
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2016   Playoffs    Season To… NYG      5526      E. Manning       7      46.9
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2016   Playoffs    Season To… MIA      11128     M. Moore         8      44.9
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2016   Playoffs    Season To… DET      12483     M. Stafford      9      44.1
-#&gt; <span style='color: #BCBCBC;'>10</span> 2016   Playoffs    Season To… HOU      14879     B. Osweiler     10      40.6
-#&gt; <span style='color: #BCBCBC;'>11</span> 2016   Playoffs    Season To… KC       8416      A. Smith        11      31.4
-#&gt; <span style='color: #BCBCBC;'>12</span> 2016   Playoffs    Season To… OAK      2576261   C. Cook         12       6.5
-#&gt; <span style='color: #949494;'># … with 14 more variables: pts_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;,</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping QBR totals for 2016!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 16 × 23</span>
+#&gt;    season season_type game_week    team_abb player_id name_short  rank qbr_total
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 2016   Playoffs    Season Total ATL      11237     M. Ryan        1      90.5
+#&gt; <span style='color: #BCBCBC;'> 2</span> 2016   Playoffs    Season Total GB       8439      A. Rodgers     2      83.2
+#&gt; <span style='color: #BCBCBC;'> 3</span> 2016   Playoffs    Season Total NE       2330      T. Brady       3      75.8
+#&gt; <span style='color: #BCBCBC;'> 4</span> 2016   Playoffs    Season Total DAL      2577417   D. Presco…     4      73.6
+#&gt; <span style='color: #BCBCBC;'> 5</span> 2016   Playoffs    Season Total SEA      14881     R. Wilson      5      60.3
+#&gt; <span style='color: #BCBCBC;'> 6</span> 2016   Playoffs    Season Total PIT      5536      B. Roethl…     6      58.7
+#&gt; <span style='color: #BCBCBC;'> 7</span> 2016   Playoffs    Season Total NYG      5526      E. Manning     7      46.9
+#&gt; <span style='color: #BCBCBC;'> 8</span> 2016   Playoffs    Season Total MIA      11128     M. Moore       8      44.9
+#&gt; <span style='color: #BCBCBC;'> 9</span> 2016   Playoffs    Season Total DET      12483     M. Staffo…     9      44.1
+#&gt; <span style='color: #BCBCBC;'>10</span> 2016   Playoffs    Season Total HOU      14879     B. Osweil…    10      40.6
+#&gt; <span style='color: #BCBCBC;'>11</span> 2016   Playoffs    Season Total KC       8416      A. Smith      11      31.4
+#&gt; <span style='color: #BCBCBC;'>12</span> 2016   Playoffs    Season Total OAK      2576261   C. Cook       12       6.5
+#&gt; <span style='color: #BCBCBC;'>13</span> 2016   Playoffs    Season Total GB       2577189   B. Hundley    <span style='color: #BB0000;'>NA</span>      99.9
+#&gt; <span style='color: #BCBCBC;'>14</span> 2016   Playoffs    Season Total KC       16020     S. Ware       <span style='color: #BB0000;'>NA</span>      98.8
+#&gt; <span style='color: #BCBCBC;'>15</span> 2016   Playoffs    Season Total ATL      14922     M. Sanu       <span style='color: #BB0000;'>NA</span>      84.3
+#&gt; <span style='color: #BCBCBC;'>16</span> 2016   Playoffs    Season Total NE       12649     J. Edelman    <span style='color: #BB0000;'>NA</span>       0  
+#&gt; <span style='color: #949494;'># … with 15 more variables: pts_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   pass &lt;dbl&gt;, run &lt;dbl&gt;, exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   sack &lt;dbl&gt;, first_name &lt;chr&gt;, last_name &lt;chr&gt;, name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   headshot_href &lt;chr&gt;, team &lt;chr&gt;</span></div><div class='input'>
+#&gt; <span style='color: #949494;'>#   sack &lt;dbl&gt;, name_first &lt;chr&gt;, name_last &lt;chr&gt;, name_display &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   headshot_href &lt;chr&gt;, team &lt;chr&gt;, qualified &lt;lgl&gt;</span></div><div class='input'>
 <span class='co'># Get Regular season QBR for week 4 of 2019</span>
 <span class='fu'>get_nfl_qbr</span><span class='op'>(</span><span class='st'>"2019"</span>, season_type <span class='op'>=</span> <span class='st'>"Regular"</span>, week <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping weekly QBR for week 4 of 2019!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 31 x 29</span>
-#&gt;    season season_type game_id  game_week week_text team_abb player_id short_name
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2019   Regular     4011280…         4 Week 4    TB       2969939   J. Winston
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2019   Regular     4011278…         4 Week 4    PHI      2573079   C. Wentz  
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2019   Regular     4011281…         4 Week 4    PIT      3116407   M. Rudolph
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2019   Regular     4011280…         4 Week 4    LAC      5529      P. Rivers 
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2019   Regular     4011280…         4 Week 4    CHI      12471     C. Daniel 
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2019   Regular     4011281…         4 Week 4    DAL      2577417   D. Presco…
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2019   Regular     4011280…         4 Week 4    DET      12483     M. Staffo…
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2019   Regular     4011280…         4 Week 4    DEN      11252     J. Flacco 
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2019   Regular     4011278…         4 Week 4    GB       8439      A. Rodgers
-#&gt; <span style='color: #BCBCBC;'>10</span> 2019   Regular     4011280…         4 Week 4    CLE      3052587   B. Mayfie…
-#&gt; <span style='color: #949494;'># … with 21 more rows, and 21 more variables: rank &lt;dbl&gt;, qbr_total &lt;dbl&gt;,</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping weekly QBR for week 4 of 2019!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 31 × 30</span>
+#&gt;    season season_type game_id   game_week week_text team_abb player_id name_short
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
+#&gt; <span style='color: #BCBCBC;'> 1</span> 2019   Regular     401128069         4 Week 4    TB       2969939   J. Winston
+#&gt; <span style='color: #BCBCBC;'> 2</span> 2019   Regular     401127863         4 Week 4    PHI      2573079   C. Wentz  
+#&gt; <span style='color: #BCBCBC;'> 3</span> 2019   Regular     401128109         4 Week 4    PIT      3116407   M. Rudolph
+#&gt; <span style='color: #BCBCBC;'> 4</span> 2019   Regular     401128055         4 Week 4    LAC      5529      P. Rivers 
+#&gt; <span style='color: #BCBCBC;'> 5</span> 2019   Regular     401128093         4 Week 4    CHI      12471     C. Daniel 
+#&gt; <span style='color: #BCBCBC;'> 6</span> 2019   Regular     401128102         4 Week 4    DAL      2577417   D. Presco…
+#&gt; <span style='color: #BCBCBC;'> 7</span> 2019   Regular     401128023         4 Week 4    DET      12483     M. Staffo…
+#&gt; <span style='color: #BCBCBC;'> 8</span> 2019   Regular     401128097         4 Week 4    DEN      11252     J. Flacco 
+#&gt; <span style='color: #BCBCBC;'> 9</span> 2019   Regular     401127863         4 Week 4    GB       8439      A. Rodgers
+#&gt; <span style='color: #BCBCBC;'>10</span> 2019   Regular     401128018         4 Week 4    CLE      3052587   B. Mayfie…
+#&gt; <span style='color: #949494;'># … with 21 more rows, and 22 more variables: rank &lt;dbl&gt;, qbr_total &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   pts_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;, sack &lt;dbl&gt;, first_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   last_name &lt;chr&gt;, name &lt;chr&gt;, headshot_href &lt;chr&gt;, team &lt;chr&gt;, opp_id &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   opp_abb &lt;chr&gt;, opp_team &lt;chr&gt;, opp_name &lt;chr&gt;, week_num &lt;int&gt;</span></div></pre>
+#&gt; <span style='color: #949494;'>#   exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;, sack &lt;dbl&gt;, name_first &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   name_last &lt;chr&gt;, name_display &lt;chr&gt;, headshot_href &lt;chr&gt;, team &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   opp_id &lt;chr&gt;, opp_abb &lt;chr&gt;, opp_team &lt;chr&gt;, opp_name &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   week_num &lt;int&gt;, qualified &lt;lgl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

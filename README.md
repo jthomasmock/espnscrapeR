@@ -4,7 +4,6 @@
 # espnscrapeR
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 The goal of espnscrapeR is to collect or scrape QBR, NFL standings, and
@@ -29,67 +28,68 @@ library(espnscrapeR)
 # Get NFL QBR for the 2019 regular season week 4
 get_nfl_qbr("2019", season_type = "Regular", week = 4)
 #> Scraping weekly QBR for week 4 of 2019!
-#> # A tibble: 31 x 20
-#>    season season_type game_week  rank first_name last_name name  short_name
-#>     <dbl> <chr>       <chr>     <int> <chr>      <chr>     <chr> <chr>     
-#>  1   2019 Regular     4             1 Jameis     Winston   Jame… J. Winston
-#>  2   2019 Regular     4             2 Carson     Wentz     Cars… C. Wentz  
-#>  3   2019 Regular     4             3 Mason      Rudolph   Maso… M. Rudolph
-#>  4   2019 Regular     4             4 Philip     Rivers    Phil… P. Rivers 
-#>  5   2019 Regular     4             5 Chase      Daniel    Chas… C. Daniel 
-#>  6   2019 Regular     4             6 Dak        Prescott  Dak … D. Presco…
-#>  7   2019 Regular     4             7 Matthew    Stafford  Matt… M. Staffo…
-#>  8   2019 Regular     4             8 Joe        Flacco    Joe … J. Flacco 
-#>  9   2019 Regular     4             9 Aaron      Rodgers   Aaro… A. Rodgers
-#> 10   2019 Regular     4            10 Baker      Mayfield  Bake… B. Mayfie…
-#> # … with 21 more rows, and 12 more variables: team_name <chr>,
-#> #   team_short_name <chr>, qbr_total <dbl>, points_added <dbl>, qb_plays <dbl>,
-#> #   total_epa <dbl>, pass <dbl>, run <dbl>, exp_sack <dbl>, penalty <dbl>,
-#> #   raw_qbr <dbl>, sack <dbl>
+#> # A tibble: 31 × 29
+#>    season season_type game_id   game_week week_text team_abb player_id name_short
+#>    <chr>  <chr>       <chr>         <int> <chr>     <chr>    <chr>     <chr>     
+#>  1 2019   Regular     401128069         4 Week 4    TB       2969939   J. Winston
+#>  2 2019   Regular     401127863         4 Week 4    PHI      2573079   C. Wentz  
+#>  3 2019   Regular     401128109         4 Week 4    PIT      3116407   M. Rudolph
+#>  4 2019   Regular     401128055         4 Week 4    LAC      5529      P. Rivers 
+#>  5 2019   Regular     401128093         4 Week 4    CHI      12471     C. Daniel 
+#>  6 2019   Regular     401128102         4 Week 4    DAL      2577417   D. Presco…
+#>  7 2019   Regular     401128023         4 Week 4    DET      12483     M. Staffo…
+#>  8 2019   Regular     401128097         4 Week 4    DEN      11252     J. Flacco 
+#>  9 2019   Regular     401127863         4 Week 4    GB       8439      A. Rodgers
+#> 10 2019   Regular     401128018         4 Week 4    CLE      3052587   B. Mayfie…
+#> # … with 21 more rows, and 21 more variables: rank <dbl>, qbr_total <dbl>,
+#> #   pts_added <dbl>, qb_plays <dbl>, epa_total <dbl>, pass <dbl>, run <dbl>,
+#> #   exp_sack <dbl>, penalty <dbl>, qbr_raw <dbl>, sack <dbl>, name_first <chr>,
+#> #   name_last <chr>, name_display <chr>, headshot_href <chr>, team <chr>,
+#> #   opp_id <chr>, opp_abb <chr>, opp_team <chr>, opp_name <chr>, week_num <int>
 ```
 
 ``` r
 # Get NFL standings for 2010
 get_nfl_standings(2010)
-#> Scraping 2010
-#> # A tibble: 32 x 27
-#>    city  team_name abb_name full_name logos playoff_seed  wins losses
-#>    <chr> <chr>     <chr>    <chr>     <chr>        <dbl> <dbl>  <dbl>
-#>  1 Pitt… Steelers  PIT      Pittsbur… http…            0    12      4
-#>  2 Indi… Colts     IND      Indianap… http…            0    10      6
-#>  3 Kans… Chiefs    KC       Kansas C… http…            0    10      6
-#>  4 Balt… Ravens    BAL      Baltimor… http…            0    12      4
-#>  5 New … Jets      NYJ      New York… http…            0    11      5
-#>  6 New … Patriots  NE       New Engl… http…            0    14      2
-#>  7 San … Chargers  SD       San Dieg… http…            0     9      7
-#>  8 Jack… Jaguars   JAX      Jacksonv… http…            0     8      8
-#>  9 Oakl… Raiders   OAK      Oakland … http…            0     8      8
-#> 10 Miami Dolphins  MIA      Miami Do… http…            0     7      9
-#> # … with 22 more rows, and 19 more variables: win_percent <dbl>,
-#> #   games_behind <dbl>, ties <dbl>, points_for <dbl>, points_against <dbl>,
-#> #   differential <dbl>, streak <dbl>, clincher <dbl>, league_win_percent <dbl>,
-#> #   division_record <dbl>, division_wins <dbl>, division_ties <dbl>,
-#> #   division_losses <dbl>, all_splits <dbl>, home <dbl>, road <dbl>,
-#> #   vs_div <dbl>, vs_conf <dbl>, year <dbl>
+#> Returning 2010
+#> # A tibble: 32 × 28
+#>    conf  season team_id team_location team_name team_abb team_full  team_logo   
+#>    <chr>  <int> <chr>   <chr>         <chr>     <chr>    <chr>      <chr>       
+#>  1 AFC     2010 17      New England   Patriots  NE       New Engla… https://a.e…
+#>  2 AFC     2010 23      Pittsburgh    Steelers  PIT      Pittsburg… https://a.e…
+#>  3 AFC     2010 33      Baltimore     Ravens    BAL      Baltimore… https://a.e…
+#>  4 AFC     2010 20      New York      Jets      NYJ      New York … https://a.e…
+#>  5 AFC     2010 11      Indianapolis  Colts     IND      Indianapo… https://a.e…
+#>  6 AFC     2010 12      Kansas City   Chiefs    KC       Kansas Ci… https://a.e…
+#>  7 AFC     2010 24      San Diego     Chargers  SD       San Diego… https://a.e…
+#>  8 AFC     2010 13      Oakland       Raiders   OAK      Oakland R… https://a.e…
+#>  9 AFC     2010 30      Jacksonville  Jaguars   JAX      Jacksonvi… https://a.e…
+#> 10 AFC     2010 15      Miami         Dolphins  MIA      Miami Dol… https://a.e…
+#> # … with 22 more rows, and 20 more variables: seed <int>, wins <dbl>,
+#> #   losses <dbl>, win_pct <dbl>, g_behind <dbl>, ties <dbl>, pts_for <dbl>,
+#> #   pts_against <dbl>, pts_diff <dbl>, streak <dbl>, div_ties <dbl>,
+#> #   record <chr>, home_wins <dbl>, home_losses <dbl>, away_wins <dbl>,
+#> #   away_losses <dbl>, conf_wins <dbl>, conf_losses <dbl>, div_wins <dbl>,
+#> #   div_losses <dbl>
 ```
 
 ``` r
 # Get NFL 
 scrape_espn_stats(2019, stat = "rushing")
 #> Scraping rushing stats from 2019 Regular season!
-#> # A tibble: 335 x 17
-#>    season season_type rush_rank name  team  pos   games_played rush_att
-#>     <dbl> <chr>           <int> <chr> <chr> <chr>        <int>    <int>
-#>  1   2019 Regular             1 Derr… TEN   RB              15      303
-#>  2   2019 Regular             2 Nick… CLE   RB              16      298
-#>  3   2019 Regular             3 Chri… CAR   RB              16      287
-#>  4   2019 Regular             4 Ezek… DAL   RB              16      301
-#>  5   2019 Regular             5 Chri… SEA   RB              15      278
-#>  6   2019 Regular             6 Lama… BAL   QB              15      176
-#>  7   2019 Regular             7 Leon… JAX   RB              15      265
-#>  8   2019 Regular             8 Josh… OAK   RB              13      242
-#>  9   2019 Regular             9 Joe … CIN   RB              16      278
-#> 10   2019 Regular            10 Dalv… MIN   RB              14      250
+#> # A tibble: 335 × 17
+#>    season season_type rush_rank name           team  pos   games_played rush_att
+#>     <dbl> <chr>           <int> <chr>          <chr> <chr>        <int>    <int>
+#>  1   2019 Regular             1 Derrick Henry  TEN   RB              15      303
+#>  2   2019 Regular             2 Nick Chubb     CLE   RB              16      298
+#>  3   2019 Regular             3 Christian McC… CAR   RB              16      287
+#>  4   2019 Regular             4 Ezekiel Ellio… DAL   RB              16      301
+#>  5   2019 Regular             5 Chris Carson   SEA   RB              15      278
+#>  6   2019 Regular             6 Lamar Jackson  BAL   QB              15      176
+#>  7   2019 Regular             7 Leonard Fourn… JAX   RB              15      265
+#>  8   2019 Regular             8 Josh Jacobs    OAK   RB              13      242
+#>  9   2019 Regular             9 Joe Mixon      CIN   RB              16      278
+#> 10   2019 Regular            10 Dalvin Cook    MIN   RB              14      250
 #> # … with 325 more rows, and 9 more variables: rush_yards <dbl>, rush_avg <dbl>,
 #> #   rush_long <int>, rush_20plus <int>, rush_td <int>, rush_yards_game <dbl>,
 #> #   fumble <int>, fumble_lost <int>, rush_first_down <int>
@@ -97,43 +97,46 @@ scrape_espn_stats(2019, stat = "rushing")
 
 ``` r
 # Get college QBR for 2014 week 5
-get_college_qbr(season = 2014, week = 5)
-#> Scraping QBR for week 5 of 2014!
-#> # A tibble: 106 x 20
-#>    season  week first_name last_name name  short_name team_name team_short_name
-#>     <dbl> <dbl> <chr>      <chr>     <chr> <chr>      <chr>     <chr>          
-#>  1   2014     5 Brandon    Harris    Bran… B. Harris  Tigers    LSU            
-#>  2   2014     5 Brett      Hundley   Bret… B. Hundley Bruins    UCLA           
-#>  3   2014     5 Gary       Nova      Gary… G. Nova    Scarlet … RUTG           
-#>  4   2014     5 Deshaun    Watson    Desh… D. Watson  Tigers    CLEM           
-#>  5   2014     5 A.J.       Schurr    A.J.… A.J. Schu… Black Kn… ARMY           
-#>  6   2014     5 Nick       Marshall  Nick… N. Marsha… Tigers    AUB            
-#>  7   2014     5 Justin     Worley    Just… J. Worley  Voluntee… TENN           
-#>  8   2014     5 C.J.       Brown     C.J.… C.J. Brown Terrapins MD             
-#>  9   2014     5 Gunner     Kiel      Gunn… G. Kiel    Bearcats  CIN            
-#> 10   2014     5 Caleb      Rowe      Cale… C. Rowe    Terrapins MD             
-#> # … with 96 more rows, and 12 more variables: age <int>, row_n <int>,
-#> #   qbr_total <dbl>, points_added <dbl>, qb_plays <dbl>, total_epa <dbl>,
-#> #   pass <dbl>, run <dbl>, exp_sack <dbl>, penalty <dbl>, raw_qbr <dbl>,
-#> #   sack <dbl>
+get_college_qbr(season = 2014, type = "weekly")
+#> Scraping QBR for all weeks of 2014!
+#> # A tibble: 1,610 × 35
+#>    season  week week_text week_type player_id player_uid  player_guid name_first
+#>     <int> <int> <chr>     <chr>     <chr>     <chr>       <chr>       <chr>     
+#>  1   2014     1 Week 1    Regular   533208    s:20~l:23~… d5b378f113… Cole      
+#>  2   2014     1 Week 1    Regular   515409    s:20~l:23~… 0467fbf0ba… Everett   
+#>  3   2014     1 Week 1    Regular   551184    s:20~l:23~… c268152939… Justin    
+#>  4   2014     1 Week 1    Regular   513329    s:20~l:23~… 3c75884248… Cody      
+#>  5   2014     1 Week 1    Regular   511459    s:20~l:23~… 33be1f4ad8… Marcus    
+#>  6   2014     1 Week 1    Regular   533270    s:20~l:23~… 30a818d641… Tommy     
+#>  7   2014     1 Week 1    Regular   548240    s:20~l:23~… 26507c0b44… Tyler     
+#>  8   2014     1 Week 1    Regular   511552    s:20~l:23~… ef65357cb9… Derrius   
+#>  9   2014     1 Week 1    Regular   504866    s:20~l:23~… 61b92d9914… Brandon   
+#> 10   2014     1 Week 1    Regular   482594    s:20~l:23~… b4348fe9fd… Taysom    
+#> # … with 1,600 more rows, and 27 more variables: name_last <chr>,
+#> #   name_display <chr>, name_short <chr>, team_name <chr>,
+#> #   team_short_name <chr>, slug <chr>, team_id <chr>, team_uid <chr>,
+#> #   age <int>, headshot_href <chr>, game_id <chr>, game_date <chr>,
+#> #   player_home_away <chr>, score <chr>, opp_team_id <chr>,
+#> #   opp_team_name <chr>, opp_team_short_name <chr>, qbr_total <dbl>,
+#> #   pts_added <dbl>, qb_plays <dbl>, epa_total <dbl>, pass <dbl>, run <dbl>, …
 ```
 
 ``` r
 # Get NFL teams with logos, colors, alternatives, etc
 get_nfl_teams()
 #> Getting NFL teams!
-#> # A tibble: 32 x 8
-#>    uid   name   nickname abbreviation full_name team_color alternate_color logo 
-#>    <chr> <chr>  <chr>    <chr>        <chr>     <chr>      <chr>           <chr>
-#>  1 22    Cardi… Arizona  ARI          Arizona … A40227     000000          http…
-#>  2 1     Falco… Atlanta  ATL          Atlanta … 000000     000000          http…
-#>  3 33    Ravens Baltimo… BAL          Baltimor… 2B025B     9e7c0c          http…
-#>  4 2     Bills  Buffalo  BUF          Buffalo … 04407F     c60c30          http…
-#>  5 29    Panth… Carolina CAR          Carolina… 2177B0     bfc0bf          http…
-#>  6 3     Bears  Chicago  CHI          Chicago … 152644     0b162a          http…
-#>  7 4     Benga… Cincinn… CIN          Cincinna… FF2700     000000          http…
-#>  8 5     Browns Clevela… CLE          Clevelan… 4C230E     4c230e          http…
-#>  9 6     Cowbo… Dallas   DAL          Dallas C… 002E4D     b0b7bc          http…
-#> 10 7     Bronc… Denver   DEN          Denver B… 002E4D     fb4f14          http…
-#> # … with 22 more rows
+#> # A tibble: 32 × 8
+#>    team_id team_name team_nickname team_abb team_full_name     team_color
+#>    <chr>   <chr>     <chr>         <chr>    <chr>              <chr>     
+#>  1 22      Cardinals Arizona       ARI      Arizona Cardinals  #A40227   
+#>  2 1       Falcons   Atlanta       ATL      Atlanta Falcons    #000000   
+#>  3 33      Ravens    Baltimore     BAL      Baltimore Ravens   #2B025B   
+#>  4 2       Bills     Buffalo       BUF      Buffalo Bills      #04407F   
+#>  5 29      Panthers  Carolina      CAR      Carolina Panthers  #2177B0   
+#>  6 3       Bears     Chicago       CHI      Chicago Bears      #152644   
+#>  7 4       Bengals   Cincinnati    CIN      Cincinnati Bengals #FF2700   
+#>  8 5       Browns    Cleveland     CLE      Cleveland Browns   #4C230E   
+#>  9 6       Cowboys   Dallas        DAL      Dallas Cowboys     #002E4D   
+#> 10 7       Broncos   Denver        DEN      Denver Broncos     #002E4D   
+#> # … with 22 more rows, and 2 more variables: team_alt_color <chr>, logo <chr>
 ```

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -86,6 +86,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/qbr_example.html">QBR Examples</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -136,38 +148,7 @@
     <pre class="examples"><div class='input'><span class='co'># Get all games from 2018 season, note that this will have some overlap</span>
 <span class='co'># between seasons, for example 2018 returns 2018-01-01 to 2018-12-31</span>
 <span class='fu'>get_nfl_schedule</span><span class='op'>(</span>season <span class='op'>=</span> <span class='st'>"2018"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Returning data for 2018!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 333 x 60</span>
-#&gt;    matchup      matchup_short season  type slug   game_id game_uid    game_date 
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
-#&gt; <span style='color: #BCBCBC;'> 1</span> Tennessee T… TEN @ KC        <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-0…
-#&gt; <span style='color: #BCBCBC;'> 2</span> Atlanta Fal… ATL @ LAR       <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-0…
-#&gt; <span style='color: #BCBCBC;'> 3</span> Buffalo Bil… BUF @ JAX       <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-0…
-#&gt; <span style='color: #BCBCBC;'> 4</span> Carolina Pa… CAR @ NO        <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-0…
-#&gt; <span style='color: #BCBCBC;'> 5</span> Atlanta Fal… ATL @ PHI       <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-1…
-#&gt; <span style='color: #BCBCBC;'> 6</span> Tennessee T… TEN @ NE        <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-1…
-#&gt; <span style='color: #BCBCBC;'> 7</span> Jacksonvill… JAX @ PIT       <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-1…
-#&gt; <span style='color: #BCBCBC;'> 8</span> New Orleans… NO @ MIN        <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-1…
-#&gt; <span style='color: #BCBCBC;'> 9</span> Jacksonvill… JAX @ NE        <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-2…
-#&gt; <span style='color: #BCBCBC;'>10</span> Minnesota V… MIN @ PHI       <span style='text-decoration: underline;'>2</span>017     3 post-… 400999… s:20~l:28~… 2018-01-2…
-#&gt; <span style='color: #949494;'># … with 323 more rows, and 52 more variables: attendance &lt;int&gt;,</span>
-#&gt; <span style='color: #949494;'>#   venue_id &lt;chr&gt;, venue_name &lt;chr&gt;, venue_city &lt;chr&gt;, venue_state &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   capacity &lt;int&gt;, indoor &lt;lgl&gt;, home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   home_team_abb &lt;chr&gt;, home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   home_team_full &lt;chr&gt;, home_team_color &lt;chr&gt;, home_score &lt;int&gt;,</span>
-#&gt; <span style='color: #949494;'>#   home_win &lt;int&gt;, home_record &lt;chr&gt;, away_team_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   away_team_logo &lt;chr&gt;, away_team_abb &lt;chr&gt;, away_team_id &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   away_team_location &lt;chr&gt;, away_team_full &lt;chr&gt;, away_team_color &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   away_score &lt;int&gt;, away_win &lt;int&gt;, away_record &lt;chr&gt;, status_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   broadcast_market &lt;chr&gt;, broadcast_name &lt;chr&gt;, pass_leader_yards &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   pass_leader_stat &lt;chr&gt;, pass_leader_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   pass_leader_shortname &lt;chr&gt;, pass_leader_headshot &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   pass_leader_team_id &lt;chr&gt;, pass_leader_pos &lt;chr&gt;, rush_leader_yards &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   rush_leader_stat &lt;chr&gt;, rush_leader_name &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   rush_leader_shortname &lt;chr&gt;, rush_leader_headshot &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   rush_leader_team_id &lt;chr&gt;, rush_leader_pos &lt;chr&gt;, rec_leader_yards &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   rec_leader_stat &lt;chr&gt;, rec_leader_name &lt;chr&gt;, rec_leader_shortname &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   rec_leader_headshot &lt;chr&gt;, rec_leader_team_id &lt;chr&gt;, rec_leader_pos &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   startDate &lt;chr&gt;</span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Returning data for 2018!</span></div><div class='output co'>#&gt; <span class='error'>Error in get_nfl_schedule(season = "2018"): Bad Gateway (HTTP 502).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

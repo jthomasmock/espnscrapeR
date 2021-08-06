@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -86,6 +86,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/qbr_example.html">QBR Examples</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -135,39 +147,26 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Get NFL play-by-play for a specific game</span>
 <span class='fu'>get_nfl_boxscore_players</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='st'>"300912027"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 87 x 84</span>
-#&gt;    game_id  game_uid   season season_type date     week home_away winner team_id
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 1</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'> 2</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'> 3</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'> 4</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'> 5</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'> 6</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'> 7</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'> 8</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'> 9</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
-#&gt; <span style='color: #BCBCBC;'>10</span> 3009120… s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-0…     1 away           0 5      
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 87 × 84</span>
+#&gt;    game_id   game_uid   season season_type date    week home_away winner team_id
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 1</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'> 2</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'> 3</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'> 4</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'> 5</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'> 6</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'> 7</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'> 8</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'> 9</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
+#&gt; <span style='color: #BCBCBC;'>10</span> 300912027 s:20~l:28…   <span style='text-decoration: underline;'>2</span>010           2 2010-…     1 away           0 5      
 #&gt; <span style='color: #949494;'># … with 77 more rows, and 75 more variables: team_uid &lt;chr&gt;, team_city &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   team_name &lt;chr&gt;, team_abb &lt;chr&gt;, team_full &lt;chr&gt;, team_color &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   team_color_alt &lt;chr&gt;, team_logo &lt;chr&gt;, team_order &lt;int&gt;, team_score &lt;int&gt;,</span>
 #&gt; <span style='color: #949494;'>#   team_record &lt;chr&gt;, text &lt;chr&gt;, player_id &lt;chr&gt;, player_uid &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   player_guid &lt;chr&gt;, first_name &lt;chr&gt;, last_name &lt;chr&gt;, full_name &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   pass_att &lt;int&gt;, pass_cmp &lt;int&gt;, pass_yds &lt;dbl&gt;, pass_avg &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   pass_td &lt;dbl&gt;, pass_int &lt;dbl&gt;, pass_sacks &lt;dbl&gt;, pass_sack_yds &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   pass_qbr &lt;dbl&gt;, pass_rtg &lt;dbl&gt;, rush_att &lt;dbl&gt;, rush_yds &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   rush_avg &lt;dbl&gt;, rush_td &lt;dbl&gt;, rush_long &lt;dbl&gt;, rec_total &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   rec_yds &lt;dbl&gt;, rec_avg &lt;dbl&gt;, rec_td &lt;dbl&gt;, rec_long &lt;dbl&gt;, rec_tgts &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   fum_total &lt;dbl&gt;, fum_lost &lt;dbl&gt;, fum_rec &lt;dbl&gt;, def_tkl &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   def_solo_tkl &lt;dbl&gt;, def_sacks &lt;dbl&gt;, def_tfl &lt;dbl&gt;, def_pd &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   def_qb_hts &lt;dbl&gt;, def_td &lt;dbl&gt;, int_total &lt;dbl&gt;, int_yds &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   int_td &lt;dbl&gt;, kick_ret_no &lt;dbl&gt;, kick_ret_yds &lt;dbl&gt;, kick_ret_avg &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   kick_ret_long &lt;dbl&gt;, kick_ret_td &lt;dbl&gt;, punt_ret_no &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   punt_ret_yds &lt;dbl&gt;, punt_ret_avg &lt;dbl&gt;, punt_ret_long &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   punt_ret_td &lt;dbl&gt;, kick_fg_att &lt;dbl&gt;, kick_fg_made &lt;dbl&gt;, kick_pct &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   kick_long &lt;dbl&gt;, kick_xp_att &lt;dbl&gt;, kick_xp_made &lt;dbl&gt;, kick_pts &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   punt_no &lt;dbl&gt;, punt_yds &lt;dbl&gt;, punt_avg &lt;dbl&gt;, punt_tb &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   punt_in_20 &lt;dbl&gt;, punt_long &lt;dbl&gt;</span></div><div class='input'>
+#&gt; <span style='color: #949494;'>#   pass_td &lt;dbl&gt;, pass_int &lt;dbl&gt;, pass_sacks &lt;dbl&gt;, pass_sack_yds &lt;dbl&gt;, …</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
