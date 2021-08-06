@@ -42,7 +42,7 @@ get_nfl_qbr <- function(season = 2020, week = NA, season_type = "Regular") {
 
   # Error handling for missing data from ESPN
   if (!is.na(week) & season_type == "Playoffs" & as.numeric(season) == 2017) {
-    stop("ESPN has missing Playoff data for 2017")
+    warning("ESPN has some missing Playoff data for 2017", call. = FALSE)
   }
 
   week_current <- dplyr::if_else(
