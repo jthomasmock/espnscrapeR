@@ -25,7 +25,7 @@ gt_theme_espn <- function(data, ...){
       table.font.size = 16,
       heading.align = "left",
       heading.title.font.size = 24,
-      table.border.top.color = "transparent",
+      table.border.top.color = "#00000000",
       table.border.top.width = px(3),
       data_row.padding = px(7),
       ...

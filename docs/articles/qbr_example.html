@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -129,43 +129,36 @@ Package Installation
 <span class="co">#&gt; Scraping QBR totals for 2020!</span></code></pre></div>
 <p>But it’ll be easier and recommended to just read in the data directly with either <code>nflreadr</code> or just the raw URL.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/nflverse/espnscrapeR-data/master/data/qbr-nfl-season.csv"</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 633 Columns: 22</span>
-<span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Delimiter: ","</span>
-<span class="co">#&gt; chr  (9): season_type, game_week, team_abb, short_name, first_name, last_nam...</span>
-<span class="co">#&gt; dbl (13): season, player_id, rank, qbr_total, pts_added, qb_plays, epa_total...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
-<span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></code></pre></div>
+<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/nflverse/espnscrapeR-data/master/data/qbr-nfl-season.csv"</span><span class="op">)</span></code></pre></div>
 <p>This is the QBR values for all QBs at the season level from 2006 to now. The <code><a href="https://pillar.r-lib.org/reference/glimpse.html">dplyr::glimpse()</a></code> function can be used to quickly see the type of the columns (IE numeric, character, etc) and the top few values. You can think of it as a beefed up version of the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> function.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">%&gt;%</span> 
   <span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 633</span>
-<span class="co">#&gt; Columns: 22</span>
+<span class="co">#&gt; Rows: 1,102</span>
+<span class="co">#&gt; Columns: 23</span>
 <span class="co">#&gt; $ season        &lt;dbl&gt; 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 20…</span>
-<span class="co">#&gt; $ season_type   &lt;chr&gt; "Playoffs", "Playoffs", "Playoffs", "Playoffs", "Playoff…</span>
+<span class="co">#&gt; $ season_type   &lt;chr&gt; "Regular", "Regular", "Regular", "Regular", "Regular", "…</span>
 <span class="co">#&gt; $ game_week     &lt;chr&gt; "Season Total", "Season Total", "Season Total", "Season …</span>
-<span class="co">#&gt; $ team_abb      &lt;chr&gt; "NE", "IND", "NO", "NYG", "PHI", "SEA", "NYJ", "DAL", "C…</span>
-<span class="co">#&gt; $ player_id     &lt;dbl&gt; 2330, 1428, 2580, 5526, 2026, 1575, 2149, 5209, 4480, 73…</span>
-<span class="co">#&gt; $ short_name    &lt;chr&gt; "T. Brady", "P. Manning", "D. Brees", "E. Manning", "J. …</span>
+<span class="co">#&gt; $ team_abb      &lt;chr&gt; "IND", "NE", "SD", "CIN", "NO", "BAL", "NYJ", "DAL", "PH…</span>
+<span class="co">#&gt; $ player_id     &lt;dbl&gt; 1428, 2330, 5529, 4459, 2580, 733, 2149, 5209, 1753, 959…</span>
+<span class="co">#&gt; $ name_short    &lt;chr&gt; "P. Manning", "T. Brady", "P. Rivers", "C. Palmer", "D. …</span>
 <span class="co">#&gt; $ rank          &lt;dbl&gt; 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0,…</span>
-<span class="co">#&gt; $ qbr_total     &lt;dbl&gt; 83.0, 71.9, 68.7, 63.8, 59.8, 55.5, 52.5, 40.0, 30.5, 22…</span>
-<span class="co">#&gt; $ pts_added     &lt;dbl&gt; 12.8, 9.4, 3.1, 1.3, 2.8, 0.8, -0.6, -1.8, -5.5, -2.4, -…</span>
-<span class="co">#&gt; $ qb_plays      &lt;dbl&gt; 135, 174, 92, 38, 76, 79, 47, 34, 102, 35, 35, 31, 624, …</span>
-<span class="co">#&gt; $ epa_total     &lt;dbl&gt; 19.9, 18.6, 7.5, 3.4, 7.2, 5.4, 1.8, 0.2, 0.5, -0.3, -1.…</span>
-<span class="co">#&gt; $ pass          &lt;dbl&gt; 16.9, 15.9, 6.2, 1.9, 6.8, 2.8, 3.0, -0.9, -1.0, -0.7, -…</span>
-<span class="co">#&gt; $ run           &lt;dbl&gt; 0.4, -0.6, -0.5, 0.3, -1.1, 0.0, -2.1, 0.0, -1.0, 0.3, 0…</span>
+<span class="co">#&gt; $ qbr_total     &lt;dbl&gt; 86.4, 68.6, 67.4, 67.1, 66.7, 66.0, 64.2, 63.5, 62.1, 60…</span>
+<span class="co">#&gt; $ pts_added     &lt;dbl&gt; 85.5, 30.9, 28.2, 29.9, 36.7, 27.2, 20.8, 22.0, 17.2, 8.…</span>
+<span class="co">#&gt; $ qb_plays      &lt;dbl&gt; 624, 610, 542, 623, 631, 548, 587, 414, 380, 447, 717, 5…</span>
+<span class="co">#&gt; $ epa_total     &lt;dbl&gt; 108.8, 57.9, 53.0, 58.3, 64.2, 51.8, 47.1, 40.9, 34.9, 2…</span>
+<span class="co">#&gt; $ pass          &lt;dbl&gt; 96.0, 38.8, 43.1, 43.2, 61.0, 38.2, 27.9, 34.0, 17.1, 17…</span>
+<span class="co">#&gt; $ run           &lt;dbl&gt; 6.8, 4.3, -0.9, -0.3, -5.2, 8.2, 3.0, -2.9, 9.1, -0.3, 0…</span>
 <span class="co">#&gt; $ exp_sack      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span>
-<span class="co">#&gt; $ penalty       &lt;dbl&gt; 0.3, 1.2, -0.9, 0.5, -0.2, 1.5, 0.2, 0.1, 0.1, -0.1, 0.0…</span>
-<span class="co">#&gt; $ qbr_raw       &lt;dbl&gt; 79.2, 68.2, 61.7, 61.7, 62.6, 53.5, 45.5, 32.1, 31.9, 27…</span>
-<span class="co">#&gt; $ sack          &lt;dbl&gt; -2.2, -2.1, -2.7, -0.6, -1.6, -1.1, -0.6, -1.1, -2.4, -0…</span>
-<span class="co">#&gt; $ first_name    &lt;chr&gt; "Tom", "Peyton", "Drew", "Eli", "Jeff", "Matt", "Chad", …</span>
-<span class="co">#&gt; $ last_name     &lt;chr&gt; "Brady", "Manning", "Brees", "Manning", "Garcia", "Hasse…</span>
-<span class="co">#&gt; $ name          &lt;chr&gt; "Tom Brady", "Peyton Manning", "Drew Brees", "Eli Mannin…</span>
-<span class="co">#&gt; $ headshot_href &lt;chr&gt; "https://a.espncdn.com/i/headshots/nfl/players/full/2330…</span>
-<span class="co">#&gt; $ team          &lt;chr&gt; "Patriots", "Colts", "Saints", "Giants", "Eagles", "Seah…</span></code></pre></div>
+<span class="co">#&gt; $ penalty       &lt;dbl&gt; 1.1, 2.8, 0.3, 2.5, 0.6, -0.6, 5.2, 0.5, -0.4, 2.4, 3.0,…</span>
+<span class="co">#&gt; $ qbr_raw       &lt;dbl&gt; 87.4, 67.2, 67.6, 66.4, 69.5, 66.9, 62.3, 67.9, 65.5, 56…</span>
+<span class="co">#&gt; $ sack          &lt;dbl&gt; -5.0, -12.0, -10.4, -12.9, -7.7, -6.0, -10.9, -9.2, -9.2…</span>
+<span class="co">#&gt; $ name_first    &lt;chr&gt; "Peyton", "Tom", "Philip", "Carson", "Drew", "Steve", "C…</span>
+<span class="co">#&gt; $ name_last     &lt;chr&gt; "Manning", "Brady", "Rivers", "Palmer", "Brees", "McNair…</span>
+<span class="co">#&gt; $ name_display  &lt;chr&gt; "Peyton Manning", "Tom Brady", "Philip Rivers", "Carson …</span>
+<span class="co">#&gt; $ headshot_href &lt;chr&gt; "https://a.espncdn.com/i/headshots/nfl/players/full/1428…</span>
+<span class="co">#&gt; $ team          &lt;chr&gt; "Colts", "Patriots", "Chargers", "Bengals", "Saints", "R…</span>
+<span class="co">#&gt; $ qualified     &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR…</span></code></pre></div>
 </div>
 <div id="work-with-the-data" class="section level2">
 <h2 class="hasAnchor">
@@ -181,25 +174,26 @@ Package Installation
 <span class="co">#&gt; # A tibble: 15 × 2</span>
 <span class="co">#&gt;    season qbr_median</span>
 <span class="co">#&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt;  1   2006       55.5</span>
-<span class="co">#&gt;  2   2007       59.8</span>
-<span class="co">#&gt;  3   2008       56.6</span>
-<span class="co">#&gt;  4   2009       65.2</span>
-<span class="co">#&gt;  5   2010       55.8</span>
-<span class="co">#&gt;  6   2011       54  </span>
-<span class="co">#&gt;  7   2012       52.8</span>
-<span class="co">#&gt;  8   2013       58.7</span>
-<span class="co">#&gt;  9   2014       59.3</span>
-<span class="co">#&gt; 10   2015       57.2</span>
-<span class="co">#&gt; 11   2016       56.6</span>
-<span class="co">#&gt; 12   2017       55.8</span>
-<span class="co">#&gt; 13   2018       57.6</span>
-<span class="co">#&gt; 14   2019       56.7</span>
-<span class="co">#&gt; 15   2020       68.4</span></code></pre></div>
+<span class="co">#&gt;  1   2006       59.8</span>
+<span class="co">#&gt;  2   2007       64.4</span>
+<span class="co">#&gt;  3   2008       62.5</span>
+<span class="co">#&gt;  4   2009       68.2</span>
+<span class="co">#&gt;  5   2010       62.0</span>
+<span class="co">#&gt;  6   2011       60.5</span>
+<span class="co">#&gt;  7   2012       63.5</span>
+<span class="co">#&gt;  8   2013       63.8</span>
+<span class="co">#&gt;  9   2014       61.8</span>
+<span class="co">#&gt; 10   2015       58.3</span>
+<span class="co">#&gt; 11   2016       65.0</span>
+<span class="co">#&gt; 12   2017       56  </span>
+<span class="co">#&gt; 13   2018       63.4</span>
+<span class="co">#&gt; 14   2019       64.1</span>
+<span class="co">#&gt; 15   2020       71.1</span></code></pre></div>
 <p>We can also <code>group_by()</code> the season and find the max <code>n</code> values per season.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_16_per_yr</span> <span class="op">&lt;-</span> <span class="va">nfl_qbr_season</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="va">season</span>, <span class="va">team_abb</span>, <span class="va">short_name</span>, <span class="va">qbr_total</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qb_plays</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">select</span><span class="op">(</span><span class="va">season</span>, <span class="va">team_abb</span>, <span class="va">name_short</span>, <span class="va">qbr_total</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># group by season</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># get top 16</span>
@@ -209,20 +203,20 @@ Package Installation
   <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">top_16_per_yr</span>
-<span class="co">#&gt; # A tibble: 240 × 5</span>
-<span class="co">#&gt;    season team_abb short_name    qbr_total qbr_median</span>
-<span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;             &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt;  1   2006 IND      P. Manning         86.4       66.4</span>
-<span class="co">#&gt;  2   2006 NE       T. Brady           83         66.4</span>
-<span class="co">#&gt;  3   2006 IND      P. Manning         71.9       66.4</span>
-<span class="co">#&gt;  4   2006 NO       D. Brees           68.7       66.4</span>
-<span class="co">#&gt;  5   2006 NE       T. Brady           68.6       66.4</span>
-<span class="co">#&gt;  6   2006 SD       P. Rivers          67.4       66.4</span>
-<span class="co">#&gt;  7   2006 CIN      C. Palmer          67.1       66.4</span>
-<span class="co">#&gt;  8   2006 NO       D. Brees           66.7       66.4</span>
-<span class="co">#&gt;  9   2006 BAL      S. McNair          66         66.4</span>
-<span class="co">#&gt; 10   2006 NYJ      C. Pennington      64.2       66.4</span>
-<span class="co">#&gt; # … with 230 more rows</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 242 × 5</span>
+<span class="co">#&gt;    season team_abb name_short qbr_total qbr_median</span>
+<span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt;  1   2006 IND      P. Manning      86.4       66.4</span>
+<span class="co">#&gt;  2   2006 NE       T. Brady        83         66.4</span>
+<span class="co">#&gt;  3   2006 IND      P. Manning      71.9       66.4</span>
+<span class="co">#&gt;  4   2006 NE       T. Brady        68.6       66.4</span>
+<span class="co">#&gt;  5   2006 SD       P. Rivers       67.4       66.4</span>
+<span class="co">#&gt;  6   2006 CIN      C. Palmer       67.1       66.4</span>
+<span class="co">#&gt;  7   2006 PHI      J. Garcia       67.1       66.4</span>
+<span class="co">#&gt;  8   2006 NO       D. Brees        66.7       66.4</span>
+<span class="co">#&gt;  9   2006 BAL      S. McNair       66         66.4</span>
+<span class="co">#&gt; 10   2006 TB       T. Rattay       65.2       66.4</span>
+<span class="co">#&gt; # … with 232 more rows</span></code></pre></div>
 <p>We can then visualize this with a quick <code>ggplot</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_16_per_yr</span> <span class="op">%&gt;%</span> 
@@ -235,7 +229,8 @@ Package Installation
 <p>Alternatively you can also find the median by quarterback.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">short_name</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qb_plays</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">name_short</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">summarize</span><span class="op">(</span>
     median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">qbr_total</span><span class="op">)</span>, 
     years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span>collapse <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>,
@@ -243,20 +238,20 @@ Package Installation
     .groups <span class="op">=</span> <span class="st">"drop"</span>
     <span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">median</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 124 × 4</span>
-<span class="co">#&gt;    short_name  median years     active </span>
+<span class="co">#&gt; # A tibble: 135 × 4</span>
+<span class="co">#&gt;    name_short  median years     active </span>
 <span class="co">#&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  </span>
-<span class="co">#&gt;  1 P. Mahomes    80.4 2018-2020 Active </span>
-<span class="co">#&gt;  2 P. Manning    74.6 2006-2015 Retired</span>
-<span class="co">#&gt;  3 D. Prescott   72.8 2016-2019 Retired</span>
-<span class="co">#&gt;  4 T. Brady      72.5 2006-2020 Active </span>
-<span class="co">#&gt;  5 D. Watson     70.5 2018-2020 Active </span>
-<span class="co">#&gt;  6 A. Rodgers    70.4 2008-2020 Active </span>
-<span class="co">#&gt;  7 J. Herbert    69.5 2020-2020 Active </span>
-<span class="co">#&gt;  8 D. Brees      68.9 2006-2020 Active </span>
-<span class="co">#&gt;  9 K. Warner     68.5 2007-2009 Retired</span>
-<span class="co">#&gt; 10 M. Ryan       67.3 2008-2020 Active </span>
-<span class="co">#&gt; # … with 114 more rows</span></code></pre></div>
+<span class="co">#&gt;  1 P. Mahomes    80.6 2018-2020 Active </span>
+<span class="co">#&gt;  2 P. Manning    76.9 2006-2015 Retired</span>
+<span class="co">#&gt;  3 T. Brady      73.9 2006-2020 Active </span>
+<span class="co">#&gt;  4 L. Jackson    73.7 2018-2020 Active </span>
+<span class="co">#&gt;  5 Q. Gray       73.6 2007-2007 Retired</span>
+<span class="co">#&gt;  6 D. Prescott   71.9 2016-2020 Active </span>
+<span class="co">#&gt;  7 T. Collins    71.1 2007-2007 Retired</span>
+<span class="co">#&gt;  8 D. Brees      70.8 2006-2020 Active </span>
+<span class="co">#&gt;  9 D. Watson     70.5 2017-2020 Active </span>
+<span class="co">#&gt; 10 A. Rodgers    69.6 2008-2020 Active </span>
+<span class="co">#&gt; # … with 125 more rows</span></code></pre></div>
 </div>
 </div>
   </div>

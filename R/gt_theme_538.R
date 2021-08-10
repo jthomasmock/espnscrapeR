@@ -18,10 +18,10 @@ gt_theme_538 <- function(data,...) {
     ) %>%
     tab_style(
       style = cell_borders(
-        sides = "bottom", color = "transparent", weight = px(2)
+        sides = "bottom", color = "#00000000", weight = px(2)
       ),
       locations = cells_body(
-        columns = TRUE,
+        columns = everything(),
         # This is a relatively sneaky way of changing the bottom border
         # Regardless of data size
         rows = nrow(data$`_data`)
@@ -30,11 +30,11 @@ gt_theme_538 <- function(data,...) {
     tab_options(
       column_labels.background.color = "white",
       table.border.top.width = px(3),
-      table.border.top.color = "transparent",
-      table.border.bottom.color = "transparent",
+      table.border.top.color = "#00000000",
+      table.border.bottom.color = "#00000000",
       table.border.bottom.width = px(3),
       column_labels.border.top.width = px(3),
-      column_labels.border.top.color = "transparent",
+      column_labels.border.top.color = "#00000000",
       column_labels.border.bottom.width = px(3),
       column_labels.border.bottom.color = "black",
       data_row.padding = px(3),
