@@ -3,6 +3,7 @@
 #' @param gt_object An existing gt table object
 #' @param ... columns to apply color to
 #' @param trim trim the palette to give less intense maximal colors
+#' @param reverse reverse the color palette. The default is green = high and purple = low, but reverse = TRUE will make purple high and green low.
 #' @return Returns a gt table
 #' @importFrom dplyr %>%
 #' @importFrom scales col_numeric
@@ -29,12 +30,10 @@
 #'    gt_hulk_color(mpg:disp, rev = TRUE)
 
 
-gt_hulk_color <- function(gt_object, ..., domain = NULL, trim = FALSE, rev = TRUE){
+gt_hulk_color <- function(gt_object, ..., domain = NULL, trim = FALSE, reverse = FALSE){
 
-  pal_hex <- c(
-    "#762a83", "#af8dc3", "#e7d4e8",
-    "#f7f7f7", "#d9f0d3", "#7fbf7b", "#1b7837"
-    )
+  pal_hex <- c("#1b7837", "#7fbf7b", "#d9f0d3", "#f7f7f7",
+               "#e7d4e8", "#af8dc3", "#762a83")
 
   pal_hex <- if(isTRUE(trim)){
     pal_hex[2:6]
@@ -42,7 +41,7 @@ gt_hulk_color <- function(gt_object, ..., domain = NULL, trim = FALSE, rev = TRU
     pal_hex
   }
 
-  pal_hex <- if(isTRUE(rev)){
+  pal_hex <- if(isTRUE(reverse)){
     rev(pal_hex)
   }else{
     pal_hex
