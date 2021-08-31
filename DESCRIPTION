@@ -1,7 +1,7 @@
 Package: espnscrapeR
 Type: Package
 Title: Scrapes Or Collects NFL Data From ESPN
-Version: 0.6.1
+Version: 0.6.2
 Author: Thomas Mock
 Maintainer: Thomas Mock <j.thomasmock@gmail.com>
 Description: Main use case is to collect ESPN QBR for NFL and college football.
@@ -22,7 +22,8 @@ Imports:
     stringr,
     janitor,
     readr,
-    gt (>= 0.3)
+    gt (>= 0.3),
+    scales
 Suggests: 
     rmarkdown,
     knitr

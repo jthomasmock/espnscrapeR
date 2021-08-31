@@ -4,7 +4,7 @@
 \alias{get_nfl_qbr_helper}
 \title{Get ESPN QBR for NFL football}
 \usage{
-get_nfl_qbr_helper(raw_json, week)
+get_nfl_qbr_helper(raw_json, week, season, season_type)
 }
 \arguments{
 \item{week}{Either NA to return season or week 1 to 4 for playoffs or 1 to 17 for regular}

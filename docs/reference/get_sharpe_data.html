@@ -8,6 +8,13 @@
 
 <title>Get some of Lee Sharpe's datasets from GitHub — get_sharpe_data • espnscrapeR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="Get some of Lee Sharpe's datasets from GitHub — get_sharpe_data" />
 <meta property="og:description" content="Get some of Lee Sharpe's datasets from GitHub" />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -72,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.1</span>
       </span>
     </div>
 
@@ -177,27 +185,27 @@
 #&gt; <span style='color: #949494;'>#   over_odds &lt;dbl&gt;, div_game &lt;dbl&gt;, roof &lt;chr&gt;, surface &lt;chr&gt;, temp &lt;dbl&gt;, …</span></div><div class='input'>
 <span class='co'># Get team abbreviations/names/etc by year</span>
 <span class='fu'>get_sharpe_data</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"teams"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>640</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>17</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>640</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>18</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
 #&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
-#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (13): team, nfl, nfl_team_id, pfr, pfflabel, fo, full, location, short_l...</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (14): team, nfl, nfl_team_id, espn, pfr, pfflabel, fo, full, location, s...</span>
 #&gt; <span class='message'><span style='color: #00BB00;'>dbl</span>  (4): season, pff, sbr, sbr_wins</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 640 × 17</span>
-#&gt;    season team  nfl   nfl_team_id pfr     pff pfflabel fo    full       location
-#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>002 ARI   ARI   3800        CRD      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       ARI   Arizona C… Arizona 
-#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>002 ATL   ATL   0200        ATL      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       ATL   Atlanta F… Atlanta 
-#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>002 BAL   BAL   0325        RAV      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       BAL   Baltimore… Baltimo…
-#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>002 BUF   BUF   0610        BUF      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       BUF   Buffalo B… Buffalo 
-#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>002 CAR   CAR   0750        CAR      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CAR   Carolina … Carolina
-#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>002 CHI   CHI   0810        CHI      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CHI   Chicago B… Chicago 
-#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>002 CIN   CIN   0920        CIN      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CIN   Cincinnat… Cincinn…
-#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>002 CLE   CLE   1050        CLE      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CLE   Cleveland… Clevela…
-#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>002 DAL   DAL   1200        DAL      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       DAL   Dallas Co… Dallas  
-#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>002 DEN   DEN   1400        DEN      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       DEN   Denver Br… Denver  
-#&gt; <span style='color: #949494;'># … with 630 more rows, and 7 more variables: short_location &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   nickname &lt;chr&gt;, hyphenated &lt;chr&gt;, sbr &lt;dbl&gt;, sbr_wins &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   sbr_name &lt;chr&gt;, draft_kings &lt;chr&gt;</span></div></pre>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 640 × 18</span>
+#&gt;    season team  nfl   nfl_team_id espn  pfr     pff pfflabel fo    full         
+#&gt;     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        
+#&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>002 ARI   ARI   3800        ARI   CRD      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       ARI   Arizona Card…
+#&gt; <span style='color: #BCBCBC;'> 2</span>   <span style='text-decoration: underline;'>2</span>002 ATL   ATL   0200        ATL   ATL      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       ATL   Atlanta Falc…
+#&gt; <span style='color: #BCBCBC;'> 3</span>   <span style='text-decoration: underline;'>2</span>002 BAL   BAL   0325        BAL   RAV      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       BAL   Baltimore Ra…
+#&gt; <span style='color: #BCBCBC;'> 4</span>   <span style='text-decoration: underline;'>2</span>002 BUF   BUF   0610        BUF   BUF      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       BUF   Buffalo Bills
+#&gt; <span style='color: #BCBCBC;'> 5</span>   <span style='text-decoration: underline;'>2</span>002 CAR   CAR   0750        CAR   CAR      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CAR   Carolina Pan…
+#&gt; <span style='color: #BCBCBC;'> 6</span>   <span style='text-decoration: underline;'>2</span>002 CHI   CHI   0810        CHI   CHI      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CHI   Chicago Bears
+#&gt; <span style='color: #BCBCBC;'> 7</span>   <span style='text-decoration: underline;'>2</span>002 CIN   CIN   0920        CIN   CIN      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CIN   Cincinnati B…
+#&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>002 CLE   CLE   1050        CLE   CLE      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       CLE   Cleveland Br…
+#&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>002 DAL   DAL   1200        DAL   DAL      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       DAL   Dallas Cowbo…
+#&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>002 DEN   DEN   1400        DEN   DEN      <span style='color: #BB0000;'>NA</span> <span style='color: #BB0000;'>NA</span>       DEN   Denver Bronc…
+#&gt; <span style='color: #949494;'># … with 630 more rows, and 8 more variables: location &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   short_location &lt;chr&gt;, nickname &lt;chr&gt;, hyphenated &lt;chr&gt;, sbr &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sbr_wins &lt;dbl&gt;, sbr_name &lt;chr&gt;, draft_kings &lt;chr&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -8,6 +8,13 @@
 
 <title>Get ESPN QBR for College football — get_college_qbr • espnscrapeR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="Get ESPN QBR for College football — get_college_qbr" />
 <meta property="og:description" content="Get ESPN QBR for College football" />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -72,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.1</span>
       </span>
     </div>
 
@@ -174,7 +182,7 @@
 <span class='co'># Get weekly college QBR from 2019</span>
 <span class='co'># Note the mix of playoffs/bowls and regular season</span>
 <span class='fu'>get_college_qbr</span><span class='op'>(</span><span class='fl'>2019</span>, type <span class='op'>=</span> <span class='st'>"weekly"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scraping QBR for all weeks of 2019!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1,647 × 35</span>
+</div><div class='output co'>#&gt; <span class='message'>Scraping QBR for all weeks of 2019!</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1,447 × 35</span>
 #&gt;    season  week week_text week_type player_id player_uid  player_guid name_first
 #&gt;     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
 #&gt; <span style='color: #BCBCBC;'> 1</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4040715   s:20~l:23~… caceb80c63… Jalen     
@@ -187,7 +195,7 @@
 #&gt; <span style='color: #BCBCBC;'> 8</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   3916726   s:20~l:23~… 4ae2ce0ebe… Jon       
 #&gt; <span style='color: #BCBCBC;'> 9</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   3915436   s:20~l:23~… a6b089aeff… Steven    
 #&gt; <span style='color: #BCBCBC;'>10</span>   <span style='text-decoration: underline;'>2</span>019     1 Week 1    Regular   4259127   s:20~l:23~… 6193ac839d… Mike      
-#&gt; <span style='color: #949494;'># … with 1,637 more rows, and 27 more variables: name_last &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'># … with 1,437 more rows, and 27 more variables: name_last &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   name_display &lt;chr&gt;, name_short &lt;chr&gt;, headshot_href &lt;chr&gt;, age &lt;int&gt;,</span>
 #&gt; <span style='color: #949494;'>#   team_name &lt;chr&gt;, team_short_name &lt;chr&gt;, slug &lt;chr&gt;, team_id &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   team_uid &lt;chr&gt;, game_id &lt;chr&gt;, game_date &lt;chr&gt;, player_home_away &lt;chr&gt;,</span>
