@@ -2,18 +2,42 @@
 % Please edit documentation in R/gt_hulk_color.R
 \name{gt_hulk_color}
 \alias{gt_hulk_color}
-\title{Apply 'hulk' palette to specific columns in a gt table.}
+\title{Apply 'hulk' palette to specific columns in a gt table. The hulk names comes from the idea of a divergin purple and green theme that is colorblind safe and visually appealing. It is a useful alternative to the red/green palette.}
 \usage{
-gt_hulk_color(gt_object, ..., domain = NULL)
+gt_hulk_color(gt_object, ..., domain = NULL, trim = FALSE, reverse = FALSE)
 }
 \arguments{
 \item{gt_object}{An existing gt table object}
 
 \item{...}{columns to apply color to}
+
+\item{trim}{trim the palette to give less intense maximal colors}
+
+\item{reverse}{reverse the color palette. The default is green = high and purple = low, but reverse = TRUE will make purple high and green low.}
 }
 \value{
 Returns a gt table
 }
 \description{
-Apply 'hulk' palette to specific columns in a gt table.
+Apply 'hulk' palette to specific columns in a gt table. The hulk names comes from the idea of a divergin purple and green theme that is colorblind safe and visually appealing. It is a useful alternative to the red/green palette.
+}
+\examples{
+ # basic use
+ mtcars |>
+   head() |>
+   gt::gt() |>
+   gt_hulk_color(mpg)
+
+ mtcars |>
+   head() |>
+   gt::gt() |>
+   # trim gives small range of colors
+   gt_hulk_color(mpg:disp, trim = TRUE)
+
+ # option to reverse the color palette
+ mtcars |>
+   head() |>
+   gt::gt() |>
+   # trim gives small range of colors
+   gt_hulk_color(mpg:disp, rev = TRUE)
 }

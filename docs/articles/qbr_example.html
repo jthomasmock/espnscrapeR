@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ Package Installation
 <span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
 <span class="co">#&gt; ✓ ggplot2 3.3.5.9000     ✓ purrr   0.3.4     </span>
 <span class="co">#&gt; ✓ tibble  3.1.3          ✓ dplyr   1.0.7     </span>
-<span class="co">#&gt; ✓ tidyr   1.1.3          ✓ stringr 1.4.0     </span>
+<span class="co">#&gt; ✓ tidyr   1.1.3          ✓ stringr 1.4.0.9000</span>
 <span class="co">#&gt; ✓ readr   2.0.0          ✓ forcats 0.5.1</span>
 <span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span>
 <span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
@@ -136,7 +136,7 @@ Package Installation
 <p>But it’ll be easier and recommended to just read in the data directly with either <code>nflreadr</code> or just the raw URL.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/nflverse/espnscrapeR-data/master/data/qbr-nfl-season.csv"</span><span class="op">)</span>
-<span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">nflreadr</span><span class="fu">::</span><span class="fu"><a href="nflreadr.nflverse.com/reference/load_espn_qbr.html">load_espn_qbr</a></span><span class="op">(</span><span class="st">"nfl"</span>, seasons <span class="op">=</span> <span class="fl">2006</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span></code></pre></div>
+<span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">nflreadr</span><span class="fu">::</span><span class="fu"><a href="https://nflreadr.nflverse.com/reference/load_espn_qbr.html">load_espn_qbr</a></span><span class="op">(</span><span class="st">"nfl"</span>, seasons <span class="op">=</span> <span class="fl">2006</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span></code></pre></div>
 <p>This is the QBR values for all QBs at the season level from 2006 to now. The <code><a href="https://pillar.r-lib.org/reference/glimpse.html">dplyr::glimpse()</a></code> function can be used to quickly see the type of the columns (IE numeric, character, etc) and the top few values. You can think of it as a beefed up version of the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> function.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">%&gt;%</span> 

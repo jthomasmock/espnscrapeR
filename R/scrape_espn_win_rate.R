@@ -66,6 +66,3 @@ scrape_espn_win_rate <- function(season = 2021){
     rename(stat = name, stat_rank = rank)
 
 }
-
-scrape_espn_win_rate(season = 2021)
-

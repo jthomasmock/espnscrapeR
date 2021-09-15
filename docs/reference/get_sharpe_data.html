@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
       </span>
     </div>
 
@@ -155,14 +155,14 @@
     <pre class="examples"><div class='input'>
 <span class='co'># Get NFL games and their outcomes</span>
 <span class='fu'>get_sharpe_data</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"games"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>6124</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>41</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>6124</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>43</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
 #&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
-#&gt; <span class='message'><span style='color: #BB0000;'>chr</span>  (17): game_id, game_type, weekday, away_team, home_team, location, roof...</span>
-#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span>  (22): season, week, away_score, home_score, result, total, overtime, ol...</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span>  (18): game_id, game_type, weekday, away_team, home_team, location, nfl_...</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span>  (23): season, week, away_score, home_score, result, total, overtime, ol...</span>
 #&gt; <span class='message'><span style='color: #0000BB;'>date</span>  (1): gameday</span>
 #&gt; <span class='message'><span style='color: #0000BB;'>time</span>  (1): gametime</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,124 × 41</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,124 × 43</span>
 #&gt;    game_id         season game_type  week gameday    weekday gametime away_team
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;time&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
 #&gt; <span style='color: #BCBCBC;'> 1</span> 1999_01_MIN_ATL   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    MIN      
@@ -175,13 +175,13 @@
 #&gt; <span style='color: #BCBCBC;'> 8</span> 1999_01_NE_NYJ    <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    NE       
 #&gt; <span style='color: #BCBCBC;'> 9</span> 1999_01_ARI_PHI   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    ARI      
 #&gt; <span style='color: #BCBCBC;'>10</span> 1999_01_DET_SEA   <span style='text-decoration: underline;'>1</span>999 REG           1 1999-09-12 Sunday     <span style='color: #BB0000;'>NA</span>    DET      
-#&gt; <span style='color: #949494;'># … with 6,114 more rows, and 33 more variables: away_score &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'># … with 6,114 more rows, and 35 more variables: away_score &lt;dbl&gt;,</span>
 #&gt; <span style='color: #949494;'>#   home_team &lt;chr&gt;, home_score &lt;dbl&gt;, location &lt;chr&gt;, result &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   total &lt;dbl&gt;, overtime &lt;dbl&gt;, old_game_id &lt;dbl&gt;, espn &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   away_rest &lt;dbl&gt;, home_rest &lt;dbl&gt;, away_moneyline &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   home_moneyline &lt;dbl&gt;, spread_line &lt;dbl&gt;, away_spread_odds &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   home_spread_odds &lt;dbl&gt;, total_line &lt;dbl&gt;, under_odds &lt;dbl&gt;,</span>
-#&gt; <span style='color: #949494;'>#   over_odds &lt;dbl&gt;, div_game &lt;dbl&gt;, roof &lt;chr&gt;, surface &lt;chr&gt;, temp &lt;dbl&gt;, …</span></div><div class='input'>
+#&gt; <span style='color: #949494;'>#   total &lt;dbl&gt;, overtime &lt;dbl&gt;, old_game_id &lt;dbl&gt;, gsis &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   nfl_detail_id &lt;chr&gt;, espn &lt;dbl&gt;, away_rest &lt;dbl&gt;, home_rest &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   away_moneyline &lt;dbl&gt;, home_moneyline &lt;dbl&gt;, spread_line &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   away_spread_odds &lt;dbl&gt;, home_spread_odds &lt;dbl&gt;, total_line &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   under_odds &lt;dbl&gt;, over_odds &lt;dbl&gt;, div_game &lt;dbl&gt;, roof &lt;chr&gt;, …</span></div><div class='input'>
 <span class='co'># Get team abbreviations/names/etc by year</span>
 <span class='fu'>get_sharpe_data</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"teams"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>640</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>18</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
