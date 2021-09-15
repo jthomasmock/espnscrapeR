@@ -14,11 +14,12 @@
 #' # Get off and def pass/run win rates
 #' scrape_espn_win_rate()
 
-scrape_espn_win_rate <- function(season = 2020){
+scrape_espn_win_rate <- function(season = 2021){
 
-  if(!(as.numeric(season) %in% c(2019:2020))) stop("Data available for 2019-20")
+  if(!(as.numeric(season) %in% c(2019:2021))) stop("Data available for 2020-21")
 
-  pbwr_url <- "https://www.espn.com/nfl/story/_/id/29939464/2020-nfl-pass-rushing-run-stopping-blocking-leaderboard-win-rate-rankings"
+  pbwr_url <- "https://www.espn.com/nfl/story/_/id/32176833/2021-nfl-pass-rushing-run-stopping-blocking-leaderboard-win-rate-rankings"
+  pbwr_2020 <- "https://www.espn.com/nfl/story/_/id/29939464/2020-nfl-pass-rushing-run-stopping-blocking-leaderboard-win-rate-rankings"
   pbwr_2019 <- "https://www.espn.com/nfl/story/_/id/27584726/nfl-pass-blocking-pass-rushing-rankings-2019-pbwr-prwr-leaderboard#prwrteam"
   pbwr_2018 <- "https://www.espn.com/nfl/story/_/id/25074144/nfl-pass-blocking-pass-rushing-stats-final-leaderboard-pass-block-win-rate-pass-rush-win-rate"
   stats_in <- c(
@@ -36,7 +37,8 @@ scrape_espn_win_rate <- function(season = 2020){
   raw_html <- read_html(
     case_when(
       season == 2019 ~ pbwr_2019,
-      season == 2020 ~ pbwr_url
+      season == 2020 ~ pbwr_2020,
+      season == 2021 ~ pbwr_url
       )
     )
 
@@ -65,5 +67,5 @@ scrape_espn_win_rate <- function(season = 2020){
 
 }
 
-scrape_espn_win_rate(season = 2020)
+scrape_espn_win_rate(season = 2021)
 
