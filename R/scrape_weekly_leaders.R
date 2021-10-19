@@ -25,15 +25,15 @@ scrape_weekly_leaders <- function(season = 2019, week = 1, stats = "passing") {
     stop(paste("Please choose season between 2002 and", current_year))
   }
 
-  if (!dplyr::between(as.numeric(week), 1, 17)) {
-    stop("Please choose a week between 1 and 17")
+  if (!dplyr::between(as.numeric(week), 1, 18)) {
+    stop("Please choose a week between 1 and 18")
   }
 
   message(
     glue::glue("Scraping {stats} stats for week {week} from {season} season!")
   )
 
-  url <- glue::glue("http://www.espn.com/nfl/weekly/leaders/_/week/{week}/seasontype/2/type/{stats}")
+  url <- glue::glue("http://www.espn.com/nfl/weekly/leaders/_/week/{week}/year/{year}/seasontype/2/type/{stats}")
 
   pass_n <- c(
     "rank", "name", "team", "result", "pass_comp", "pass_att",
