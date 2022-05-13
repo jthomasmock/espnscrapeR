@@ -1,7 +1,7 @@
 #' Get ESPN NFL depth chart by year and team
 #'
 #' @param season Either numeric or character
-#' @param team team_id, can be retrieved via get_nfl_teams
+#' @param team team_id or team_abb, can be retrieved via get_nfl_teams()
 #' @return Returns a tibble
 #' @export
 #' @import tidyr dplyr purrr httr
@@ -9,11 +9,30 @@
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
 #' @examples
-#' # Get ALL Playoff QBR from 2016 season
-#' get_depth_chart("2016", team = 23)
+#' # Get depth chart for 2017 for Pittsburgh
+#' get_depth_chart("2016", team = "PIT")
 #'
 
 get_depth_chart <- function(season = 2020, team = 23){
+
+  team_ids <- c(
+    "22", "1", "33", "2", "29", "3", "4", "5", "6",
+    "7", "8", "9", "34", "11", "30", "12", "13", "24",
+    "14", "15", "16", "17", "18", "19", "20", "21",
+    "23", "25", "26", "27", "10", "28"
+  )
+
+  team_abb <- c("ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE",
+    "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAX", "KC",
+    "LV", "LAC", "LAR", "MIA", "MIN", "NE", "NO", "NYG",
+    "NYJ", "PHI", "PIT", "SF", "SEA", "TB", "TEN", "WSH")
+
+  stopifnot("Please use a valid numeric team id or a team abbreviation - these can be found with get_nfl_teams()" =
+      any(team %in% team_ids, team %in% team_abb))
+
+  if(team %in% team_abb){
+    team <- team_ids[team_abb == team]
+  }
 
   base_url <- "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{season}/teams/{team}/depthcharts"
 
