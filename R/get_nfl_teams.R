@@ -23,7 +23,7 @@ get_nfl_teams <- function() {
       logos,
       logo = list(1, "href")
     ) %>%
-    dplyr::select(id, name:alternateColor, logo, -shortDisplayName) %>%
+    dplyr::select(id, name, nickname, abbreviation, displayName, color, alternateColor, logo) %>%
     purrr::set_names(
       nm = c(
         "team_id", "team_name", "team_nickname", "team_abb", "team_full_name", "team_color",
