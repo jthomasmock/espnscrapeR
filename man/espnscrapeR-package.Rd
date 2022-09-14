@@ -6,8 +6,7 @@
 \alias{espnscrapeR-package}
 \title{espnscrapeR: Scrapes Or Collects NFL Data From ESPN}
 \description{
-Main use case is to collect ESPN QBR for NFL and college football.
-    Alternative functions include getting NFL standings and scraping NFL season-level stats.
+Main use case is to collect ESPN QBR for NFL and college football. Alternative functions include getting NFL standings and scraping NFL season-level stats.
 }
 \seealso{
 Useful links:

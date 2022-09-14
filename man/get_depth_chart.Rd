@@ -9,7 +9,7 @@ get_depth_chart(season = 2020, team = 23)
 \arguments{
 \item{season}{Either numeric or character}
 
-\item{team}{team_id, can be retrieved via get_nfl_teams}
+\item{team}{team_id or team_abb, can be retrieved via get_nfl_teams()}
 }
 \value{
 Returns a tibble
@@ -18,7 +18,7 @@ Returns a tibble
 Get ESPN NFL depth chart by year and team
 }
 \examples{
-# Get ALL Playoff QBR from 2016 season
-get_depth_chart("2016", team = 23)
+# Get depth chart for 2017 for Pittsburgh
+get_depth_chart("2016", team = "PIT")
 
 }
