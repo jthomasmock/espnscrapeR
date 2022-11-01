@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1</span>
       </span>
     </div>
 
@@ -79,7 +79,26 @@
 <span class="r-in"><span class="co"># between seasons, for example 2018 returns 2018-01-01 to 2018-12-31</span></span>
 <span class="r-in"><span class="fu">get_nfl_schedule</span><span class="op">(</span>season <span class="op">=</span> <span class="st">"2018"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Returning data for 2018!</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_nfl_schedule(season = "2018"):</span> Bad Gateway (HTTP 502).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 333 × 60</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    matchup    match…¹ season  type slug  game_id game_…² game_…³ atten…⁴ venue…⁵</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Tennessee… TEN @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">73</span>319 3622   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Atlanta F… ATL @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">74</span>300 477    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Buffalo B… BUF @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">69</span>442 3712   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Carolina … CAR @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">73</span>186 3493   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Atlanta F… ATL @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">69</span>596 3806   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Tennessee… TEN @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">65</span>878 3738   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Jacksonvi… JAX @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">64</span>524 3752   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> New Orlea… NO @ M…   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">66</span>612 5239   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Jacksonvi… JAX @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">65</span>878 3738   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Minnesota… MIN @ …   <span style="text-decoration: underline;">2</span>017     3 post… 400999… s:20~l… 2018-0…   <span style="text-decoration: underline;">69</span>596 3806   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 323 more rows, 50 more variables: venue_name &lt;chr&gt;, venue_city &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   venue_state &lt;chr&gt;, capacity &lt;int&gt;, indoor &lt;lgl&gt;, home_team_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_logo &lt;chr&gt;, home_team_abb &lt;chr&gt;, home_team_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_location &lt;chr&gt;, home_team_full &lt;chr&gt;, home_team_color &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_score &lt;int&gt;, home_win &lt;int&gt;, home_record &lt;chr&gt;, away_team_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_logo &lt;chr&gt;, away_team_abb &lt;chr&gt;, away_team_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_location &lt;chr&gt;, away_team_full &lt;chr&gt;, away_team_color &lt;chr&gt;, …</span></span>
 </code></pre></div>
     </div>
   </div>

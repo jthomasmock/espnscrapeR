@@ -1,4 +1,4 @@
-#' Get WR metrics from FiveThirtyEight
+#' Get ESPN's WR metrics from FiveThirtyEight
 #'
 #'
 #' @return tibble
@@ -7,7 +7,7 @@
 #' @section Examples:
 #'
 #' ```r
-#' raw_metrics <- espnscrapeR::get_538_wr_metrics()
+#' raw_metrics <- espnscrapeR::get_espn_wr_metrics()
 #'
 #' dplyr::glimpse(raw_metrics)
 #'
@@ -33,14 +33,12 @@
 #' #> $ full_nm           <chr> "A.J. Brown", "Travis Kelce", "Tyreek Hill", …
 #' #> $ team_name         <chr> "Philadelphia Eagles", "Kansas City Chiefs", …
 #' #> $ yds               <int> 659, 553, 961, 764, 531, 605, 547, 418, 752, …
-#' ````
-get_538_wr_metrics <- function(){
+#' ```
+get_espn_wr_metrics <- function(){
 
-  in_url <- glue::glue("https://projects.fivethirtyeight.com/nfl-receiver-rankings/data.json")
+  in_url <- "https://projects.fivethirtyeight.com/nfl-receiver-rankings/data.json"
 
   raw_json <- jsonlite::fromJSON(in_url, simplifyVector = FALSE)
-
-  listviewer::jsonedit(raw_json)
 
   dplyr::tibble(data = raw_json[["rtm_data"]]) |>
     tidyr::unnest_wider(data)
