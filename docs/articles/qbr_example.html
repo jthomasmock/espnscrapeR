@@ -25,6 +25,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,23 +39,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">espnscrapeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -67,7 +63,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jthomasmock/espnscrapeR/">
+  <a href="https://github.com/jthomasmock/espnscrapeR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -82,183 +78,196 @@
 
       
 
-      </header><script src="qbr_example_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>QBR Examples</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/jthomasmock/espnscrapeR/blob/master/vignettes/qbr_example.Rmd"><code>vignettes/qbr_example.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jthomasmock/espnscrapeR/blob/HEAD/vignettes/qbr_example.Rmd" class="external-link"><code>vignettes/qbr_example.Rmd</code></a></small>
       <div class="hidden name"><code>qbr_example.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>This short guide focuses on using <code>espnscrapeR</code> or the <code>nflverse/espnscrapeR-data</code> repo to access QBR data.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>This short guide focuses on using <code>espnscrapeR</code> or the
+<code>nflverse/espnscrapeR-data</code> repo to access QBR data.</p>
 </div>
-<div id="setup" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setup" class="anchor"></a>Setup</h2>
-<p>If you have never installed the necessary R packages, go ahead and expand the collapsed section below, otherwise skip ahead to the “Load and Prep” stage.</p>
+<div class="section level2">
+<h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+</h2>
+<p>If you have never installed the necessary R packages, go ahead and
+expand the collapsed section below, otherwise skip ahead to the “Load
+and Prep” stage.</p>
 <details><summary>
 Package Installation
-</summary><p>You’ll need the following packages to get started. Note that as of now, <code>espnscrapeR</code> is not on CRAN so you’ll need to install it from GitHub as seen below.</p>
+</summary><p>You’ll need the following packages to get started. Note that as of
+now, <code>espnscrapeR</code> is not on CRAN so you’ll need to install
+it from GitHub as seen below.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"gt"</span>, <span class="st">"remotes"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"binary"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"espnscrapeR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"gt"</span>, <span class="st">"remotes"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"binary"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"espnscrapeR"</span><span class="op">)</span></code></pre></div>
 </details>
 </div>
-<div id="load-and-prep" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-and-prep" class="anchor"></a>Load and Prep</h2>
+<div class="section level2">
+<h2 id="load-and-prep">Load and Prep<a class="anchor" aria-label="anchor" href="#load-and-prep"></a>
+</h2>
 <p>Go ahead and load the packages to get started.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jthomasmock/espnscrapeR">espnscrapeR</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
-<span class="co">#&gt; ✓ ggplot2 3.3.5.9000     ✓ purrr   0.3.4     </span>
-<span class="co">#&gt; ✓ tibble  3.1.3          ✓ dplyr   1.0.7     </span>
-<span class="co">#&gt; ✓ tidyr   1.1.3          ✓ stringr 1.4.0.9000</span>
-<span class="co">#&gt; ✓ readr   2.0.0          ✓ forcats 0.5.1</span>
-<span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span>
-<span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
-<span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jthomasmock/espnscrapeR" class="external-link">espnscrapeR</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
+<span class="co">#&gt; ── <span style="font-weight: bold;">Attaching packages</span> ────────────────────────────────── tidyverse 1.3.2.<span style="color: #BB0000;">9000</span> ──</span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2  </span> 3.3.6           <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr    </span> 1.0.99.<span style="color: #BB0000;">9000</span></span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble   </span> 3.1.8           <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr  </span> 1.4.1      </span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr    </span> 1.2.1           <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats  </span> 0.5.1      </span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr    </span> 2.1.3           <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">lubridate</span> 1.8.0      </span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">purrr    </span> 0.3.5           </span>
+<span class="co">#&gt; ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span> masks <span style="color: #0000BB;">stats</span>::filter()</span>
+<span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>    masks <span style="color: #0000BB;">stats</span>::lag()</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/" class="external-link">gt</a></span><span class="op">)</span></code></pre></div>
 <p>You can get the data directly from ESPN’s API.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># season level data (1x row per QB per season)</span>
 <span class="va">qbr_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_nfl_qbr.html">get_nfl_qbr</a></span><span class="op">(</span><span class="fl">2020</span>, week <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
 <span class="co">#&gt; Scraping QBR totals for 2020!</span></code></pre></div>
-<p>But it’ll be easier and recommended to just read in the data directly with either <code>nflreadr</code> or just the raw URL.</p>
+<p>But it’ll be easier and recommended to just read in the data directly
+with either <code>nflreadr</code> or just the raw URL.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/nflverse/espnscrapeR-data/master/data/qbr-nfl-season.csv"</span><span class="op">)</span>
-<span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">nflreadr</span><span class="fu">::</span><span class="fu"><a href="https://nflreadr.nflverse.com/reference/load_espn_qbr.html">load_espn_qbr</a></span><span class="op">(</span><span class="st">"nfl"</span>, seasons <span class="op">=</span> <span class="fl">2006</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span></code></pre></div>
-<p>This is the QBR values for all QBs at the season level from 2006 to now. The <code><a href="https://pillar.r-lib.org/reference/glimpse.html">dplyr::glimpse()</a></code> function can be used to quickly see the type of the columns (IE numeric, character, etc) and the top few values. You can think of it as a beefed up version of the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> function.</p>
+<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/nflverse/espnscrapeR-data/master/data/qbr-nfl-season.csv"</span><span class="op">)</span>
+<span class="va">nfl_qbr_season</span> <span class="op">&lt;-</span> <span class="fu">nflreadr</span><span class="fu">::</span><span class="fu"><a href="https://nflreadr.nflverse.com/reference/load_espn_qbr.html" class="external-link">load_espn_qbr</a></span><span class="op">(</span><span class="st">"nfl"</span>, seasons <span class="op">=</span> <span class="fl">2006</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span></code></pre></div>
+<p>This is the QBR values for all QBs at the season level from 2006 to
+now. The <code><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">dplyr::glimpse()</a></code> function can be used to quickly
+see the type of the columns (IE numeric, character, etc) and the top few
+values. You can think of it as a beefed up version of the
+<code><a href="https://rdrr.io/r/utils/str.html" class="external-link">str()</a></code> function.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">%&gt;%</span> 
-  <span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,102</span>
 <span class="co">#&gt; Columns: 23</span>
-<span class="co">#&gt; $ season        &lt;dbl&gt; 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 20…</span>
-<span class="co">#&gt; $ season_type   &lt;chr&gt; "Regular", "Regular", "Regular", "Regular", "Regular", "…</span>
-<span class="co">#&gt; $ game_week     &lt;chr&gt; "Season Total", "Season Total", "Season Total", "Season …</span>
-<span class="co">#&gt; $ team_abb      &lt;chr&gt; "IND", "NE", "SD", "CIN", "NO", "BAL", "NYJ", "DAL", "PH…</span>
-<span class="co">#&gt; $ player_id     &lt;chr&gt; "1428", "2330", "5529", "4459", "2580", "733", "2149", "…</span>
-<span class="co">#&gt; $ name_short    &lt;chr&gt; "P. Manning", "T. Brady", "P. Rivers", "C. Palmer", "D. …</span>
-<span class="co">#&gt; $ rank          &lt;dbl&gt; 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0,…</span>
-<span class="co">#&gt; $ qbr_total     &lt;dbl&gt; 86.4, 68.6, 67.4, 67.1, 66.7, 66.0, 64.2, 63.5, 62.1, 60…</span>
-<span class="co">#&gt; $ pts_added     &lt;dbl&gt; 85.5, 30.9, 28.2, 29.9, 36.7, 27.2, 20.8, 22.0, 17.2, 8.…</span>
-<span class="co">#&gt; $ qb_plays      &lt;dbl&gt; 624, 610, 542, 623, 631, 548, 587, 414, 380, 447, 717, 5…</span>
-<span class="co">#&gt; $ epa_total     &lt;dbl&gt; 108.8, 57.9, 53.0, 58.3, 64.2, 51.8, 47.1, 40.9, 34.9, 2…</span>
-<span class="co">#&gt; $ pass          &lt;dbl&gt; 96.0, 38.8, 43.1, 43.2, 61.0, 38.2, 27.9, 34.0, 17.1, 17…</span>
-<span class="co">#&gt; $ run           &lt;dbl&gt; 6.8, 4.3, -0.9, -0.3, -5.2, 8.2, 3.0, -2.9, 9.1, -0.3, 0…</span>
-<span class="co">#&gt; $ exp_sack      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span>
-<span class="co">#&gt; $ penalty       &lt;dbl&gt; 1.1, 2.8, 0.3, 2.5, 0.6, -0.6, 5.2, 0.5, -0.4, 2.4, 3.0,…</span>
-<span class="co">#&gt; $ qbr_raw       &lt;dbl&gt; 87.4, 67.2, 67.6, 66.4, 69.5, 66.9, 62.3, 67.9, 65.5, 56…</span>
-<span class="co">#&gt; $ sack          &lt;dbl&gt; -5.0, -12.0, -10.4, -12.9, -7.7, -6.0, -10.9, -9.2, -9.2…</span>
-<span class="co">#&gt; $ name_first    &lt;chr&gt; "Peyton", "Tom", "Philip", "Carson", "Drew", "Steve", "C…</span>
-<span class="co">#&gt; $ name_last     &lt;chr&gt; "Manning", "Brady", "Rivers", "Palmer", "Brees", "McNair…</span>
-<span class="co">#&gt; $ name_display  &lt;chr&gt; "Peyton Manning", "Tom Brady", "Philip Rivers", "Carson …</span>
-<span class="co">#&gt; $ headshot_href &lt;chr&gt; "https://a.espncdn.com/i/headshots/nfl/players/full/1428…</span>
-<span class="co">#&gt; $ team          &lt;chr&gt; "Colts", "Patriots", "Chargers", "Bengals", "Saints", "R…</span>
-<span class="co">#&gt; $ qualified     &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR…</span></code></pre></div>
+<span class="co">#&gt; $ season        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 20…</span>
+<span class="co">#&gt; $ season_type   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Regular", "Regular", "Regular", "Regular", "Regular", "…</span>
+<span class="co">#&gt; $ game_week     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Season Total", "Season Total", "Season Total", "Season …</span>
+<span class="co">#&gt; $ team_abb      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "IND", "NE", "SD", "CIN", "NO", "BAL", "NYJ", "DAL", "PH…</span>
+<span class="co">#&gt; $ player_id     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1428", "2330", "5529", "4459", "2580", "733", "2149", "…</span>
+<span class="co">#&gt; $ name_short    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "P. Manning", "T. Brady", "P. Rivers", "C. Palmer", "D. …</span>
+<span class="co">#&gt; $ rank          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0,…</span>
+<span class="co">#&gt; $ qbr_total     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 86.4, 68.6, 67.4, 67.1, 66.7, 66.0, 64.2, 63.5, 62.1, 60…</span>
+<span class="co">#&gt; $ pts_added     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 85.5, 30.9, 28.2, 29.9, 36.7, 27.2, 20.8, 22.0, 17.2, 8.…</span>
+<span class="co">#&gt; $ qb_plays      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 624, 610, 542, 623, 631, 548, 587, 414, 380, 447, 717, 5…</span>
+<span class="co">#&gt; $ epa_total     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 108.8, 57.9, 53.0, 58.3, 64.2, 51.8, 47.1, 40.9, 34.9, 2…</span>
+<span class="co">#&gt; $ pass          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 96.0, 38.8, 43.1, 43.2, 61.0, 38.2, 27.9, 34.0, 17.1, 17…</span>
+<span class="co">#&gt; $ run           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6.8, 4.3, -0.9, -0.3, -5.2, 8.2, 3.0, -2.9, 9.1, -0.3, 0…</span>
+<span class="co">#&gt; $ exp_sack      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span>
+<span class="co">#&gt; $ penalty       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.1, 2.8, 0.3, 2.5, 0.6, -0.6, 5.2, 0.5, -0.4, 2.4, 3.0,…</span>
+<span class="co">#&gt; $ qbr_raw       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 87.4, 67.2, 67.6, 66.4, 69.5, 66.9, 62.3, 67.9, 65.5, 56…</span>
+<span class="co">#&gt; $ sack          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -5.0, -12.0, -10.4, -12.9, -7.7, -6.0, -10.9, -9.2, -9.2…</span>
+<span class="co">#&gt; $ name_first    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Peyton", "Tom", "Philip", "Carson", "Drew", "Steve", "C…</span>
+<span class="co">#&gt; $ name_last     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manning", "Brady", "Rivers", "Palmer", "Brees", "McNair…</span>
+<span class="co">#&gt; $ name_display  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Peyton Manning", "Tom Brady", "Philip Rivers", "Carson …</span>
+<span class="co">#&gt; $ headshot_href <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://a.espncdn.com/i/headshots/nfl/players/full/1428…</span>
+<span class="co">#&gt; $ team          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Colts", "Patriots", "Chargers", "Bengals", "Saints", "R…</span>
+<span class="co">#&gt; $ qualified     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR…</span></code></pre></div>
 </div>
-<div id="work-with-the-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#work-with-the-data" class="anchor"></a>Work with the data</h2>
-<div id="group-by" class="section level3">
-<h3 class="hasAnchor">
-<a href="#group-by" class="anchor"></a>Group By</h3>
-<p>We can <code>group_by()</code> the season and find the median QBR per season.</p>
+<div class="section level2">
+<h2 id="work-with-the-data">Work with the data<a class="anchor" aria-label="anchor" href="#work-with-the-data"></a>
+</h2>
+<div class="section level3">
+<h3 id="group-by">Group By<a class="anchor" aria-label="anchor" href="#group-by"></a>
+</h3>
+<p>We can <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code> the season and find the median QBR per
+season.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>qbr_median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">qbr_total</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 15 × 2</span>
+<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>qbr_median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">qbr_total</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 2</span></span>
 <span class="co">#&gt;    season qbr_median</span>
-<span class="co">#&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt;  1   2006       59.8</span>
-<span class="co">#&gt;  2   2007       64.4</span>
-<span class="co">#&gt;  3   2008       62.5</span>
-<span class="co">#&gt;  4   2009       68.2</span>
-<span class="co">#&gt;  5   2010       62.0</span>
-<span class="co">#&gt;  6   2011       60.5</span>
-<span class="co">#&gt;  7   2012       63.5</span>
-<span class="co">#&gt;  8   2013       63.8</span>
-<span class="co">#&gt;  9   2014       61.8</span>
-<span class="co">#&gt; 10   2015       58.3</span>
-<span class="co">#&gt; 11   2016       65.0</span>
-<span class="co">#&gt; 12   2017       56  </span>
-<span class="co">#&gt; 13   2018       63.4</span>
-<span class="co">#&gt; 14   2019       64.1</span>
-<span class="co">#&gt; 15   2020       71.1</span></code></pre></div>
-<p>We can also <code>group_by()</code> the season and find the max <code>n</code> values per season.</p>
+<span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>006       59.8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>007       64.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>008       62.5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>009       68.2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>010       62.0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>011       60.5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>012       63.5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>013       63.8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>014       61.8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>015       58.3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span>   <span style="text-decoration: underline;">2</span>016       65.0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span>   <span style="text-decoration: underline;">2</span>017       56  </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span>   <span style="text-decoration: underline;">2</span>018       63.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span>   <span style="text-decoration: underline;">2</span>019       64.1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span>   <span style="text-decoration: underline;">2</span>020       71.1</span></code></pre></div>
+<p>We can also <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code> the season and find the max
+<code>n</code> values per season.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top_16_per_yr</span> <span class="op">&lt;-</span> <span class="va">nfl_qbr_season</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qb_plays</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="va">season</span>, <span class="va">team_abb</span>, <span class="va">name_short</span>, <span class="va">qbr_total</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">top_16_per_yr</span> <span class="op">&lt;-</span> <span class="va">nfl_qbr_season</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">qb_plays</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">season</span>, <span class="va">team_abb</span>, <span class="va">name_short</span>, <span class="va">qbr_total</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># group by season</span>
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># get top 16</span>
-  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">qbr_total</span>, n <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">qbr_total</span>, n <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># add the grouped median</span>
-  <span class="fu">mutate</span><span class="op">(</span>qbr_median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">qbr_total</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>qbr_median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">qbr_total</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">top_16_per_yr</span>
-<span class="co">#&gt; # A tibble: 242 × 5</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 242 × 5</span></span>
 <span class="co">#&gt;    season team_abb name_short qbr_total qbr_median</span>
-<span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt;  1   2006 IND      P. Manning      86.4       66.4</span>
-<span class="co">#&gt;  2   2006 NE       T. Brady        83         66.4</span>
-<span class="co">#&gt;  3   2006 IND      P. Manning      71.9       66.4</span>
-<span class="co">#&gt;  4   2006 NE       T. Brady        68.6       66.4</span>
-<span class="co">#&gt;  5   2006 SD       P. Rivers       67.4       66.4</span>
-<span class="co">#&gt;  6   2006 CIN      C. Palmer       67.1       66.4</span>
-<span class="co">#&gt;  7   2006 PHI      J. Garcia       67.1       66.4</span>
-<span class="co">#&gt;  8   2006 NO       D. Brees        66.7       66.4</span>
-<span class="co">#&gt;  9   2006 BAL      S. McNair       66         66.4</span>
-<span class="co">#&gt; 10   2006 TB       T. Rattay       65.2       66.4</span>
-<span class="co">#&gt; # … with 232 more rows</span></code></pre></div>
+<span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>006 IND      P. Manning      86.4       66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>006 NE       T. Brady        83         66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>006 IND      P. Manning      71.9       66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>006 NE       T. Brady        68.6       66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>006 SD       P. Rivers       67.4       66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>006 CIN      C. Palmer       67.1       66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>006 PHI      J. Garcia       67.1       66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>006 NO       D. Brees        66.7       66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>006 BAL      S. McNair       66         66.4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>006 TB       T. Rattay       65.2       66.4</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 232 more rows</span></span></code></pre></div>
 <p>We can then visualize this with a quick <code>ggplot</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top_16_per_yr</span> <span class="op">%&gt;%</span> 
-  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">season</span>, y <span class="op">=</span> <span class="va">qbr_total</span>, group <span class="op">=</span> <span class="va">season</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_boxplot</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_jitter</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">qbr_median</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">top_16_per_yr</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">season</span>, y <span class="op">=</span> <span class="va">qbr_total</span>, group <span class="op">=</span> <span class="va">season</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">qbr_median</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="qbr_example_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>Alternatively you can also find the median by quarterback.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">qb_plays</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">name_short</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>
-    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">qbr_total</span><span class="op">)</span>, 
-    years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span>collapse <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>,
-    active <span class="op">=</span> <span class="fu">if_else</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2020</span>, <span class="st">"Active"</span>, <span class="st">"Retired"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">nfl_qbr_season</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">qb_plays</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">name_short</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>
+    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">qbr_total</span><span class="op">)</span>, 
+    years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span>collapse <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>,
+    active <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2020</span>, <span class="st">"Active"</span>, <span class="st">"Retired"</span><span class="op">)</span>,
     .groups <span class="op">=</span> <span class="st">"drop"</span>
-    <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">median</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 135 × 4</span>
+    <span class="op">)</span> <span class="op"><a href="https://gt.rstudio.com/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">median</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 135 × 4</span></span>
 <span class="co">#&gt;    name_short  median years     active </span>
-<span class="co">#&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  </span>
-<span class="co">#&gt;  1 P. Mahomes    80.6 2018-2020 Active </span>
-<span class="co">#&gt;  2 P. Manning    76.9 2006-2015 Retired</span>
-<span class="co">#&gt;  3 T. Brady      73.9 2006-2020 Active </span>
-<span class="co">#&gt;  4 L. Jackson    73.7 2018-2020 Active </span>
-<span class="co">#&gt;  5 Q. Gray       73.6 2007-2007 Retired</span>
-<span class="co">#&gt;  6 D. Prescott   71.9 2016-2020 Active </span>
-<span class="co">#&gt;  7 T. Collins    71.1 2007-2007 Retired</span>
-<span class="co">#&gt;  8 D. Brees      70.8 2006-2020 Active </span>
-<span class="co">#&gt;  9 D. Watson     70.5 2017-2020 Active </span>
-<span class="co">#&gt; 10 A. Rodgers    69.6 2008-2020 Active </span>
-<span class="co">#&gt; # … with 125 more rows</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> P. Mahomes    80.6 2018-2020 Active </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> P. Manning    76.9 2006-2015 Retired</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> T. Brady      73.9 2006-2020 Active </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> L. Jackson    73.7 2018-2020 Active </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Q. Gray       73.6 2007-2007 Retired</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> D. Prescott   71.9 2016-2020 Active </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> T. Collins    71.1 2007-2007 Retired</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> D. Brees      70.8 2006-2020 Active </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> D. Watson     70.5 2017-2020 Active </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> A. Rodgers    69.6 2008-2020 Active </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 125 more rows</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -274,11 +283,13 @@ Package Installation
 
 
       <footer><div class="copyright">
-  <p>Developed by Thomas Mock.</p>
+  <p></p>
+<p>Developed by Thomas Mock.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -286,6 +297,8 @@ Package Installation
 
   
 
+
+  
 
   </body>
 </html>
