@@ -2,6 +2,7 @@
 
 export(get_538_elo)
 export(get_538_elo_historical)
+export(get_538_wr_metrics)
 export(get_athlete)
 export(get_college_qbr)
 export(get_depth_chart)

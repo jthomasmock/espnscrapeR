@@ -4,7 +4,7 @@
 \alias{scrape_espn_win_rate}
 \title{Scrape ESPN Pass/Run Block/Rush Win Rates ratings for a specific season from ESPN's site}
 \usage{
-scrape_espn_win_rate(season = 2021)
+scrape_espn_win_rate(season = 2022)
 }
 \value{
 Returns a tibble

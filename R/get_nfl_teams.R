@@ -1,6 +1,6 @@
 #' Return all NFL teams with their name, abbreviation,
 #'
-#' @return
+#' @return tibble
 #' @export
 #' @importFrom httr content GET
 #' @import dplyr purrr

@@ -7,7 +7,7 @@
 get_nfl_teams()
 }
 \value{
-
+tibble
 }
 \description{
 Return all NFL teams with their name, abbreviation,
