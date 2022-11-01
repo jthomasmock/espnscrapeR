@@ -67,39 +67,36 @@
     <h2>Value</h2>
     <p>tibble</p>
     </div>
-    <div id="examples">
+
+    <div id="ref-examples">
     <h2>Examples</h2>
-    
-
-
-<p>```r
-raw_metrics &lt;- espnscrapeR::get_espn_wr_metrics()</p>
-<p>dplyr::glimpse(raw_metrics)</p>
-<p>#&gt; Rows: 1,657
-#&gt; Columns: 20
-#&gt; $ gsis_id           &lt;chr&gt; "00-0035676", "00-0030506", "00-0033040", "00…
-#&gt; $ position          &lt;chr&gt; "WR", "TE", "WR", "WR", "WR", "WR", "WR", "TE…
-#&gt; $ tm                &lt;chr&gt; "PHI", "KC", "MIA", "BUF", "SEA", "CIN", "NO"…
-#&gt; $ overall           &lt;int&gt; 86, 81, 80, 79, 78, 75, 75, 74, 74, 73, 73, 7…
-#&gt; $ open_score        &lt;int&gt; 88, 80, 86, 73, 90, 73, 83, 64, 78, 73, 77, 6…
-#&gt; $ catch_score       &lt;int&gt; 56, 76, 69, 78, 81, 53, 67, 65, 62, 65, 53, 6…
-#&gt; $ yac_score         &lt;int&gt; 72, 47, 45, 50, 22, 70, 41, 68, 51, 54, 60, 5…
-#&gt; $ rtm_routes        &lt;int&gt; 198, 216, 244, 236, 241, 286, 219, 179, 253, …
-#&gt; $ rtm_targets       &lt;int&gt; 60, 55, 82, 65, 61, 68, 63, 37, 66, 43, 48, 4…
-#&gt; $ min_season        &lt;int&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 202…
-#&gt; $ max_season        &lt;int&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 202…
-#&gt; $ min_player_season &lt;int&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 202…
-#&gt; $ max_player_season &lt;int&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 202…
-#&gt; $ min_rtm_targets   &lt;int&gt; 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 2…
-#&gt; $ dot_com_id        &lt;chr&gt; "4047646", "15847", "3116406", "2976212", "25…
-#&gt; $ first_nm          &lt;chr&gt; "A.J.", "Travis", "Tyreek", "Stefon", "Tyler"…
-#&gt; $ last_nm           &lt;chr&gt; "Brown", "Kelce", "Hill", "Diggs", "Lockett",…
-#&gt; $ full_nm           &lt;chr&gt; "A.J. Brown", "Travis Kelce", "Tyreek Hill", …
-#&gt; $ team_name         &lt;chr&gt; "Philadelphia Eagles", "Kansas City Chiefs", …
-#&gt; $ yds               &lt;int&gt; 659, 553, 961, 764, 531, 605, 547, 418, 752, …
-```</p>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">raw_metrics</span> <span class="op">&lt;-</span> <span class="fu">espnscrapeR</span><span class="fu">::</span><span class="fu">get_espn_wr_metrics</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">raw_metrics</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 1,657</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ gsis_id           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "00-0035676", "00-0030506", "00-0033040", "00-003158…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ position          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "WR", "TE", "WR", "WR", "WR", "WR", "WR", "TE", "WR"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ tm                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "PHI", "KC", "MIA", "BUF", "SEA", "CIN", "NO", "CLE"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ overall           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 86, 81, 80, 79, 78, 75, 75, 74, 74, 73, 73, 71, 70, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ open_score        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 88, 80, 86, 73, 90, 73, 83, 64, 78, 73, 77, 68, 68, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ catch_score       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 56, 76, 69, 78, 81, 53, 67, 65, 62, 65, 53, 63, 72, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ yac_score         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 72, 47, 45, 50, 22, 70, 41, 68, 51, 54, 60, 56, 46, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ rtm_routes        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 198, 216, 244, 236, 241, 286, 219, 179, 253, 289, 22…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ rtm_targets       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 60, 55, 82, 65, 61, 68, 63, 37, 66, 43, 48, 44, 64, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ min_season        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ max_season        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ min_player_season <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ max_player_season <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ min_rtm_targets   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ dot_com_id        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4047646", "15847", "3116406", "2976212", "2577327",…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ first_nm          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "A.J.", "Travis", "Tyreek", "Stefon", "Tyler", "Ja'M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ last_nm           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Brown", "Kelce", "Hill", "Diggs", "Lockett", "Chase…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ full_nm           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "A.J. Brown", "Travis Kelce", "Tyreek Hill", "Stefon…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ team_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Philadelphia Eagles", "Kansas City Chiefs", "Miami …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ yds               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 659, 553, 961, 764, 531, 605, 547, 418, 752, 493, 48…</span>
+</code></pre></div>
     </div>
-
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

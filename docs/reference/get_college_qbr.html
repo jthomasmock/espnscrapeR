@@ -106,7 +106,26 @@
 <span class="r-in"><span class="co"># Note the mix of playoffs/bowls and regular season</span></span>
 <span class="r-in"><span class="fu">get_college_qbr</span><span class="op">(</span><span class="fl">2019</span>, type <span class="op">=</span> <span class="st">"weekly"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping QBR for all weeks of 2019!</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_college_qbr(2019, type = "weekly"):</span> Internal Server Error (HTTP 500).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,633 × 35</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    season  week week_t…¹ week_…² playe…³ playe…⁴ playe…⁵ name_…⁶ name_…⁷ name_…⁸</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 4040715 s:20~l… caceb8… Jalen   Hurts   Jalen …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 4055171 s:20~l… 972702… Anthony Gordon  Anthon…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 4362887 s:20~l… 7e9fbd… Justin  Fields  Justin…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 3915511 s:20~l… e6957d… Joe     Burrow  Joe Bu…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 4036419 s:20~l… e55adf… Skylar  Thomps… Skylar…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 4241479 s:20~l… 3858bb… Tua     Tagova… Tua Ta…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 4361825 s:20~l… f9419f… Spencer Sanders Spence…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 3916726 s:20~l… 4ae2ce… Jon     Wassink Jon Wa…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 3915436 s:20~l… a6b089… Steven  Montez  Steven…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>019     1 Week 1   Regular 4259127 s:20~l… 6193ac… Mike    Glass … Mike G…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,623 more rows, 25 more variables: name_short &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   headshot_href &lt;chr&gt;, age &lt;int&gt;, team_name &lt;chr&gt;, team_short_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   slug &lt;chr&gt;, team_id &lt;chr&gt;, team_uid &lt;chr&gt;, game_id &lt;chr&gt;, game_date &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   player_home_away &lt;chr&gt;, score &lt;chr&gt;, opp_team_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   opp_team_name &lt;chr&gt;, opp_team_short_name &lt;chr&gt;, qbr_total &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   pts_added &lt;dbl&gt;, qb_plays &lt;dbl&gt;, epa_total &lt;dbl&gt;, pass &lt;dbl&gt;, run &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   exp_sack &lt;dbl&gt;, penalty &lt;dbl&gt;, qbr_raw &lt;dbl&gt;, sack &lt;dbl&gt;, and abbreviated …</span></span>
 </code></pre></div>
     </div>
   </div>
