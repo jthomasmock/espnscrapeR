@@ -68,9 +68,8 @@ scrape_team_stats_nfl <- function(season = 2019, stats = "passing", role = "offe
   )
 
   pass_def_names <- c("team", "pass_att", "pass_comp", "pass_comp_pct", "yds_att", "pass_yds",
-                 "pass_td", "int", "pass_rating", "first_downs",
-                 "pass_first_pct", "pass_20plus", "pass_40plus",
-                 "pass_long", "sacks"
+                 "pass_td", "int", "first_downs",
+                 "pass_first_pct", "sacks"
   )
 
   passing_names <- dplyr::if_else(role == "defense",
