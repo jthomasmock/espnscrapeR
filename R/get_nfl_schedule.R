@@ -48,6 +48,8 @@ get_nfl_schedule <- function(season){
   nfl_data <- raw_sched[["events"]] %>%
     tibble(data = .) %>%
     unnest_wider(data) %>%
+    unnest_wider(week) %>%
+    rename(week_num = number) %>%
     unchop(competitions) %>%
     select(-id, -uid, -date, -status) %>%
     unnest_wider(competitions) %>%
@@ -57,8 +59,6 @@ get_nfl_schedule <- function(season){
     select(!any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "type"))) %>%
     unnest_wider(season) %>%
     rename(season = year) %>%
-    unnest_wider(week) %>%
-    rename(week_num = number) %>%
     select(-any_of("status")) %>%
     hoist(
       competitors,
