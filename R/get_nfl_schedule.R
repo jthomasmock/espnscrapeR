@@ -58,7 +58,7 @@ get_nfl_schedule <- function(season){
     unnest_wider(season) %>%
     rename(season = year) %>%
     unnest_wider(week) %>%
-    # rename(week_num = number) %>%
+    rename(week_num = number) %>%
     select(-any_of("status")) %>%
     hoist(
       competitors,
