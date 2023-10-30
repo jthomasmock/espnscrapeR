@@ -57,7 +57,7 @@ get_nfl_schedule <- function(season){
     select(!any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "type"))) %>%
     unnest_wider(season) %>%
     rename(season = year) %>%
-    unest_wider(week) %>%
+    unnest_wider(week) %>%
     rename(week = number) %>%
     select(-any_of("status")) %>%
     hoist(
