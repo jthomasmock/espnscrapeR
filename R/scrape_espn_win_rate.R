@@ -60,9 +60,9 @@ tab_23 <- raw_html %>%
     win_pct = as.numeric(win_rate)
     ) %>% 
   mutate(date_updated = NA, season = 2023) %>% 
-  arrange(stat) %>% 
+  arrange(stat, desc(win_pct)) %>% 
   group_by(stat) %>% 
-  mutate(stat_rank = rank(win_pct)) %>% 
+  mutate(stat_rank = row_number()) %>% 
   ungroup() %>% 
   select(stat, stat_rank, team = Team, win_pct, date_updated, season)
 
