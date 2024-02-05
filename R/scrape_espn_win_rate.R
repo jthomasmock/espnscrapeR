@@ -5,7 +5,7 @@
 #' @import dplyr stringr
 #' @importFrom dplyr %>%
 #' @importFrom readr parse_number
-#' @importFrom tidyr separate
+#' @importFrom tidyr separate pivot_longer
 #' @importFrom xml2 read_html
 #' @importFrom purrr map2_dfr
 #' @importFrom rvest html_node html_text
@@ -14,9 +14,9 @@
 #' # Get off and def pass/run win rates
 #' scrape_espn_win_rate()
 
-scrape_espn_win_rate <- function(season = 2022){
+scrape_espn_win_rate <- function(season = 2023){
 
-  if(!(as.numeric(season) %in% c(2019:2022))) stop("Data available for 2019-22")
+  if(!(as.numeric(season) %in% c(2019:2023))) stop("Data available for 2019-2023")
 
   pbwr_2022 <- "https://www.espn.com/nfl/story/_/id/34536376/2022-nfl-pass-rushing-run-stopping-blocking-leaderboard-win-rate-rankings-top-players-teams"
   pbwr_2021 <- "https://www.espn.com/nfl/story/_/id/32176833/2021-nfl-pass-rushing-run-stopping-blocking-leaderboard-win-rate-rankings"
@@ -34,6 +34,41 @@ scrape_espn_win_rate <- function(season = 2022){
     "Pass Rush Win Rate",
     "Pass Block Win Rate"
   )
+
+  # 2023 specific code:
+
+  if(season == 2023){
+    url_2023 <- "https://www.espn.com/nfl/story/_/id/38356170/2023-nfl-pass-rush-run-stop-blocking-win-rate-rankings-top-players-teams"
+
+raw_html <- read_html(url_2023)
+
+tab_23 <- raw_html %>% 
+  html_table() %>%
+  .[[9]] %>% 
+  pivot_longer(cols = -1, names_to = "stat", values_to = "win_rate") %>% 
+  mutate(
+    stat = case_when(
+      stat == "PRWR" ~ "Pass Rush Win Rate",
+      stat == "RSWR" ~ "Run Stop Win Rate",
+      stat == "PBWR" ~ "Pass Block Win Rate",
+      stat == "RBWR" ~ "Run Block Win Rate"
+    )) %>% 
+      mutate(
+    # extract just the string that is before a '%'
+    win_rate = str_extract(win_rate, "^[^%]+"),
+    # convert to a number
+    win_pct = as.numeric(win_rate)
+    ) %>% 
+  mutate(date_updated = NA, season = 2023) %>% 
+  arrange(stat) %>% 
+  group_by(stat) %>% 
+  mutate(stat_rank = rank(win_pct)) %>% 
+  ungroup() %>% 
+  select(stat, stat_rank, team = Team, win_pct, date_updated, season)
+
+  return(tab_23)
+  }
+
 
   raw_html <- read_html(
     case_when(
